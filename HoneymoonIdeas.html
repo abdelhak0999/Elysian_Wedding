@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idées de Lune de Miel | Elysian Weddings</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  /* Réinitialisation et styles de base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  .header-logo {
+  /* shrink it just slightly */
+  width: 130px;      /* or whatever feels right */
+  height: auto;
+
+  /* keep your border if you like */
+  /* border-radius: 50%;
+  border: 2px solid #c29a76; */
+  padding: 2px;
+
+  /* ensure drop-shadow hugs the opaque parts */
+  display: inline-block;
+
+  /* layer a small, subtle neon glow */
+  /* filter:
+    drop-shadow(0 0 1px #c29a76)
+    drop-shadow(0 0 2px #c29a76)
+    drop-shadow(0 0 4px rgba(194,154,118,0.8))
+    drop-shadow(0 0 6px rgba(194,154,118,0.6)); */
+}
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f5f2;
+    color: #333;
+    line-height: 1.6;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  body.dark-mode {
+    background-color: #2c2c2c;
+    color: white;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* En-tête */
+  header {
+    text-align: center;
+    background: linear-gradient(to right, #f8f5f2, #f0e9e4);
+    color: #333;
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  body.dark-mode header {
+    background: linear-gradient(to right, #2c2c2c, #222);
+    color: white;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://source.unsplash.com/random/1920x1080/?honeymoon');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+  }
+
+  header h1 {
+    position: relative;
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    z-index: 1;
+  }
+
+  body.dark-mode header h1 {
+    color: #fff;
+  }
+
+  header h1 span {
+    color: #c29a76;
+  }
+
+  header p {
+    position: relative;
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+  }
+
+  body.dark-mode header p {
+    color: #ccc;
+  }
+
+  /* Section des destinations */
+  .destinations {
+    padding: 80px 0;
+    scroll-margin-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: linear-gradient(to bottom, #f8f5f2, #f0e9e4);
+  }
+
+  body.dark-mode .destinations {
+    background: linear-gradient(to bottom, #2c2c2c, #222);
+  }
+
+  .destinations .container {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .destinations h2 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  body.dark-mode .destinations h2 {
+    color: #fff;
+  }
+
+  .section-description {
+    text-align: center;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto 40px;
+  }
+
+  body.dark-mode .section-description {
+    color: #ccc;
+  }
+
+  .destination {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    width: 300px;
+    margin: 15px;
+  }
+
+  body.dark-mode .destination {
+    background-color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .destination:hover {
+    transform: translateY(-10px);
+  }
+
+  .destination img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .destination:hover img {
+    transform: scale(1.1);
+  }
+
+  .info {
+    padding: 20px;
+  }
+
+  .info h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #c29a76;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .info p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+    text-align: left;
+  }
+
+  body.dark-mode .info p {
+    color: #ccc;
+  }
+
+  .info h3 {
+    font-size: 16px;
+    color: #c29a76;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+
+  /* Conteneur d'expériences */
+  .experience-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+  }
+
+  @media (min-width: 992px) {
+    .experience-container {
+      flex-direction: row;
+    }
+  }
+
+  .experience-section {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  body.dark-mode .experience-section {
+    background-color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .experience-section:hover {
+    transform: translateY(-5px);
+  }
+
+  @media (min-width: 992px) {
+    .experience-section {
+      width: 50%;
+    }
+  }
+
+  .experience-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #c29a76;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .experience-section > p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+  }
+
+  body.dark-mode .experience-section > p {
+    color: #ccc;
+  }
+
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .cards-container {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .card {
+    background-color: #f9f5f1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  body.dark-mode .card {
+    background-color: #444;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  body.dark-mode .card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .card:hover img {
+    transform: scale(1.05);
+  }
+
+  .card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #c29a76;
+    margin: 15px 15px 5px;
+  }
+
+  .short-description {
+    font-size: 14px;
+    color: #666;
+    padding: 0 15px 10px;
+  }
+
+  body.dark-mode .short-description {
+    color: #ccc;
+  }
+
+  .hidden-text {
+    display: none;
+    padding: 10px 15px 15px;
+    font-size: 14px;
+    color: #666;
+    background-color: rgba(194, 154, 118, 0.1);
+    border-top: 1px solid rgba(194, 154, 118, 0.2);
+  }
+
+  body.dark-mode .hidden-text {
+    color: #ccc;
+    background-color: rgba(194, 154, 118, 0.05);
+  }
+
+  .card:hover .hidden-text {
+    display: block;
+    animation: fadeIn 0.5s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Section de détente */
+  .relaxation-section {
+    background: url('https://source.unsplash.com/random/1920x1080/?spa,wellness') center/cover no-repeat fixed;
+    padding: 80px 20px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    margin: 60px 0;
+  }
+
+  .relaxation-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
+
+  .relaxation-content {
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .relaxation-content h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #f5e0c8;
+    margin-bottom: 20px;
+  }
+
+  .relaxation-content > p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #f0e9e4;
+  }
+
+  .relaxation-box {
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .relaxation-box:hover {
+    transform: translateY(-5px);
+  }
+
+  .relaxation-box h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #c29a76;
+    margin-bottom: 15px;
+  }
+
+  .relaxation-box ul li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .relaxation-box ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #c29a76;
+  }
+
+  .relaxation-box ul li strong {
+    color: #c29a76;
+  }
+
+  /* Histoires de lune de miel */
+  .honeymoon-stories {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 60px auto;
+    max-width: 900px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  body.dark-mode .honeymoon-stories {
+    background-color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .honeymoon-stories .section-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #c29a76;
+    margin-bottom: 15px;
+  }
+
+  .story-slider {
+    position: relative;
+    overflow: hidden;
+    max-width: 800px;
+    margin: 30px auto;
+    min-height: 300px;
+  }
+
+  .story {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    position: absolute;
+    width: 100%;
+  }
+
+  .story.active {
+    opacity: 1;
+    position: relative;
+  }
+
+  @media (max-width: 768px) {
+    .story {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  .story-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 5px solid #f5e0c8;
+  }
+
+  body.dark-mode .story-image {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-color: #c29a76;
+  }
+
+  .story-content {
+    max-width: 500px;
+    text-align: left;
+  }
+
+  @media (max-width: 768px) {
+    .story-content {
+      text-align: center;
+    }
+  }
+
+  .story-content h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #c29a76;
+    margin-bottom: 15px;
+  }
+
+  .story-content p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  body.dark-mode .story-content p {
+    color: #ccc;
+  }
+
+  .slider-controls {
+    margin-top: 20px;
+  }
+
+  .prev, .next {
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px 15px;
+    background-color: rgba(194, 154, 118, 0.2);
+    border-radius: 50%;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    color: #c29a76;
+  }
+
+  .prev:hover, .next:hover {
+    background-color: rgba(194, 154, 118, 0.4);
+    transform: scale(1.1);
+  }
+
+  /* Section "Merci" */
+  .Thank-you {
+    text-align: center;
+    margin: 60px auto;
+    padding: 40px 20px;
+    background-color: white;
+    border-radius: 10px;
+    max-width: 900px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  body.dark-mode .Thank-you {
+    background-color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .Thank-you h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #c29a76;
+    margin-bottom: 20px;
+  }
+
+  .Thank-you ul {
+    list-style: none;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .Thank-you ul li {
+    margin-bottom: 10px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  body.dark-mode .Thank-you ul li {
+    color: #ccc;
+  }
+
+  /* Section des commentaires */
+  #comments-section {
+    width: 80%;
+    margin: 30px auto 60px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  body.dark-mode #comments-section {
+    background-color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  #comments-section h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #c29a76;
+    margin-bottom: 20px;
+  }
+
+  #comment-name,
+  #comment-text {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  body.dark-mode #comment-name,
+  body.dark-mode #comment-text {
+    background-color: #444;
+    border-color: #555;
+    color: #fff;
+  }
+
+  #comment-text {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  button {
+    background-color: #c29a76;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    margin: 10px 5px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  button:hover {
+    background-color: #a87f5e;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  body.dark-mode button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  #comments-list {
+    margin-top: 30px;
+    text-align: left;
+  }
+
+  .comment {
+    background-color: #f9f5f1;
+    padding: 20px;
+    margin-top: 15px;
+    border-left: 4px solid #c29a76;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+  }
+
+  body.dark-mode .comment {
+    background-color: #444;
+  }
+
+  .comment:hover {
+    transform: translateX(5px);
+  }
+
+  .comment strong {
+    color: #c29a76;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .comment p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  body.dark-mode .comment p {
+    color: #ccc;
+  }
+
+  /* Bouton de basculement du thème */
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: white;
+    color: #333;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+  body.dark-mode .theme-toggle {
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .theme-toggle:hover {
+    transform: rotate(30deg);
+    background-color: #c29a76;
+    color: white;
+  }
+
+  /* Styles réactifs */
+  @media (max-width: 991px) {
+    header h1 {
+      font-size: 36px;
+    }
+
+    header p {
+      font-size: 18px;
+    }
+
+    .experience-container {
+      flex-direction: column;
+    }
+
+    .experience-section {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    header h1 {
+      font-size: 28px;
+    }
+
+    header p {
+      font-size: 16px;
+    }
+
+    .destination {
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .story-image {
+      width: 150px;
+      height: 150px;
+    }
+
+    #comments-section {
+      width: 95%;
+      padding: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+    <button id="theme-toggle" class="theme-toggle">
+        <i id="theme-icon" class="fas fa-moon"></i>
+    </button>
+
+    <header>
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Planification de Mariage" class="header-logo">
+      </a>
+        <h1>Lune de Miel <span>Idées</span></h1>
+        <p>Découvrez des destinations de lune de miel uniques et luxueuses pour une expérience inoubliable.</p>
+    </header>
+
+    <section class="destinations">
+        <div class="container">
+            <h2 class="section-title">Destinations Enchantées pour la Lune de Miel</h2>
+            <p class="section-description">
+                Explorez une collection des destinations de lune de miel les plus époustouflantes et uniques du monde. 
+                Des îles tropicales paisibles aux villes historiques charmantes, ces lieux promettent un début inoubliable pour votre nouvelle aventure ensemble.
+            </p>
+        </div>
+        
+        <div class="destination">
+            <img src="honeymoon/Santorini, Greece.jpg" alt="Santorin, Grèce">
+            <div class="info">
+                <h2>Santorin, Grèce</h2>
+                <p>Une île à couper le souffle avec ses maisons blanchies, ses couchers de soleil impressionnants et ses complexes hôteliers luxueux.</p>
+                <h3>Hôtel recommandé :</h3>
+                <p>Grace Hotel Santorini - Un hôtel cinq étoiles avec une piscine à débordement surplombant la mer Égée.</p>
+            </div>
+        </div>
+
+        <div class="destination">
+            <img src="honeymoon/Bora Bora, French Polynesia.jpg" alt="Bora Bora, Polynésie française">
+            <div class="info">
+                <h2>Bora Bora, Polynésie française</h2>
+                <p>Eaux turquoise, bungalows sur pilotis, et une ambiance paradisiaque.</p>
+                <h3>Hôtel recommandé :</h3>
+                <p>Four Seasons Resort Bora Bora - Un complexe luxueux avec des villas privées sur l'eau.</p>
+            </div>
+        </div>
+
+        <div class="destination">
+            <img src="honeymoon/Amalfi Coast, Italy.jpg" alt="Côte Amalfitaine, Italie">
+            <div class="info">
+                <h2>Côte Amalfitaine, Italie</h2>
+                <p>Un paradis côtier pittoresque avec des villages romantiques et des vues époustouflantes.</p>
+                <h3>Hôtel recommandé :</h3>
+                <p>Le Sirenuse - Un hôtel-boutique offrant une expérience italienne élégante pour la lune de miel.</p>
+            </div>
+        </div>
+
+        <div class="destination">
+            <img src="honeymoon/Faroe Islands, Denmark.jpg" alt="Îles Féroé, Danemark">
+            <div class="info">
+                <h2>Îles Féroé, Danemark</h2>
+                <p>Une escapade impressionnante avec des falaises dramatiques, des paysages luxuriants et une solitude paisible.</p>
+                <h3>Hôtel recommandé :</h3>
+                <p>Hotel Føroyar - Un hôtel offrant une vue panoramique entouré de nature.</p>
+            </div>
+        </div>
+        
+        <div class="destination">
+            <img src="honeymoon/Kyoto, Japan.jpg" alt="Kyoto, Japon">
+            <div class="info">
+                <h2>Kyoto, Japon</h2>
+                <p>Imprégnez-vous de la culture traditionnelle japonaise, visitez des temples historiques et des jardins magnifiques.</p>
+                <h3>Hôtel recommandé :</h3>
+                <p>Hoshinoya Kyoto - Un refuge luxueux au bord de la rivière avec une touche traditionnelle.</p>
+            </div>
+        </div>
+        
+        <div class="destination">
+            <img src="honeymoon/Swiss Alps, Switzerland.jpg" alt="Alpes Suisses, Suisse">
+            <div class="info">
+                <h2>Alpes Suisses, Suisse</h2>
+                <p>Un havre alpin avec des chalets confortables, des trajets en train pittoresques, et des pistes de ski de renommée mondiale.</p>
+                <h3>Hôtel recommandé :</h3>
+                <p>Badrutt's Palace Hotel - Un refuge luxueux offrant des vues montagneuses spectaculaires et des équipements haut de gamme.</p>
+            </div>
+        </div>
+        
+        <div class="destination">
+            <img src="honeymoon/Zanzibar, Tanzania.jpg" alt="Zanzibar, Tanzanie">
+            <div class="info">
+                <h2>Zanzibar, Tanzanie</h2>
+                <p>Plages de sable blanc exotiques, une culture africaine riche, et des panoramas maritimes envoûtants.</p>
+                <h3>Hôtel recommandé :</h3>
+                <p>Zuri Zanzibar - Un complexe luxueux offrant des vues spectaculaires sur l'océan.</p>
+            </div>
+        </div>
+        
+        <div class="destination">
+            <img src="honeymoon/Cappadocia, Turkey.jpg" alt="Cappadoce, Turquie">
+            <div class="info">
+                <h2>Cappadoce, Turquie</h2>
+                <p>Découvrez la magie des hôtels troglodytes et des montgolfières impressionnantes.</p>
+                <h3>Hôtel recommandé :</h3>
+                <p>Museum Hotel - Un hôtel unique taillé dans la roche avec des services luxueux.</p>
+            </div>
+        </div>
+
+        <div class="destination">
+            <img src="honeymoon/Lapland, Finland.jpg" alt="Laponie, Finlande">
+            <div class="info">
+                <h2>Laponie, Finlande</h2>
+                <p>Un univers hivernal féérique avec des aurores boréales et des igloos en verre confortables.</p>
+                <h3>Hôtel recommandé :</h3>
+                <p>Kakslauttanen Arctic Resort - Une expérience luxueuse en igloo de verre sous les aurores boréales.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="experience-container">
+        <div class="experience-section">
+            <h2>Activités Uniques pour les Couples</h2>
+            <p>Découvrez des activités passionnantes et originales pour rendre votre lune de miel inoubliable.</p>
+            <div class="cards-container">
+                <div class="card">
+                    <img src="honeymoon/act1.jpg" alt="Plongée aux Maldives">
+                    <h3>Plongée aux Maldives</h3>
+                    <p class="short-description">Explorez le monde sous-marin ensemble.</p>
+                    <div class="hidden-text">Nagez avec des poissons exotiques et admirez des récifs coralliens époustouflants.</div>
+                </div>
+                <div class="card">
+                    <img src="honeymoon/act2.jpg" alt="Montgolfière en Cappadoce">
+                    <h3>Montgolfière en Cappadoce</h3>
+                    <p class="short-description">Un lever de soleil magique au-dessus de paysages féériques.</p>
+                    <div class="hidden-text">Profitez d'une vue imprenable avec un petit-déjeuner au champagne.</div>
+                </div>
+                <div class="card">
+                    <img src="honeymoon/act3.jpg" alt="Ski dans les Alpes">
+                    <h3>Ski dans les Alpes</h3>
+                    <p class="short-description">Une aventure hivernale exaltante.</p>
+                    <div class="hidden-text">Descendez les pentes enneigées et détendez-vous dans un chalet chaleureux.</div>
+                </div>
+                <div class="card">
+                    <img src="honeymoon/act4.jpg" alt="Yacht Privé dans les Caraïbes">
+                    <h3>Yacht Privé dans les Caraïbes</h3>
+                    <p class="short-description">Naviguez dans le coucher de soleil avec élégance.</p>
+                    <div class="hidden-text">Profitez du luxe, de l'intimité et d'une vue panoramique sur l'océan.</div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="experience-section">
+            <h2>Repas Exceptionnels</h2>
+            <p>Vivez des expériences culinaires uniques dans les lieux les plus spectaculaires du monde.</p>
+            <div class="cards-container">
+                <div class="card">
+                    <img src="honeymoon/e1.jpg" alt="Restaurant Sous-Marin – Maldives">
+                    <h3>Restaurant Sous-Marin – Maldives</h3>
+                    <p class="short-description">Dînez sous les vagues.</p>
+                    <div class="hidden-text">Savourez un repas gastronomique entouré par la vie marine.</div>
+                </div>
+                <div class="card">
+                    <img src="honeymoon/e2.jpg" alt="Dîner dans le Ciel – Dubaï">
+                    <h3>Dîner dans le Ciel – Dubaï</h3>
+                    <p class="short-description">Élevez votre expérience culinaire.</p>
+                    <div class="hidden-text">Dînez à 50 m de hauteur avec une vue imprenable sur l'horizon urbain.</div>
+                </div>
+                <div class="card">
+                    <img src="honeymoon/e3.jpg" alt="Dîner aux Chandelles dans une Grotte – Grèce">
+                    <h3>Dîner aux Chandelles dans une Grotte – Grèce</h3>
+                    <p class="short-description">Une expérience romantique et intime.</p>
+                    <div class="hidden-text">Dînez dans une grotte isolée avec une ambiance tamisée aux chandelles.</div>
+                </div>
+                <div class="card">
+                    <img src="honeymoon/e4.jpg" alt="Dîner dans la Forêt Tropicale – Costa Rica">
+                    <h3>Dîner dans la Forêt Tropicale – Costa Rica</h3>
+                    <p class="short-description">Dînez au cœur de la nature.</p>
+                    <div class="hidden-text">Savourez un repas entouré par une végétation luxuriante et une faune exotique.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="relaxation-section">
+        <div class="relaxation-content">
+            <h2>Expériences Ultimes de Détente et de Bien-être</h2>
+            <p>Offrez-vous une pause dans des spas luxueux et paisibles pour vous ressourcer et vous connecter. Découvrez les meilleures destinations et conseils pour une détente absolue pendant votre lune de miel.</p>
+            
+            <div class="relaxation-box">
+                <h3>🌿 Meilleures Destinations Spa pour les Couples</h3>
+                <ul>
+                    <li><strong>Thaïlande :</strong> Profitez du massage thaïlandais renommé dans un pavillon en plein air au bord de la plage.</li>
+                    <li><strong>Japon :</strong> Vivez une détente ultime dans un onsen traditionnel avec vue sur les montagnes.</li>
+                    <li><strong>Maldives :</strong> Offrez-vous un moment de bien-être dans un spa sur pilotis entouré d'eaux cristallines.</li>
+                    <li><strong>Bali :</strong> Expérimentez un bain de fleurs revitalisant dans une villa privée pour une touche romantique.</li>
+                </ul>
+            </div>
+    
+            <div class="relaxation-box">
+                <h3>💆‍♀️ Conseils pour une Expérience Spa Parfaite</h3>
+                <ul>
+                    <li>Réservez vos séances à l'avance pour obtenir les meilleurs créneaux.</li>
+                    <li>Optez pour un massage en duo afin de renforcer votre connexion et votre détente.</li>
+                    <li>Choisissez des établissements offrant des sources chaudes naturelles ou des vues sur l'océan pour une expérience mémorable.</li>
+                    <li>Déconnectez-vous de vos appareils et profitez de l'atmosphère paisible.</li>
+                </ul>
+            </div>
+    
+            <div class="relaxation-box">
+                <h3>⚠️ Ce qu'il faut éviter</h3>
+                <ul>
+                    <li>Évitez les réservations de dernière minute, car les meilleurs spas peuvent être complets en haute saison.</li>
+                    <li>Ne prenez pas de repas lourds avant un massage afin de profiter pleinement de l'expérience.</li>
+                    <li>Ne choisissez pas des traitements trop intensifs si vous n'y êtes pas habitué.</li>
+                    <li>Évitez les spas bruyants et surpeuplés si vous recherchez une véritable détente.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section class="honeymoon-stories">
+        <h2 class="section-title">Histoires de Lune de Miel</h2>
+        <p class="section-description">Découvrez des expériences inoubliables partagées par de vrais couples.</p>
+    
+        <div class="story-slider">
+            <div class="story active">
+                <img src="honeymoon/couple1.jpg" alt="Couple 1" class="story-image">
+                <div class="story-content">
+                    <h3>Emma & Liam – Une Évasion Magique à Bali</h3>
+                    <p>Notre lune de miel à Bali ressemblait à un conte de fées. Nous avons séjourné dans une villa sur pilotis offrant une vue imprenable sur l'océan. Chaque matin, nous dégustions un petit-déjeuner flottant dans notre piscine privée, entourés de verdure. Nous avons exploré des cascades cachées, goûté la cuisine balinaise authentique et profité de promenades romantiques au coucher du soleil sur des plages immaculées. Le clou du spectacle fut un dîner privé aux chandelles dans une grotte au cœur de la jungle. Bali restera à jamais gravée dans nos mémoires.</p>
+                </div>
+            </div>
+    
+            <div class="story">
+                <img src="honeymoon/couple2.jpg" alt="Couple 2" class="story-image">
+                <div class="story-content">
+                    <h3>Noah & Sophia – Une Escapade de Rêve à Santorin</h3>
+                    <p>Notre lune de miel à Santorin était tout ce dont nous avions rêvé et bien plus encore. Les bâtiments blanchis de l'île et leurs dômes bleus forment le cadre parfait pour la romance. Nous avons séjourné dans un hôtel troglodyte creusé dans la falaise, avec une terrasse privée surplombant la mer Égée. Nous avons découvert des villages pittoresques, profité de piscines à débordement et dégusté des mets grecs exquis. Un des moments les plus magiques fut d’observer le coucher du soleil sur la caldeira lors d’un dîner intimiste en bord de mer. Santorin restera toujours dans nos cœurs.</p>
+                </div>
+            </div>
+    
+            <div class="story">
+                <img src="honeymoon/couple3.jpg" alt="Couple 3" class="story-image">
+                <div class="story-content">
+                    <h3>James & Olivia – Une Lune de Miel Safari au Kenya</h3>
+                    <p>Pour notre lune de miel, nous voulions une expérience hors du commun, alors nous avons choisi le Kenya. Dès notre arrivée, nous avons été émerveillés par les paysages grandioses et la faune incroyable. Nous avons séjourné dans un lodge safari luxueux offrant une vue panoramique sur la savane. Chaque jour, nous avons vécu des aventures lors de safaris, observant lions, éléphants et girafes de près. L’un des moments forts fut un petit-déjeuner dans la nature, entouré d’animaux sauvages. Le soir, nous nous sommes réunis autour d’un feu pour écouter les sons de la brousse africaine sous un ciel étoilé. Le Kenya fut une expérience inoubliable.</p>
+                </div>
+            </div>
+    
+            <div class="story">
+                <img src="honeymoon/couple4.jpg" alt="Couple 4" class="story-image">
+                <div class="story-content">
+                    <h3>Daniel & Mia – Un Voyage Culturel à Travers le Japon</h3>
+                    <p>Notre lune de miel au Japon fut un parfait mélange de tradition et de modernité. Nous avons commencé à Kyoto en visitant des temples anciens et des forêts de bambous, puis avons assisté à une cérémonie du thé authentique. Ensuite, nous sommes allés à Tokyo pour savourer des sushis exquis et découvrir la vie nocturne animée. Un moment inoubliable fut notre séjour dans un ryokan traditionnel à Hakone, avec un onsen privé offrant une vue sur le mont Fuji. Le Japon nous a offert une expérience culturelle, aventureuse et relaxante à la fois.</p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="slider-controls">
+            <span class="prev" onclick="changeStory(-1)">&#10094;</span>
+            <span class="next" onclick="changeStory(1)">&#10095;</span>
+        </div>
+    </section>
+
+    <section class="Thank-you" id="thankYouSection">
+        <h2>Merci d'avoir exploré avec nous !</h2>
+        <ul>
+            <li>Nous vous remercions sincèrement pour votre temps et votre intérêt à découvrir nos idées uniques pour la lune de miel.</li>
+            <li>Notre objectif est de vous inspirer avec des destinations inoubliables, des expériences exceptionnelles,</li>
+            <li>et des moments magiques qui feront de votre lune de miel un rêve réalisé. Nous espérons que nos suggestions</li>
+            <li>vous aideront à créer de précieux souvenirs qui dureront toute une vie.</li>
+            <li>Nous vous souhaitons une lune de miel pleine d'amour, de joie et d'aventure !</li>
+        </ul>
+    </section>
+
+    <section class="final">
+        <div id="comments-section">
+            <h2>Partagez votre expérience</h2>
+            <input type="text" id="comment-name" placeholder="Votre nom">
+            <textarea id="comment-text" placeholder="Écrivez votre commentaire..."></textarea>
+            <button onclick="addComment()">Envoyer</button>
+            <button onclick="clearLastComment()">Supprimer le dernier commentaire</button>
+            <div id="comments-list"></div>
+        </div>
+    </section>
+
+    <script src="theme-toggle.js"></script>
+    <script>
+        // Fonction pour charger les commentaires depuis localStorage au chargement de la page
+        function loadComments() {
+            let commentsContainer = document.getElementById("comments-list");
+            let storedComments = localStorage.getItem("honeymoonComments");
+            if (storedComments) {
+                commentsContainer.innerHTML = storedComments;
+            }
+        }
+
+        // Fonction pour ajouter un nouveau commentaire
+        function addComment() {
+            let nameInput = document.getElementById("comment-name");
+            let commentInput = document.getElementById("comment-text");
+            let commentsContainer = document.getElementById("comments-list");
+
+            if (nameInput.value.trim() === "" || commentInput.value.trim() === "") {
+                alert("Veuillez entrer votre nom et votre commentaire avant d'envoyer.");
+                return;
+            }
+
+            let newComment = `
+                <div class="comment">
+                    <strong>${nameInput.value}</strong>
+                    <p>${commentInput.value}</p>
+                </div>
+            `;
+            commentsContainer.innerHTML += newComment;
+            localStorage.setItem("honeymoonComments", commentsContainer.innerHTML);
+            nameInput.value = "";
+            commentInput.value = "";
+        }
+
+        // Fonction pour supprimer le dernier commentaire
+        function clearLastComment() {
+            let commentsList = document.getElementById("comments-list");
+            if (commentsList.lastChild) {
+                commentsList.removeChild(commentsList.lastChild);
+                localStorage.setItem("honeymoonComments", commentsList.innerHTML);
+            }
+        }
+
+        // Fonction pour changer l'histoire affichée dans le slider
+        let currentIndex = 0;
+        const stories = document.querySelectorAll(".story");
+
+        function changeStory(step) {
+            stories[currentIndex].classList.remove("active");
+            currentIndex = (currentIndex + step + stories.length) % stories.length;
+            stories[currentIndex].classList.add("active");
+        }
+
+        // Auto-rotation des histoires toutes les 6 secondes
+        setInterval(() => changeStory(1), 6000);
+
+        // Révéler la section "Merci" lorsqu'elle apparaît dans la fenêtre
+        function revealThankYouSection() {
+            let section = document.getElementById("thankYouSection");
+            let position = section.getBoundingClientRect().top;
+            let screenHeight = window.innerHeight;
+            if (position < screenHeight - 100) {
+                section.classList.add("show");
+            }
+        }
+
+        window.addEventListener("scroll", revealThankYouSection);
+        window.onload = loadComments;
+    </script>
+    <!-- <script src="theme-toggle.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn about our wedding story and journey." />
+  <meta name="author" content="Your Name" />
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="About Our Wedding" />
+  <meta property="og:description" content="Discover our wedding journey, our story, and moments of love." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourweddingwebsite.com/about.html" />
+  <title>About Our Wedding</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&family=Cormorant:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="wedding-style.css" />
+  <style>
+    :root {
+      /* Core Colors */
+      --primary: #5a3e36;
+      --primary-dark: #483229;
+      --primary-light: #6c4e45;
+      --secondary: #7a5a52;
+      /* Luxury Palette */
+      --gold: #d4b16a;
+      --gold-light: #f7d794;
+      --gold-bright: #ffebc1;
+      --gold-dark: #b39355;
+      --cream: #f8f5e6;
+      --dark: #1a1310;
+      /* Shadows and Glows */
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.18);
+      --shadow-xl: 0 15px 60px rgba(0, 0, 0, 0.25);
+      --inner-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+      --gold-glow-sm: 0 0 10px rgba(212, 177, 106, 0.3);
+      --gold-glow-md: 0 0 20px rgba(212, 177, 106, 0.4);
+      --gold-glow-lg: 0 0 30px rgba(212, 177, 106, 0.5);
+      /* Text Shadows */
+      --text-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+      --text-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.15);
+      --text-shadow-lg: 0 3px 6px rgba(0, 0, 0, 0.2);
+      /* Transitions */
+      --transition-fast: 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
+      --transition-medium: 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+      --transition-slow: 700ms cubic-bezier(0.215, 0.61, 0.355, 1);
+      --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .header-logo {
+  /* shrink it just slightly */
+  width: 130px;      /* or whatever feels right */
+  height: auto;
+
+  /* keep your border if you like */
+  /* border-radius: 50%;
+  border: 2px solid #c29a76; */
+  padding: 2px;
+
+  /* ensure drop-shadow hugs the opaque parts */
+  display: inline-block;
+
+  /* layer a small, subtle neon glow */
+  /* filter:
+    drop-shadow(0 0 1px #c29a76)
+    drop-shadow(0 0 2px #c29a76)
+    drop-shadow(0 0 4px rgba(194,154,118,0.8))
+    drop-shadow(0 0 6px rgba(194,154,118,0.6)); */
+}
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--cream);
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%235a3e36' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M30,10 C35,15 35,25 30,30 C25,25 25,15 30,10 Z M10,30 C15,25 25,25 30,30 C25,35 15,35 10,30 Z M30,30 C35,35 35,45 30,50 C25,45 25,35 30,30 Z M30,30 C25,25 15,25 10,30 C15,35 25,35 30,30 Z M50,30 C45,25 35,25 30,30 C35,35 45,35 50,30 Z M30,30 C35,25 45,25 50,30 C45,35 35,35 30,30 Z'/%3E%3C/g%3E%3C/svg%3E");
+      color: var(--primary-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background overlay with wedding theme */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(90, 62, 54, 0.1) 0%, transparent 70%),
+                  radial-gradient(circle at 80% 70%, rgba(212, 177, 106, 0.1) 0%, transparent 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Particle background */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      background-color: var(--gold);
+      border-radius: 50%;
+      animation: floatParticle linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes floatParticle {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: var(--opacity, 0.3);
+      }
+      90% {
+        opacity: var(--opacity, 0.3);
+      }
+      100% {
+        transform: translateY(-20vh) translateX(var(--move-x, 20px));
+        opacity: 0;
+      }
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      position: relative;
+      width: 100%;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+      animation: shimmerLine 4s infinite ease-in-out;
+      background-size: 200% 100%;
+    }
+
+    @keyframes shimmerLine {
+      0% { background-position: -100% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      font-weight: 400;
+      margin: 0;
+      color: transparent;
+      background: linear-gradient(to right, var(--gold-dark), var(--gold), var(--gold-bright), var(--gold));
+      background-size: 200% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      text-shadow: var(--text-shadow-lg);
+      animation: textShine 8s linear infinite;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1::before,
+    h1::after {
+      content: "♥";
+      position: absolute;
+      font-family: serif;
+      font-size: 0.4em;
+      color: var(--gold);
+      opacity: 0.7;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    h1::before { left: -1.5em; }
+    h1::after { right: -1.5em; }
+
+    @keyframes textShine {
+      to { background-position: 200% center; }
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 800px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    .animated-text {
+      font-family: 'Cormorant', serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      line-height: 1.6;
+      margin: 0 auto 40px;
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards 0.5s;
+      color: var(--primary);
+      max-width: 90%;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Navigation (optional if more links are added) */
+    nav {
+      margin-bottom: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--primary-dark);
+      margin: 0 10px;
+      font-weight: 600;
+      transition: color var(--transition-fast);
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: var(--gold-dark);
+    }
+
+    /* Button styled as a link for accessibility */
+    .button-section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .luxury-button {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      transition: transform var(--transition-medium);
+      outline: none;
+    }
+
+    .luxury-button:focus .button-content {
+      box-shadow: 0 0 0 3px var(--gold-bright);
+    }
+
+    .button-content {
+      display: block;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary), var(--primary-dark));
+      color: var(--gold-light);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      transition: all var(--transition-medium);
+      transform-style: preserve-3d;
+    }
+
+    .shine {
+      position: absolute;
+      top: -100%;
+      left: -100%;
+      width: 300%;
+      height: 300%;
+      background: linear-gradient(
+        45deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 60%,
+        transparent 100%
+      );
+      transform: rotate(45deg);
+      z-index: 1;
+      transition: all var(--transition-medium);
+    }
+
+    .button-border {
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border: 2px solid var(--gold);
+      border-radius: 6px;
+      opacity: 0.3;
+      z-index: 1;
+      transition: all var(--transition-medium);
+    }
+
+    .button-depth {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      right: 0;
+      bottom: -5px;
+      background: var(--primary-dark);
+      border-radius: 4px;
+      transform: translateZ(-10px);
+      filter: blur(5px);
+      opacity: 0.5;
+      z-index: -1;
+      transition: all var(--transition-medium);
+    }
+
+    .glow-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 4px;
+      z-index: -1;
+      opacity: 0;
+      transition: all var(--transition-medium);
+    }
+
+    .glow-layer-1 {
+      box-shadow: 0 0 25px 8px rgba(212, 177, 106, 0.3);
+    }
+
+    .glow-layer-2 {
+      box-shadow: 0 0 50px 14px rgba(212, 177, 106, 0.2);
+    }
+
+    .glow-layer-3 {
+      box-shadow: 0 0 75px 20px rgba(212, 177, 106, 0.1);
+    }
+
+    .luxury-button:hover .button-content {
+      color: var(--gold-bright);
+      letter-spacing: 2px;
+    }
+
+    .luxury-button:hover .shine {
+      animation: shineEffect 1.5s forwards;
+    }
+
+    @keyframes shineEffect {
+      0% { left: -100%; top: -100%; }
+      100% { left: 100%; top: 100%; }
+    }
+
+    .luxury-button:hover .button-border {
+      opacity: 0.8;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+    }
+
+    .luxury-button:hover .glow-layer {
+      opacity: 1;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      width: 100%;
+      position: relative;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+      animation: shimmerLine 4s infinite ease-in-out;
+      background-size: 200% 100%;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      color: var(--primary);
+      margin: 0;
+      display: inline-block;
+      position: relative;
+    }
+
+    footer p::before,
+    footer p::after {
+      content: "♥";
+      font-family: serif;
+      font-size: 0.8em;
+      color: var(--gold);
+      opacity: 0.7;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      h1 { font-size: 3rem; }
+      .animated-text { font-size: 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2.5rem; }
+      h1::before, h1::after { display: none; }
+      .animated-text { font-size: 1.2rem; }
+      .button-content { padding: 14px 28px; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particle Background -->
+  <div class="particles" id="particles"></div>
+
+  <header>
+    <h1>About Us</h1>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Planification de Mariage" class="header-logo">
+      </a>
+    <!-- Optional Navigation if additional links are needed -->
+    <!--
+    <nav aria-label="Main Navigation">
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+    </nav>
+    -->
+  </header>
+
+  <main>
+    <section>
+      <p class="animated-text">Our wedding is a celebration of love, commitment, and the journey that brought us together. Here, we share our story, moments, and memories that define who we are.</p>
+    </section>
+  </main>
+
+  <div class="button-section">
+    <a href="index.html" class="luxury-button" aria-label="Back to Wedding Home">
+      <span class="button-content">
+        Back to Wedding Home
+        <span class="shine" aria-hidden="true"></span>
+      </span>
+      <span class="button-border" aria-hidden="true"></span>
+      <span class="button-depth" aria-hidden="true"></span>
+      <span class="glow-layer glow-layer-1" aria-hidden="true"></span>
+      <span class="glow-layer glow-layer-2" aria-hidden="true"></span>
+      <span class="glow-layer glow-layer-3" aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <footer>
+    <p>Elysian</p>
+  </footer>
+
+  <script>
+    // Helper to create a particle with random properties
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      const posX = Math.random() * 100;
+      const posY = Math.random() * 100;
+      const size = Math.random() * 3 + 1;
+      const duration = Math.random() * 20 + 10;
+      const delay = Math.random() * 10;
+      const moveX = (Math.random() - 0.5) * 40;
+      const opacity = Math.random() * 0.3 + 0.1;
+      
+      particle.style.left = `${posX}%`;
+      particle.style.top = `${posY}%`;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.opacity = '0';
+      particle.style.setProperty('--opacity', opacity);
+      particle.style.setProperty('--move-x', `${moveX}px`);
+      particle.style.animationDuration = `${duration}s`;
+      particle.style.animationDelay = `${delay}s`;
+      
+      // Occasionally create heart-shaped particles
+      if (Math.floor(Math.random() * 5) === 0) {
+        particle.style.width = '10px';
+        particle.style.height = '10px';
+        particle.style.backgroundColor = 'transparent';
+        particle.style.boxShadow = `0 0 5px ${Math.random() > 0.5 ? 'var(--gold)' : 'var(--primary-light)'}`;
+        particle.textContent = '♥';
+        particle.style.color = Math.random() > 0.5 ? 'var(--gold)' : 'var(--primary-light)';
+        particle.style.fontSize = '10px';
+        particle.style.display = 'flex';
+        particle.style.alignItems = 'center';
+        particle.style.justifyContent = 'center';
+      }
+      
+      return particle;
+    }
+
+    // Initialize particle background
+    document.addEventListener('DOMContentLoaded', function() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
+      for (let i = 0; i < particleCount; i++) {
+        particlesContainer.appendChild(createParticle());
+      }
+    });
+
+    // Button 3D Tilt Interaction using requestAnimationFrame for smoother animations
+    (function() {
+      const button = document.querySelector('.luxury-button');
+      if (!button) return;
+
+      let mouseX = 0, mouseY = 0;
+      let animFrame;
+
+      function updateTransform() {
+        const rect = button.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const deltaX = mouseX - centerX;
+        const deltaY = mouseY - centerY;
+        const rotateX = deltaY * -0.1;
+        const rotateY = deltaX * 0.1;
+        button.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px) scale(1.08)`;
+        // Update glow layers
+        button.querySelectorAll('.glow-layer').forEach((layer, index) => {
+          const intensity = (index + 1) * 5;
+          layer.style.boxShadow = `${deltaX / intensity}px ${deltaY / intensity}px ${25 + index * 25}px ${8 + index * 6}px rgba(212, 177, 106, ${0.3 - index * 0.1})`;
+        });
+        // Update button depth
+        const depthElement = button.querySelector('.button-depth');
+        if (depthElement) {
+          depthElement.style.transform = `translateZ(-10px) translateX(${-deltaX * 0.05}px) translateY(${-deltaY * 0.05}px)`;
+        }
+        animFrame = null;
+      }
+
+      button.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (!animFrame) animFrame = requestAnimationFrame(updateTransform);
+      });
+
+      button.addEventListener('mouseleave', function() {
+        button.style.transform = '';
+        button.querySelectorAll('.glow-layer').forEach(layer => layer.style.boxShadow = '');
+        const depthElement = button.querySelector('.button-depth');
+        if (depthElement) depthElement.style.transform = 'translateZ(-10px)';
+      });
+
+      button.addEventListener('mousedown', function() {
+        button.style.transform = 'translateY(-5px) scale(0.98)';
+      });
+
+      button.addEventListener('mouseup', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        updateTransform();
+      });
+    })();
+  </script>
+</body>
+</html>

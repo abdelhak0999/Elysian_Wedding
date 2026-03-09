@@ -1,0 +1,2160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendrier de Mariage - Planifiez Votre Jour Spécial</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset and base styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    .header-logo {
+  /* shrink it just slightly */
+  width: 130px;      /* or whatever feels right */
+  height: auto;
+
+  /* keep your border if you like */
+  /* border-radius: 50%;
+  border: 2px solid #c29a76; */
+  padding: 2px;
+
+  /* ensure drop-shadow hugs the opaque parts */
+  display: inline-block;
+
+  /* layer a small, subtle neon glow */
+  /* filter:
+    drop-shadow(0 0 1px #c29a76)
+    drop-shadow(0 0 2px #c29a76)
+    drop-shadow(0 0 4px rgba(194,154,118,0.8))
+    drop-shadow(0 0 6px rgba(194,154,118,0.6)); */
+}
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f5f2;
+      color: #333;
+      line-height: 1.6;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    body.dark-mode {
+      background-color: #2c2c2c;
+      color: white;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      transition: all 0.3s;
+      padding: 15px 0;
+    }
+
+    header.scrolled {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 10px 0;
+    }
+
+    body.dark-mode header.scrolled {
+      background-color: #333;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #c29a76;
+    }
+
+    .nav-desktop {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-desktop a, .dropdown-toggle {
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    body.dark-mode .nav-desktop a, 
+    body.dark-mode .dropdown-toggle {
+      color: #fff;
+    }
+
+    .nav-desktop a:hover, .dropdown-toggle:hover {
+      color: #c29a76;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      min-width: 180px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      padding: 8px 0;
+      z-index: 1;
+      margin-top: 10px;
+    }
+
+    body.dark-mode .dropdown-content {
+      background-color: #333;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 8px 16px;
+      transition: background-color 0.3s;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f5f5f5;
+      color: #c29a76;
+    }
+
+    body.dark-mode .dropdown-content a:hover {
+      background-color: #444;
+    }
+
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
+
+    .cart-icon, .menu-toggle, .theme-toggle {
+      font-size: 20px;
+      color: #333;
+      cursor: pointer;
+      transition: color 0.3s;
+      margin-left: 15px;
+      background: none;
+      border: none;
+    }
+
+    body.dark-mode .cart-icon, 
+    body.dark-mode .menu-toggle,
+    body.dark-mode .theme-toggle {
+      color: #fff;
+    }
+
+    .cart-icon:hover, .menu-toggle:hover, .theme-toggle:hover {
+      color: #c29a76;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .mobile-nav {
+      display: none;
+      padding: 15px 0;
+      border-top: 1px solid #eee;
+      margin-top: 15px;
+    }
+
+    body.dark-mode .mobile-nav {
+      border-top: 1px solid #444;
+    }
+
+    .mobile-nav a, .mobile-dropdown-toggle {
+      display: block;
+      padding: 10px 0;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    body.dark-mode .mobile-nav a, 
+    body.dark-mode .mobile-dropdown-toggle {
+      color: #fff;
+    }
+
+    .mobile-nav a:hover, .mobile-dropdown-toggle:hover {
+      color: #c29a76;
+    }
+
+    .mobile-dropdown-content {
+      display: none;
+      padding-left: 20px;
+    }
+
+    .mobile-dropdown-content a {
+      padding: 8px 0;
+    }
+
+    .mobile-dropdown.active .mobile-dropdown-content {
+      display: block;
+    }
+
+    /* Hero section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to right, #f8f5f2, #f0e9e4);
+      overflow: hidden;
+      margin-top: 0;
+    }
+
+    body.dark-mode .hero {
+      background: linear-gradient(to right, #2c2c2c, #222);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://source.unsplash.com/random/1920x1080/?wedding,calendar');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.2;
+    }
+
+    .hero-content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    body.dark-mode .hero h1 {
+      color: #fff;
+    }
+
+    .hero h1 span {
+      color: #c29a76;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    body.dark-mode .hero p {
+      color: #ccc;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 30px;
+      background-color: #c29a76;
+      color: white;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #a87f5e;
+    }
+
+    .btn-lg {
+      padding: 14px 32px;
+      font-size: 18px;
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #c29a76;
+      font-size: 30px;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+      background: none;
+      border: none;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+
+    /* Calendar section */
+    .calendar-section {
+      padding: 80px 0;
+      scroll-margin-top: 80px;
+    }
+
+    .calendar-section h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    body.dark-mode .calendar-section h2 {
+      color: #fff;
+    }
+
+    .calendar-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    @media (min-width: 992px) {
+      .calendar-container {
+        flex-direction: row;
+      }
+    }
+
+    .calendar-wrapper {
+      flex-grow: 1;
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .calendar-wrapper {
+      background-color: #333;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .calendar-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    body.dark-mode .calendar-title {
+      color: #fff;
+    }
+
+    .calendar-nav {
+      display: flex;
+      gap: 10px;
+    }
+
+    .calendar-nav-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #f5f5f5;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    body.dark-mode .calendar-nav-btn {
+      background-color: #444;
+      color: #fff;
+    }
+
+    .calendar-nav-btn:hover {
+      background-color: #c29a76;
+      color: white;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+
+    .calendar-weekday {
+      text-align: center;
+      font-weight: 600;
+      color: #c29a76;
+      padding: 10px 0;
+    }
+
+    .calendar-day {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body.dark-mode .calendar-day {
+      background-color: #3a3a3a;
+    }
+
+    .calendar-day:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .calendar-day:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .calendar-day.inactive {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    .calendar-day.inactive:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .calendar-day.today {
+      background-color: rgba(194, 154, 118, 0.2);
+      font-weight: 600;
+    }
+
+    .calendar-day.selected {
+      background-color: #c29a76;
+      color: white;
+      font-weight: 600;
+    }
+
+    .calendar-day-number {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .calendar-day-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #c29a76;
+      margin-top: 4px;
+    }
+
+    .calendar-day.selected .calendar-day-indicator {
+      background-color: white;
+    }
+
+    .event-indicator {
+      position: absolute;
+      bottom: 5px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #c29a76;
+    }
+
+    .calendar-day.selected .event-indicator {
+      background-color: white;
+    }
+
+    /* Events section */
+    .events-wrapper {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .events-wrapper {
+      background-color: #333;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (min-width: 992px) {
+      .events-wrapper {
+        width: 350px;
+      }
+    }
+
+    .events-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .events-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    body.dark-mode .events-title {
+      color: #fff;
+    }
+
+    .add-event-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background-color: #c29a76;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.add-event-btn:hover {
+  background-color: #a87f5e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .add-event-btn {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .add-event-btn:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+    .events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-height: 500px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .events-list::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .events-list::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    body.dark-mode .events-list::-webkit-scrollbar-track {
+      background: #444;
+    }
+
+    .events-list::-webkit-scrollbar-thumb {
+      background: #c29a76;
+      border-radius: 10px;
+    }
+
+    .events-list::-webkit-scrollbar-thumb:hover {
+      background: #a87f5e;
+    }
+
+    .event-card {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      padding: 15px;
+      transition: all 0.2s;
+      border-left: 4px solid #c29a76;
+    }
+
+    body.dark-mode .event-card {
+      background-color: #3a3a3a;
+    }
+
+    .event-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .event-card:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .event-time {
+      font-size: 14px;
+      color: #c29a76;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .event-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    body.dark-mode .event-title {
+      color: #fff;
+    }
+
+    .event-description {
+      font-size: 14px;
+      color: #666;
+    }
+
+    body.dark-mode .event-description {
+      color: #ccc;
+    }
+
+    .event-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .event-action-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #f1f1f1;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #666;
+    }
+
+    body.dark-mode .event-action-btn {
+      background-color: #444;
+      color: #ccc;
+    }
+
+    .event-action-btn:hover {
+      background-color: #c29a76;
+      color: white;
+    }
+
+    .no-events {
+      text-align: center;
+      padding: 30px 0;
+      color: #666;
+    }
+
+    body.dark-mode .no-events {
+      color: #ccc;
+    }
+
+    /* Timeline section */
+    .timeline-section {
+      padding: 80px 0;
+      background-color: #f9f5f1;
+      scroll-margin-top: 80px;
+    }
+
+    body.dark-mode .timeline-section {
+      background-color: #222;
+    }
+
+    .timeline-section h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    body.dark-mode .timeline-section h2 {
+      color: #fff;
+    }
+
+    .timeline-description {
+      text-align: center;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    body.dark-mode .timeline-description {
+      color: #ccc;
+    }
+
+    .timeline-container {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline-container::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background-color: #c29a76;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 20px 40px;
+      box-sizing: border-box;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: 4px solid #c29a76;
+      border-radius: 50%;
+      top: 20px;
+      z-index: 1;
+    }
+
+    body.dark-mode .timeline-item::after {
+      background-color: #333;
+    }
+
+    .timeline-item:nth-child(odd)::after {
+      right: -12px;
+    }
+
+    .timeline-item:nth-child(even)::after {
+      left: -12px;
+    }
+
+    .timeline-content {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    body.dark-mode .timeline-content {
+      background-color: #333;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .timeline-content:hover {
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .timeline-date {
+      font-size: 14px;
+      color: #c29a76;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .timeline-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    body.dark-mode .timeline-title {
+      color: #fff;
+    }
+
+    .timeline-text {
+      font-size: 14px;
+      color: #666;
+    }
+
+    body.dark-mode .timeline-text {
+      color: #ccc;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content::before {
+      content: '';
+      position: absolute;
+      border-width: 10px 0 10px 10px;
+      border-style: solid;
+      border-color: transparent transparent transparent white;
+      top: 20px;
+      right: -10px;
+    }
+
+    body.dark-mode .timeline-item:nth-child(odd) .timeline-content::before {
+      border-color: transparent transparent transparent #333;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content::before {
+      content: '';
+      position: absolute;
+      border-width: 10px 10px 10px 0;
+      border-style: solid;
+      border-color: transparent white transparent transparent;
+      top: 20px;
+      left: -10px;
+    }
+
+    body.dark-mode .timeline-item:nth-child(even) .timeline-content::before {
+      border-color: transparent #333 transparent transparent;
+    }
+
+    /* Tips section */
+    
+    /* Footer */
+    .footer {
+      background-color: white;
+      border-top: 1px solid #eee;
+      padding: 60px 0 30px;
+    }
+
+    body.dark-mode .footer {
+      background-color: #333;
+      border-top: 1px solid #444;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .footer h3 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #c29a76;
+      margin-bottom: 20px;
+    }
+
+    .footer p {
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    body.dark-mode .footer p {
+      color: #ccc;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: #666;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .footer-links a {
+      color: #ccc;
+    }
+
+    .footer-links a:hover {
+      color: #c29a76;
+    }
+
+    .footer-copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+    }
+
+    body.dark-mode .footer-copyright {
+      border-top: 1px solid #444;
+      color: #888;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      z-index: 1000;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+  background-color: white;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transform: scale(0.95);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode .modal {
+  background-color: #333;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.modal-backdrop.open .modal {
+  transform: scale(1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+body.dark-mode .modal-header {
+  border-bottom: 1px solid #444;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #c29a76;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+body.dark-mode .modal-close {
+  color: #ccc;
+}
+
+.modal-close:hover {
+  color: #c29a76;
+  background-color: rgba(194, 154, 118, 0.1);
+}
+
+.modal-body {
+  padding: 16px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #333;
+  font-size: 14px;
+}
+
+body.dark-mode .form-label {
+  color: #fff;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: white;
+  color: #333;
+}
+
+body.dark-mode .form-input {
+  background-color: #444;
+  border-color: #555;
+  color: #fff;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #c29a76;
+  box-shadow: 0 0 0 2px rgba(194, 154, 118, 0.1);
+}
+
+.form-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: white;
+  color: #333;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+}
+
+body.dark-mode .form-select {
+  background-color: #444;
+  border-color: #555;
+  color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #c29a76;
+  box-shadow: 0 0 0 2px rgba(194, 154, 118, 0.1);
+}
+
+.time-inputs {
+  display: flex;
+  gap: 8px;
+}
+
+.time-inputs .form-input {
+  flex: 1;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px;
+  border-top: 1px solid #eee;
+}
+
+body.dark-mode .modal-footer {
+  border-top: 1px solid #444;
+}
+
+.btn-secondary {
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+body.dark-mode .btn-secondary {
+  background-color: #444;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #e5e5e5;
+}
+
+body.dark-mode .btn-secondary:hover {
+  background-color: #555;
+}
+
+.btn {
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+    /* Toast notifications */
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toast {
+      background-color: white;
+      color: #333;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      max-width: 350px;
+      animation: slideIn 0.3s ease-out;
+      border-left: 4px solid #c29a76;
+    }
+
+    body.dark-mode .toast {
+      background-color: #333;
+      color: #fff;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    }
+
+    .toast-title {
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-title::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: #c29a76;
+      border-radius: 50%;
+    }
+
+    .toast-description {
+      font-size: 14px;
+      color: #666;
+    }
+
+    body.dark-mode .toast-description {
+      color: #ccc;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+    }
+
+    .toast.removing {
+      animation: slideOut 0.3s ease-out forwards;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 991px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .timeline-container::after {
+        left: 30px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 20px;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+
+      .timeline-item::after {
+        left: 20px;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content::before {
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+        left: -10px;
+        right: auto;
+      }
+
+      body.dark-mode .timeline-item:nth-child(odd) .timeline-content::before {
+        border-color: transparent #333 transparent transparent;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .nav-desktop {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .mobile-nav.active {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .calendar-section, .timeline-section {
+        padding: 60px 0;
+      }
+
+      .calendar-grid {
+        gap: 5px;
+      }
+
+      .calendar-day-number {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .calendar-weekday {
+        font-size: 12px;
+      }
+
+      .calendar-day-number {
+        font-size: 12px;
+      }
+
+      .timeline-item {
+        padding-left: 50px;
+      }
+
+      .timeline-content {
+        padding: 15px;
+      }
+
+      .timeline-title {
+        font-size: 16px;
+      }
+    }
+
+    #view-calendar {
+      padding: 14px 32px;
+      font-size: 18px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Planification de Mariage" class="header-logo">
+      </a>
+      
+      <nav class="nav-desktop">
+        <a href="dashboard.php" id="nav-home" class="active">Accueil</a>
+        <a href="#calendar" id="nav-calendar">Calendrier</a>
+        <a href="#timeline" id="nav-timeline">Chronologie</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle">
+          <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
+
+        <button id="menu-toggle" class="menu-toggle">
+          <i id="menu-icon" class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="container mobile-nav" id="mobile-nav">
+      <a href="#hero" id="mobile-nav-home">Accueil</a>
+      <a href="#calendar" id="mobile-nav-calendar">Calendrier</a>
+      <a href="#timeline" id="mobile-nav-timeline">Chronologie</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <section id="hero" class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>Planifiez Votre <span>Grand Jour</span></h1>
+      <p>Organisez chaque étape de votre mariage avec notre calendrier interactif et nos outils de planification</p>
+      <button id="view-calendar" class="btn btn-lg">Voir le Calendrier</button>
+    </div>
+
+    <button id="scroll-down" class="scroll-down">
+      <i class="fas fa-chevron-down"></i>
+    </button>
+  </section>
+
+  <section id="calendar" class="calendar-section">
+    <div class="container">
+      <h2>CALENDRIER DE MARIAGE</h2>
+
+      <div class="calendar-container">
+        <div class="calendar-wrapper">
+          <div class="calendar-header">
+            <h3 id="calendar-title" class="calendar-title">Avril 2025</h3>
+            <div class="calendar-nav">
+              <button id="prev-month" class="calendar-nav-btn">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button id="next-month" class="calendar-nav-btn">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="calendar-grid" id="weekdays">
+            <div class="calendar-weekday">Dim</div>
+            <div class="calendar-weekday">Lun</div>
+            <div class="calendar-weekday">Mar</div>
+            <div class="calendar-weekday">Mer</div>
+            <div class="calendar-weekday">Jeu</div>
+            <div class="calendar-weekday">Ven</div>
+            <div class="calendar-weekday">Sam</div>
+          </div>
+
+          <div class="calendar-grid" id="calendar-days">
+            <!-- Populated by JavaScript -->
+          </div>
+        </div>
+
+        <div class="events-wrapper">
+          <div class="events-header">
+            <h3 id="events-title" class="events-title">Événements du 7 Avril</h3>
+            <button id="add-event" class="add-event-btn">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+
+          <div id="events-list" class="events-list">
+            <!-- Populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="timeline" class="timeline-section">
+    <div class="container">
+      <h2>CHRONOLOGIE DE PLANIFICATION</h2>
+      <p class="timeline-description">Suivez les étapes essentielles pour organiser votre mariage parfait</p>
+
+      <div class="timeline-container">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">12 mois avant</div>
+            <h3 class="timeline-title">Fixer la date et le budget</h3>
+            <p class="timeline-text">Choisissez la date de votre mariage et établissez un budget réaliste pour l'événement.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">10-11 mois avant</div>
+            <h3 class="timeline-title">Réserver le lieu</h3>
+            <p class="timeline-text">Trouvez et réservez le lieu parfait pour votre cérémonie et réception.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">8-9 mois avant</div>
+            <h3 class="timeline-title">Choisir les prestataires</h3>
+            <p class="timeline-text">Sélectionnez votre traiteur, photographe, DJ ou orchestre, et fleuriste.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">6-7 mois avant</div>
+            <h3 class="timeline-title">Choisir la robe et les tenues</h3>
+            <p class="timeline-text">Trouvez la robe de mariée parfaite et choisissez les tenues pour le cortège.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">4-5 mois avant</div>
+            <h3 class="timeline-title">Envoyer les invitations</h3>
+            <p class="timeline-text">Finalisez votre liste d'invités et envoyez les faire-part de mariage.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">2-3 mois avant</div>
+            <h3 class="timeline-title">Planifier la cérémonie</h3>
+            <p class="timeline-text">Organisez les détails de la cérémonie et finalisez le menu avec le traiteur.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">1 mois avant</div>
+            <h3 class="timeline-title">Derniers préparatifs</h3>
+            <p class="timeline-text">Confirmez tous les détails avec vos prestataires et finalisez le plan de table.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">1 semaine avant</div>
+            <h3 class="timeline-title">Dernières vérifications</h3>
+            <p class="timeline-text">Confirmez le nombre final d'invités et préparez-vous pour le grand jour.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>À propos</h3>
+          <p>Notre plateforme de planification de mariage vous aide à organiser chaque détail de votre grand jour, du calendrier à la liste d'invités.</p>
+        </div>
+
+        <div>
+          <h3>Contact</h3>
+          <div class="footer-links">
+            <p><i class="fas fa-phone"></i> 06 12 34 56 78</p>
+            <p><i class="fas fa-envelope"></i> contact@calendrier-mariage.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Avenue des Mariés, Alger</p>
+          </div>
+        </div>
+
+        <div>
+          <h3>Liens utiles</h3>
+          <div class="footer-links">
+            <a href="#">Conditions générales</a>
+            <a href="#">Politique de confidentialité</a>
+            <a href="#">FAQ</a>
+            <a href="#">Blog mariage</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-copyright">
+        <p>&copy; <span id="current-year"></span> Calendrier de Mariage. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="event-modal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Ajouter un événement</h3>
+        <button id="modal-close" class="modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form id="event-form">
+          <div class="form-group">
+            <label class="form-label" for="event-title">Titre de l'événement *</label>
+            <input type="text" id="event-title" class="form-input" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="event-date">Date *</label>
+            <input type="date" id="event-date" class="form-input" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Heure *</label>
+            <div class="time-inputs">
+              <input type="time" id="event-start-time" class="form-input" required>
+              <input type="time" id="event-end-time" class="form-input" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="event-category">Catégorie</label>
+            <select id="event-category" class="form-select">
+              <option value="rendez-vous">Rendez-vous</option>
+              <option value="essayage">Essayage</option>
+              <option value="reunion">Réunion</option>
+              <option value="degustation">Dégustation</option>
+              <option value="visite">Visite</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="event-description">Description</label>
+            <textarea id="event-description" class="form-input form-textarea"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="event-location">Lieu</label>
+            <input type="text" id="event-location" class="form-input">
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button id="cancel-event" class="btn btn-secondary">Annuler</button>
+        <button id="save-event" class="btn">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script>
+    // Calendar Data
+    const months = [
+      'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+      'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+    ];
+
+    const weekdays = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+
+    // State
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
+    let selectedDate = new Date();
+    let events = [];
+    let isDarkMode = false;
+
+    // DOM Elements
+    const header = document.getElementById('header');
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuIcon = document.getElementById('menu-icon');
+    const mobileNav = document.getElementById('mobile-nav');
+    const calendarTitle = document.getElementById('calendar-title');
+    const calendarDays = document.getElementById('calendar-days');
+    const prevMonthButton = document.getElementById('prev-month');
+    const nextMonthButton = document.getElementById('next-month');
+    const eventsTitle = document.getElementById('events-title');
+    const eventsList = document.getElementById('events-list');
+    const addEventButton = document.getElementById('add-event');
+    const eventModal = document.getElementById('event-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalClose = document.getElementById('modal-close');
+    const eventForm = document.getElementById('event-form');
+    const eventTitleInput = document.getElementById('event-title');
+    const eventDateInput = document.getElementById('event-date');
+    const eventStartTimeInput = document.getElementById('event-start-time');
+    const eventEndTimeInput = document.getElementById('event-end-time');
+    const eventCategoryInput = document.getElementById('event-category');
+    const eventDescriptionInput = document.getElementById('event-description');
+    const eventLocationInput = document.getElementById('event-location');
+    const saveEventButton = document.getElementById('save-event');
+    const cancelEventButton = document.getElementById('cancel-event');
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const currentYearElement = document.getElementById('current-year');
+    const toastContainer = document.getElementById('toast-container');
+
+    // Navigation
+    const navHome = document.getElementById('nav-home');
+    const navCalendar = document.getElementById('nav-calendar');
+    const navTimeline = document.getElementById('nav-timeline');
+    const mobileNavHome = document.getElementById('mobile-nav-home');
+    const mobileNavCalendar = document.getElementById('mobile-nav-calendar');
+    const mobileNavTimeline = document.getElementById('mobile-nav-timeline');
+    const viewCalendar = document.getElementById('view-calendar');
+    const scrollDown = document.getElementById('scroll-down');
+
+    // Sample events data
+    const sampleEvents = [
+      {
+        id: 1,
+        title: 'Rendez-vous traiteur',
+        date: '2025-04-07',
+        startTime: '14:00',
+        endTime: '15:30',
+        category: 'rendez-vous',
+        description: 'Dégustation du menu et discussion des options',
+        location: 'Restaurant Le Gourmet, Alger'
+      },
+      {
+        id: 2,
+        title: 'Essayage robe',
+        date: '2025-04-15',
+        startTime: '10:00',
+        endTime: '12:00',
+        category: 'essayage',
+        description: 'Premier essayage de la robe de mariée',
+        location: 'Boutique Élégance, Centre commercial'
+      },
+      {
+        id: 3,
+        title: 'Visite salle de réception',
+        date: '2025-04-20',
+        startTime: '16:00',
+        endTime: '17:30',
+        category: 'visite',
+        description: 'Visite finale pour confirmer la disposition',
+        location: 'Palais des Roses, Alger'
+      }
+    ];
+
+    // Initialize
+    function init() {
+      // Set current year
+      currentYearElement.textContent = new Date().getFullYear();
+
+      // Load events
+      loadEvents();
+
+      // Render calendar
+      renderCalendar();
+
+      // Add event listeners
+      addEventListeners();
+
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        toggleTheme();
+      }
+    }
+
+    // Load events
+    function loadEvents() {
+      // In a real app, this would load from localStorage or an API
+      events = sampleEvents;
+    }
+
+    // Render calendar
+    function renderCalendar() {
+      // Update calendar title
+      calendarTitle.textContent = `${months[currentMonth]} ${currentYear}`;
+
+      // Get first day of month and number of days
+      const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+      // Clear calendar days
+      calendarDays.innerHTML = '';
+
+      // Add empty cells for days before first day of month
+      for (let i = 0; i < firstDay; i++) {
+        const dayElement = document.createElement('div');
+        dayElement.className = 'calendar-day inactive';
+        calendarDays.appendChild(dayElement);
+      }
+
+      // Add days of month
+      for (let i = 1; i <= daysInMonth; i++) {
+        const dayElement = document.createElement('div');
+        dayElement.className = 'calendar-day';
+        
+        // Check if this day is today
+        const currentDateObj = new Date();
+        if (currentYear === currentDateObj.getFullYear() && 
+            currentMonth === currentDateObj.getMonth() && 
+            i === currentDateObj.getDate()) {
+          dayElement.classList.add('today');
+        }
+        
+        // Check if this day is selected
+        if (currentYear === selectedDate.getFullYear() && 
+            currentMonth === selectedDate.getMonth() && 
+            i === selectedDate.getDate()) {
+          dayElement.classList.add('selected');
+        }
+        
+        // Add day number
+        const dayNumber = document.createElement('div');
+        dayNumber.className = 'calendar-day-number';
+        dayNumber.textContent = i;
+        dayElement.appendChild(dayNumber);
+        
+        // Check if this day has events
+        const dateString = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+        const dayEvents = events.filter(event => event.date === dateString);
+        
+        if (dayEvents.length > 0) {
+          const indicator = document.createElement('div');
+          indicator.className = 'event-indicator';
+          dayElement.appendChild(indicator);
+        }
+        
+        // Add click event
+        dayElement.addEventListener('click', () => {
+          // Update selected date
+          selectedDate = new Date(currentYear, currentMonth, i);
+          
+          // Update UI
+          document.querySelectorAll('.calendar-day').forEach(day => {
+            day.classList.remove('selected');
+          });
+          dayElement.classList.add('selected');
+          
+          // Update events list
+          updateEventsList();
+        });
+        
+        calendarDays.appendChild(dayElement);
+      }
+      
+      // Update events list for selected date
+      updateEventsList();
+    }
+
+    // Update events list
+    function updateEventsList() {
+      // Format date for display
+      const options = { weekday: 'long', day: 'numeric', month: 'long' };
+      const formattedDate = selectedDate.toLocaleDateString('fr-FR', options);
+      eventsTitle.textContent = `Événements du ${formattedDate}`;
+      
+      // Format date for filtering
+      const dateString = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
+      
+      // Filter events for selected date
+      const dayEvents = events.filter(event => event.date === dateString);
+      
+      // Clear events list
+      eventsList.innerHTML = '';
+      
+      // Add events or show no events message
+      if (dayEvents.length === 0) {
+        const noEventsElement = document.createElement('div');
+        noEventsElement.className = 'no-events';
+        noEventsElement.textContent = 'Aucun événement pour cette date';
+        eventsList.appendChild(noEventsElement);
+      } else {
+        // Sort events by start time
+        dayEvents.sort((a, b) => a.startTime.localeCompare(b.startTime));
+        
+        // Add each event
+        dayEvents.forEach(event => {
+          const eventElement = document.createElement('div');
+          eventElement.className = 'event-card';
+          
+          eventElement.innerHTML = `
+            <div class="event-time">${formatTime(event.startTime)} - ${formatTime(event.endTime)}</div>
+            <div class="event-title">${event.title}</div>
+            ${event.description ? `<div class="event-description">${event.description}</div>` : ''}
+            ${event.location ? `<div class="event-description"><i class="fas fa-map-marker-alt"></i> ${event.location}</div>` : ''}
+            <div class="event-actions">
+              <button class="event-action-btn edit-event" data-id="${event.id}">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="event-action-btn delete-event" data-id="${event.id}">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          `;
+          
+          eventsList.appendChild(eventElement);
+          
+          // Add event listeners for edit and delete buttons
+          eventElement.querySelector('.edit-event').addEventListener('click', () => {
+            openEditEventModal(event);
+          });
+          
+          eventElement.querySelector('.delete-event').addEventListener('click', () => {
+            deleteEvent(event.id);
+          });
+        });
+      }
+    }
+
+    // Format time (24h to 12h)
+    function formatTime(timeString) {
+      return timeString;
+    }
+
+    // Open add event modal
+    function openAddEventModal() {
+      // Reset form
+      eventForm.reset();
+      
+      // Set default date to selected date
+      const dateString = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
+      eventDateInput.value = dateString;
+      
+      // Set default times
+      eventStartTimeInput.value = '09:00';
+      eventEndTimeInput.value = '10:00';
+      
+      // Update modal title
+      modalTitle.textContent = 'Ajouter un événement';
+      
+      // Show modal
+      eventModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      
+      // Focus on title input
+      setTimeout(() => {
+        eventTitleInput.focus();
+      }, 300);
+    }
+
+    // Open edit event modal
+    function openEditEventModal(event) {
+      // Fill form with event data
+      eventTitleInput.value = event.title;
+      eventDateInput.value = event.date;
+      eventStartTimeInput.value = event.startTime;
+      eventEndTimeInput.value = event.endTime;
+      eventCategoryInput.value = event.category;
+      eventDescriptionInput.value = event.description || '';
+      eventLocationInput.value = event.location || '';
+      
+      // Update modal title
+      modalTitle.textContent = 'Modifier l\'événement';
+      
+      // Add event ID to save button
+      saveEventButton.setAttribute('data-id', event.id);
+      
+      // Show modal
+      eventModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close event modal
+    function closeEventModal() {
+      eventModal.classList.remove('open');
+      document.body.style.overflow = '';
+      
+      // Remove event ID from save button
+      saveEventButton.removeAttribute('data-id');
+    }
+
+    // Save event
+    function saveEvent() {
+      // Validate form
+      if (!eventTitleInput.value.trim() || !eventDateInput.value || !eventStartTimeInput.value || !eventEndTimeInput.value) {
+        showToast('Erreur', 'Veuillez remplir tous les champs obligatoires.');
+        return;
+      }
+      
+      // Check if editing or adding
+      const eventId = saveEventButton.getAttribute('data-id');
+      
+      if (eventId) {
+        // Update existing event
+        const eventIndex = events.findIndex(event => event.id === parseInt(eventId));
+        
+        if (eventIndex !== -1) {
+          events[eventIndex] = {
+            ...events[eventIndex],
+            title: eventTitleInput.value.trim(),
+            date: eventDateInput.value,
+            startTime: eventStartTimeInput.value,
+            endTime: eventEndTimeInput.value,
+            category: eventCategoryInput.value,
+            description: eventDescriptionInput.value.trim(),
+            location: eventLocationInput.value.trim()
+          };
+          
+          showToast('Succès', 'Événement modifié avec succès.');
+        }
+      } else {
+        // Add new event
+        const newEvent = {
+          id: Date.now(), // Use timestamp as ID
+          title: eventTitleInput.value.trim(),
+          date: eventDateInput.value,
+          startTime: eventStartTimeInput.value,
+          endTime: eventEndTimeInput.value,
+          category: eventCategoryInput.value,
+          description: eventDescriptionInput.value.trim(),
+          location: eventLocationInput.value.trim()
+        };
+        
+        events.push(newEvent);
+        showToast('Succès', 'Événement ajouté avec succès.');
+      }
+      
+      // Close modal
+      closeEventModal();
+      
+      // Update calendar and events list
+      renderCalendar();
+    }
+
+    // Delete event
+    function deleteEvent(eventId) {
+      // Confirm deletion
+      if (confirm('Êtes-vous sûr de vouloir supprimer cet événement ?')) {
+        // Remove event from array
+        events = events.filter(event => event.id !== eventId);
+        
+        // Update calendar and events list
+        renderCalendar();
+        
+        showToast('Succès', 'Événement supprimé avec succès.');
+      }
+    }
+
+    // Add event listeners
+    function addEventListeners() {
+      // Header scroll effect
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+
+      // Mobile menu toggle
+      menuToggle.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+                if (mobileNav.classList.contains('active')) {
+          menuIcon.className = 'fas fa-times';
+        } else {
+          menuIcon.className = 'fas fa-bars';
+        }
+      });
+
+      // Navigation
+      navHome.addEventListener('click', () => scrollToSection('hero'));
+      navCalendar.addEventListener('click', () => scrollToSection('calendar'));
+      navTimeline.addEventListener('click', () => scrollToSection('timeline'));
+      mobileNavHome.addEventListener('click', () => scrollToSection('hero'));
+      mobileNavCalendar.addEventListener('click', () => scrollToSection('calendar'));
+      mobileNavTimeline.addEventListener('click', () => scrollToSection('timeline'));
+      viewCalendar.addEventListener('click', () => scrollToSection('calendar'));
+      scrollDown.addEventListener('click', () => scrollToSection('calendar'));
+
+      // Calendar navigation
+      prevMonthButton.addEventListener('click', () => {
+        currentMonth--;
+        if (currentMonth < 0) {
+          currentMonth = 11;
+          currentYear--;
+        }
+        renderCalendar();
+      });
+
+      nextMonthButton.addEventListener('click', () => {
+        currentMonth++;
+        if (currentMonth > 11) {
+          currentMonth = 0;
+          currentYear++;
+        }
+        renderCalendar();
+      });
+
+      // Add event
+      addEventButton.addEventListener('click', openAddEventModal);
+
+      // Modal close
+      modalClose.addEventListener('click', closeEventModal);
+
+      // Modal click outside to close
+      eventModal.addEventListener('click', (e) => {
+        if (e.target === eventModal) {
+          closeEventModal();
+        }
+      });
+
+      // Save event
+      saveEventButton.addEventListener('click', saveEvent);
+
+      // Cancel event
+      cancelEventButton.addEventListener('click', closeEventModal);
+
+      // Theme toggle
+      themeToggle.addEventListener('click', toggleTheme);
+
+      // Escape key to close modals
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && eventModal.classList.contains('open')) {
+          closeEventModal();
+        }
+      });
+    }
+
+    // Scroll to section
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const offsetTop = section.offsetTop - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+
+      // Close mobile menu if open
+      mobileNav.classList.remove('active');
+      menuIcon.className = 'fas fa-bars';
+
+      // Update active nav
+      updateActiveNav(sectionId);
+    }
+
+    // Update active nav
+    function updateActiveNav(sectionId) {
+      [navHome, navCalendar, navTimeline].forEach(nav => nav.classList.remove('active'));
+      [mobileNavHome, mobileNavCalendar, mobileNavTimeline].forEach(nav => nav.classList.remove('active'));
+
+      if (sectionId === 'hero') {
+        navHome.classList.add('active');
+        mobileNavHome.classList.add('active');
+      } else if (sectionId === 'calendar') {
+        navCalendar.classList.add('active');
+        mobileNavCalendar.classList.add('active');
+      } else if (sectionId === 'timeline') {
+        navTimeline.classList.add('active');
+        mobileNavTimeline.classList.add('active');
+      }
+    }
+
+    // Toggle theme
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      document.body.classList.toggle('dark-mode', isDarkMode);
+      
+      themeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+      
+      // Save theme preference
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    }
+
+    // Show toast
+    function showToast(title, description) {
+      const toastId = 'toast-' + Date.now();
+      const toast = document.createElement('div');
+      toast.id = toastId;
+      toast.className = 'toast';
+      toast.innerHTML = `
+        <div class="toast-title">${title}</div>
+        <div class="toast-description">${description}</div>
+      `;
+      
+      toastContainer.appendChild(toast);
+      
+      // Auto remove after 3 seconds
+      setTimeout(() => {
+        const toastElement = document.getElementById(toastId);
+        if (toastElement) {
+          toastElement.classList.add('removing');
+          setTimeout(() => {
+            if (toastElement.parentNode) {
+              toastElement.parentNode.removeChild(toastElement);
+            }
+          }, 300);
+        }
+      }, 3000);
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+  <script src="theme-toggle.js"></script>
+</body>
+</html>
+

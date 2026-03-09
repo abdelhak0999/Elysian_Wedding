@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مساعد زفاف ذكي</title>
+  <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Roboto:400,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+  --primary: #5a3e36; /* Main brown color for buttons and accents */
+  --secondary: #7a5a52; /* Slightly lighter brown for hover effect */
+  --bg: #0d0d0d; /* Dark background */
+  --text: #f7d794; /* Gold text color */
+  --header-bg: linear-gradient(135deg, rgba(90, 62, 54, 0.9), rgba(13, 13, 13, 0.95));
+  --gold: #f7d794; /* Gold accent color */
+  --gold-bright: #ffebc1; /* Brighter gold for highlights */
+  --gold-dark: #d4b978; /* Darker gold for shadows */
+  --gold-glow: rgba(247, 215, 148, 0.5);
+  --gold-glow-light: rgba(247, 215, 148, 0.3);
+  --gold-glow-faint: rgba(247, 215, 148, 0.1);
+
+  /* Enhanced 3D variables */
+  --depth-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --inner-shadow: inset 0 0 20px rgba(247, 215, 148, 0.15);
+  --text-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --text-shadow-lg: 0 2px 5px rgba(0, 0, 0, 0.7);
+
+  /* Transition variables */
+  --transition-fast: 300ms cubic-bezier(0.19, 1, 0.22, 1);
+  --transition-medium: 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  --transition-slow: 800ms cubic-bezier(0.19, 1, 0.22, 1);
+  --transition-bounce: 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+  position: relative;
+  min-height: 100vh;
+  letter-spacing: 0.02em;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced gradient overlay with wedding theme */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 20% 30%, rgba(90, 62, 54, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(247, 215, 148, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(90, 62, 54, 0.2), rgba(247, 215, 148, 0.1));
+  z-index: -1;
+  animation: backgroundShimmer 20s ease infinite alternate;
+  background-size: 200% 200%;
+}
+
+@keyframes backgroundShimmer {
+  0% {
+    opacity: 0.5;
+    background-position: 0% 0%;
+  }
+  50% {
+    opacity: 0.7;
+    background-position: 100% 100%;
+  }
+  100% {
+    opacity: 0.5;
+    background-position: 0% 0%;
+  }
+}
+
+/* Enhanced particles with wedding theme */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background-color: rgba(247, 215, 148, 0.4);
+  border-radius: 50%;
+  animation: particleFloat linear infinite;
+  opacity: 0;
+}
+
+/* Different particle sizes and animations */
+.particle:nth-child(3n) {
+  width: 1px;
+  height: 1px;
+  box-shadow: 0 0 4px 1px rgba(247, 215, 148, 0.4);
+}
+
+.particle:nth-child(3n + 1) {
+  width: 2px;
+  height: 2px;
+  box-shadow: 0 0 6px 2px rgba(247, 215, 148, 0.5);
+}
+
+.particle:nth-child(3n + 2) {
+  width: 3px;
+  height: 3px;
+  box-shadow: 0 0 8px 2px rgba(247, 215, 148, 0.6);
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--opacity);
+  }
+  90% {
+    opacity: var(--opacity);
+  }
+  100% {
+    transform: translateY(-20vh) translateX(var(--move-x));
+    opacity: 0;
+  }
+}
+
+/* Subtle noise texture overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Full-Screen Wedding Chat Container */
+.chat-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile */
+  background: rgba(13, 13, 13, 0.95);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: inset 0 0 50px rgba(247, 215, 148, 0.05);
+  animation: fadeInChat 1s var(--transition-medium) forwards;
+}
+
+@keyframes fadeInChat {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Enhanced Wedding-themed Header */
+.chat-header {
+  padding: 24px 32px;
+  background: var(--header-bg);
+  color: var(--gold);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid rgba(247, 215, 148, 0.15);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced gradient line under the header with wedding theme */
+.chat-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(247, 215, 148, 0.1) 20%,
+    rgba(247, 215, 148, 0.7) 50%,
+    rgba(247, 215, 148, 0.1) 80%,
+    transparent 100%
+  );
+  animation: shimmerLine 4s infinite ease-in-out;
+  background-size: 200% 100%;
+}
+
+@keyframes shimmerLine {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.chat-header span {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-size: 3em;
+  color: transparent;
+  background: linear-gradient(to right, var(--gold-dark), var(--gold), var(--gold-bright), var(--gold));
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow: var(--text-shadow-lg);
+  position: relative;
+  letter-spacing: 0.05em;
+  animation: textShine 8s linear infinite;
+}
+
+@keyframes textShine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Wedding-themed decorative elements for header */
+.chat-header span::before,
+.chat-header span::after {
+  content: "♥";
+  position: absolute;
+  font-family: serif;
+  font-size: 0.4em;
+  color: var(--gold);
+  opacity: 0.7;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.chat-header span::before {
+  left: -1.5em;
+}
+
+.chat-header span::after {
+  right: -1.5em;
+}
+
+/* Enhanced wedding-themed header buttons */
+.header-buttons button {
+  background: rgba(90, 62, 54, 0.8);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 10px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all var(--transition-medium);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8em;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(247, 215, 148, 0.2);
+  font-family: "Cinzel", serif;
+}
+
+/* Enhanced button shine effect with wedding theme */
+.header-buttons button::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  transform: rotate(45deg);
+  z-index: 1;
+  transition: all var(--transition-medium);
+}
+
+/* Button border glow with wedding theme */
+.header-buttons button::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 1px solid var(--gold);
+  opacity: 0;
+  transition: all var(--transition-medium);
+}
+
+.header-buttons button:hover {
+  background: rgba(90, 62, 54, 1);
+  color: var(--gold-bright);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(247, 215, 148, 0.3);
+  letter-spacing: 3px;
+}
+
+.header-buttons button:hover::before {
+  animation: shineEffect 1.5s forwards;
+}
+
+.header-buttons button:hover::after {
+  opacity: 0.5;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+}
+
+@keyframes shineEffect {
+  0% {
+    left: -100%;
+    top: -100%;
+  }
+  100% {
+    left: 100%;
+    top: 100%;
+  }
+}
+
+.header-buttons button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(247, 215, 148, 0.2);
+}
+
+/* Enhanced Wedding-themed Chat Body */
+.chat-body {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) transparent;
+  position: relative;
+  perspective: 1000px;
+}
+
+/* Enhanced shimmer effect with wedding theme */
+.chat-body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(247, 215, 148, 0.02) 25%,
+    rgba(247, 215, 148, 0.05) 50%,
+    rgba(247, 215, 148, 0.02) 75%,
+    transparent 100%
+  );
+  animation: shimmer 12s infinite ease-in-out;
+  pointer-events: none;
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Enhanced scrollbar with wedding theme */
+.chat-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-body::-webkit-scrollbar-track {
+  background: rgba(13, 13, 13, 0.5);
+  border-radius: 10px;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--gold-dark), var(--gold), var(--gold-dark));
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(247, 215, 148, 0.3);
+}
+
+.chat-body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--gold), var(--gold-bright), var(--gold));
+}
+
+/* Enhanced wedding-themed messages */
+.message {
+  padding: 18px 24px;
+  border-radius: 4px;
+  max-width: 80%;
+  font-size: 1em;
+  line-height: 1.7;
+  word-wrap: break-word;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform var(--transition-medium);
+}
+
+/* Bot message with wedding theme */
+.bot-message {
+  background: rgba(13, 13, 13, 0.7);
+  color: var(--gold);
+  border: 1px solid rgba(247, 215, 148, 0.2);
+  border-bottom-left-radius: 0;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(247, 215, 148, 0.05);
+  position: relative;
+  animation: fadeInBotMessage var(--transition-medium) forwards;
+  transform-origin: left center;
+  font-family: "Montserrat", sans-serif;
+}
+
+@keyframes fadeInBotMessage {
+  from {
+    opacity: 0;
+    transform: translateX(-20px) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* Message corner with wedding theme */
+.bot-message::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: -10px;
+  width: 20px;
+  height: 20px;
+  background: rgba(13, 13, 13, 0.7);
+  border-left: 1px solid rgba(247, 215, 148, 0.2);
+  border-bottom: 1px solid rgba(247, 215, 148, 0.2);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+/* Enhanced shimmer effect for bot messages with wedding theme */
+.bot-message::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(247, 215, 148, 0.05) 25%,
+    rgba(247, 215, 148, 0.1) 50%,
+    rgba(247, 215, 148, 0.05) 75%,
+    transparent 100%
+  );
+  opacity: 0;
+  animation: messageShimmer 5s infinite ease-in-out;
+  pointer-events: none;
+  background-size: 200% 100%;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+}
+
+.bot-message:hover::after {
+  opacity: 1;
+}
+
+@keyframes messageShimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* User message with wedding theme */
+.user-message {
+  background: rgba(90, 62, 54, 0.8);
+  color: #ffffff;
+  align-self: flex-end;
+  border: 1px solid rgba(247, 215, 148, 0.3);
+  border-bottom-right-radius: 0;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(247, 215, 148, 0.1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  animation: fadeInUserMessage var(--transition-medium) forwards;
+  transform-origin: right center;
+}
+
+@keyframes fadeInUserMessage {
+  from {
+    opacity: 0;
+    transform: translateX(20px) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* Message corner with wedding theme */
+.user-message::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  background: rgba(90, 62, 54, 0.8);
+  border-right: 1px solid rgba(247, 215, 148, 0.3);
+  border-bottom: 1px solid rgba(247, 215, 148, 0.3);
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+/* Enhanced Wedding-themed Option Buttons */
+.option-btn {
+  display: block;
+  width: 100%;
+  padding: 18px 24px;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  background: rgba(90, 62, 54, 0.8);
+  color: var(--gold);
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-bounce);
+  margin-top: 15px;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(247, 215, 148, 0.1);
+  animation: buttonPulse 4s infinite;
+  font-family: "Cinzel", serif;
+  transform-style: preserve-3d;
+}
+
+/* Enhanced button shine effect with wedding theme */
+.option-btn::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  transform: rotate(45deg);
+  z-index: 1;
+  transition: all var(--transition-medium);
+}
+
+/* Enhanced wedding-themed decorative elements */
+.option-btn::after {
+  content: "♥";
+  position: absolute;
+  right: 24px;
+  font-size: 14px;
+  color: rgba(247, 215, 148, 0.7);
+  transition: all var(--transition-medium);
+}
+
+/* 3D button depth with wedding theme */
+.option-btn .button-depth {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  background: rgba(90, 62, 54, 0.3);
+  transform: translateZ(-10px);
+  filter: blur(5px);
+  opacity: 0.5;
+  transition: all var(--transition-medium);
+}
+
+.option-btn:hover {
+  background: rgba(90, 62, 54, 1);
+  color: var(--gold-bright);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(247, 215, 148, 0.2);
+  letter-spacing: 4px;
+}
+
+.option-btn:hover::before {
+  animation: shineEffect 1.5s forwards;
+}
+
+.option-btn:hover::after {
+  right: 20px;
+  transform: scale(1.2);
+  color: var(--gold-bright);
+}
+
+.option-btn:hover .button-depth {
+  opacity: 0.8;
+  bottom: -15px;
+  filter: blur(10px);
+}
+
+.option-btn:active {
+  transform: translateY(-2px) scale(0.98);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(247, 215, 148, 0.1);
+}
+
+/* Enhanced button pulse animation with wedding theme */
+@keyframes buttonPulse {
+  0%,
+  100% {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(247, 215, 148, 0.1);
+    border-color: var(--gold);
+  }
+  50% {
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3), 0 0 25px rgba(247, 215, 148, 0.2);
+    border-color: var(--gold-bright);
+  }
+}
+
+/* Enhanced Container for Initial Options with wedding theme */
+#initialOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+  animation: fadeIn 1s ease;
+  perspective: 1000px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced Wedding-themed Typing Indicator */
+.typing-indicator {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 20px 0;
+  padding-left: 15px;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: typingBounce 1.4s infinite;
+  opacity: 0.7;
+  box-shadow: 0 0 15px rgba(247, 215, 148, 0.5);
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingBounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 15px rgba(247, 215, 148, 0.5);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.2);
+    box-shadow: 0 0 25px rgba(247, 215, 148, 0.7), 0 0 40px rgba(247, 215, 148, 0.3);
+  }
+}
+
+/* Enhanced Wedding-themed Input Field */
+.email-input {
+  width: 100%;
+  padding: 18px 24px;
+  background: rgba(13, 13, 13, 0.7);
+  border: 1px solid rgba(247, 215, 148, 0.3);
+  border-radius: 2px;
+  font-size: 1em;
+  margin-top: 20px;
+  transition: all var(--transition-medium);
+  outline: none;
+  color: var(--gold);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(247, 215, 148, 0.05);
+  letter-spacing: 1px;
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+}
+
+.email-input:hover {
+  border-color: rgba(247, 215, 148, 0.5);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(247, 215, 148, 0.1);
+}
+
+.email-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4), 0 0 30px rgba(247, 215, 148, 0.15);
+  background: rgba(13, 13, 13, 0.8);
+}
+
+/* Enhanced Error Message with wedding theme */
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.9em;
+  margin-top: 10px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-shadow: 0 0 10px rgba(255, 107, 107, 0.4);
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  letter-spacing: 0.5px;
+}
+
+.error-message::before {
+  content: "!";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(to bottom right, #ff6b6b, #ff4757);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.8em;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.6);
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-3px);
+  }
+  40%,
+  60% {
+    transform: translateX(3px);
+  }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .chat-body {
+    padding: 25px;
+  }
+
+  .message {
+    max-width: 90%;
+    padding: 15px 20px;
+  }
+
+  .chat-header {
+    padding: 20px;
+  }
+
+  .chat-header span {
+    font-size: 2.5em;
+  }
+
+  .option-btn {
+    padding: 15px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-header {
+    padding: 15px;
+  }
+
+  .chat-header span {
+    font-size: 2em;
+  }
+
+  .chat-body {
+    padding: 20px 15px;
+  }
+
+  .message {
+    max-width: 95%;
+    padding: 12px 16px;
+    font-size: 0.95em;
+  }
+
+  .option-btn {
+    padding: 14px 18px;
+    font-size: 0.9em;
+    letter-spacing: 2px;
+  }
+
+  .option-btn::after {
+    right: 15px;
+    font-size: 12px;
+  }
+}
+
+
+/* Add this script to create enhanced particles dynamically */
+/* 
+<script>
+  // Create particles container
+  const particlesContainer = document.createElement('div');
+  particlesContainer.className = 'particles';
+  document.body.appendChild(particlesContainer);
+  
+  // Create particles with varied properties
+  for (let i = 0; i < 80; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    // Random position
+    particle.style.left = Math.random() * 100 + 'vw';
+    particle.style.top = Math.random() * 100 + 'vh';
+    
+    // Random animation duration and delay
+    const duration = Math.random() * 20 + 15;
+    particle.style.animationDuration = duration + 's';
+    particle.style.animationDelay = (Math.random() * 10) + 's';
+    
+    // Random horizontal movement
+    const moveX = (Math.random() * 100 - 50) + 'px';
+    particle.style.setProperty('--move-x', moveX);
+    
+    // Random  * 100 - 50) + 'px';
+    particle.style.setProperty('--move-x', moveX);
+    
+    // Random opacity
+    const opacity = Math.random() * 0.5 + 0.3;
+    particle.style.setProperty('--opacity', opacity);
+    
+    // Add particle to container
+    particlesContainer.appendChild(particle);
+  }
+  
+  // Create new particles when old ones finish animation
+  setInterval(() => {
+    const particles = document.querySelectorAll('.particle');
+    particles.forEach(particle => {
+      if (particle.getBoundingClientRect().top < 0) {
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.top = '100vh';
+        
+        const duration = Math.random() * 20 + 15;
+        particle.style.animationDuration = duration + 's';
+        
+        const moveX = (Math.random() * 100 - 50) + 'px';
+        particle.style.setProperty('--move-x', moveX);
+      }
+    });
+  }, 5000);
+  
+  // Add subtle parallax effect on mouse move
+  document.addEventListener('mousemove', (e) => {
+    const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+    const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+    
+    particlesContainer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  });
+</script>
+*/
+</style>
+</head>
+<body>
+
+<div class="chat-box" id="chatBox">
+  <div class="chat-header">
+    <span id="chatHeaderText">LUMO</span>
+    <div class="header-buttons">
+      <button id="homeButton">Accueil</button>
+    </div>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <!-- Dynamic chat messages and options will be appended here -->
+  </div>
+</div>
+
+<script>
+  // / Create particles container
+  const particlesContainer = document.createElement('div');
+  particlesContainer.className = 'particles';
+  document.body.appendChild(particlesContainer);
+  
+  // Create particles with varied properties
+  for (let i = 0; i < 80; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    // Random position
+    particle.style.left = Math.random() * 100 + 'vw';
+    particle.style.top = Math.random() * 100 + 'vh';
+    
+    // Random animation duration and delay
+    const duration = Math.random() * 20 + 15;
+    particle.style.animationDuration = duration + 's';
+    particle.style.animationDelay = (Math.random() * 10) + 's';
+    
+    // Random horizontal movement
+    const moveX = (Math.random() * 100 - 50) + 'px';
+    particle.style.setProperty('--move-x', moveX);
+    
+    // Random  * 100 - 50) + 'px';
+    particle.style.setProperty('--move-x', moveX);
+    
+    // Random opacity
+    const opacity = Math.random() * 0.5 + 0.3;
+    particle.style.setProperty('--opacity', opacity);
+    
+    // Add particle to container
+    particlesContainer.appendChild(particle);
+  }
+  
+  // Create new particles when old ones finish animation
+  setInterval(() => {
+    const particles = document.querySelectorAll('.particle');
+    particles.forEach(particle => {
+      if (particle.getBoundingClientRect().top < 0) {
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.top = '100vh';
+        
+        const duration = Math.random() * 20 + 15;
+        particle.style.animationDuration = duration + 's';
+        
+        const moveX = (Math.random() * 100 - 50) + 'px';
+        particle.style.setProperty('--move-x', moveX);
+      }
+    });
+  }, 5000);
+  
+  // Add subtle parallax effect on mouse move
+  document.addEventListener('mousemove', (e) => {
+    const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+    const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+    
+    particlesContainer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  });
+
+  // Global variables
+  let currentLanguage = null;
+  let languagePromptDisplayed = false;
+  let weddingPlan = {}; // Object to store wedding game choices
+
+  // Language translations
+  const translations = {
+    ar: {
+      welcome: "🎉 مرحبا! أنا هنا لمساعدتك في تخطيط حفل الزفاف، من أين نبدأ؟",
+      header: "LUMO",
+      home: "الرئيسية",
+      packages: "عرض الباقات",
+      designs: "تصميم الدعوات",
+      booking: "حجز موعد",
+      tips: "نصائح الزفاف",
+      faq: "أسئلة شائعة",
+      game: "لعبة تنظيم الحفل",
+      back: "رجوع",
+      packagesMessage: "🎁 لدينا مجموعة مميزة من الباقات!",
+      designMessage: "🎨 لدينا العديد من التصاميم الرائعة!",
+      bookingMessage: "📅 متى ترغب في مقابلة الاستشاري؟",
+      tipsMessage: "📝 إليك بعض النصائح المفيدة!",
+      faqMessage: "❓ هل لديك أسئلة؟ إليك بعض الأسئلة الشائعة:",
+      chooseLanguage: "من فضلك اختر لغتك:",
+      languages: { ar: "العربية", en: "English", fr: "Français" },
+      invalidEmail: "❌ الرجاء إدخال بريد إلكتروني صالح."
+    },
+    en: {
+      welcome: "🎉 Hello! I'm here to help you plan your wedding, where do we start?",
+      header: "LUMO",
+      home: "Home",
+      packages: "View Packages",
+      designs: "Design Invitations",
+      booking: "Book an Appointment",
+      tips: "Wedding Tips",
+      faq: "FAQs",
+      game: "Plan Your Wedding Game",
+      back: "Back",
+      packagesMessage: "🎁 We have an amazing range of packages!",
+      designMessage: "🎨 We have many wonderful designs!",
+      bookingMessage: "📅 When would you like to meet with the consultant?",
+      tipsMessage: "📝 Here are some helpful tips!",
+      faqMessage: "❓ Do you have any questions? Here are some FAQs:",
+      chooseLanguage: "Please choose your language:",
+      languages: { ar: "العربية", en: "English", fr: "Français" },
+      invalidEmail: "❌ Please enter a valid email."
+    },
+    fr: {
+      welcome: "🎉 Bonjour! Je suis ici pour vous aider à planifier votre mariage, par où commencer?",
+      header: "LUMO",
+      home: "Accueil",
+      packages: "Voir les forfaits",
+      designs: "Concevoir les invitations",
+      booking: "Prendre rendez-vous",
+      tips: "Conseils de mariage",
+      faq: "FAQ",
+      game: "Jeu d'organisation de mariage",
+      back: "Retour",
+      packagesMessage: "🎁 Nous avons une gamme de forfaits incroyable!",
+      designMessage: "🎨 Nous avons de nombreux designs magnifiques!",
+      bookingMessage: "📅 Quand souhaitez-vous rencontrer le consultant?",
+      tipsMessage: "📝 Voici quelques conseils utiles!",
+      faqMessage: "❓ Avez-vous des questions? Voici quelques FAQ:",
+      chooseLanguage: "Veuillez choisir votre langue:",
+      languages: { ar: "العربية", en: "English", fr: "Français" },
+      invalidEmail: "❌ Veuillez saisir un email valide."
+    }
+  };
+
+  /* Helper: Create and return a button element with provided text and click callback */
+  function createOptionButton(text, callback) {
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
+    btn.textContent = text;
+    btn.addEventListener("click", () => {
+      btn.style.transform = "scale(0.98)";
+      setTimeout(() => { btn.style.transform = ""; }, 150);
+      callback();
+    });
+    return btn;
+  }
+
+  /* Helper: Add a message to the chat body */
+  function addMessage(text, isUser = false, isKey = false) {
+    const chatBody = document.getElementById('chatBody');
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+    if (isKey && !currentLanguage) {
+      msgDiv.textContent = translations["fr"].chooseLanguage;
+      msgDiv.classList.add("language-prompt");
+    } else {
+      msgDiv.textContent = text;
+    }
+    chatBody.appendChild(msgDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  /* Helper: Remove all option buttons from chat body */
+  function removeOptionButtons() {
+    document.querySelectorAll('#chatBody .option-btn').forEach(btn => btn.remove());
+  }
+
+  /* Language selection UI */
+  function showLanguageSelection() {
+    const chatBody = document.getElementById("chatBody");
+    chatBody.innerHTML = "";
+    if (!languagePromptDisplayed) {
+      addMessage("", false, true);
+      languagePromptDisplayed = true;
+    }
+    const langOptions = translations["fr"].languages;
+    Object.keys(langOptions).forEach(lang => {
+      const btn = createOptionButton(langOptions[lang], () => selectLanguage(lang));
+      chatBody.appendChild(btn);
+    });
+  }
+
+  /* Set the selected language and update header texts */
+  function selectLanguage(lang) {
+    currentLanguage = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    document.getElementById('chatHeaderText').textContent = translations[lang].header;
+    document.getElementById('homeButton').textContent = translations[lang].home;
+    // Remove any language prompt messages
+    document.querySelectorAll('.language-prompt').forEach(el => el.remove());
+    removeOptionButtons();
+    addMessage(translations[lang].welcome);
+    showInitialOptions();
+  }
+
+  /* Reset language selection */
+  function goHome() {
+    currentLanguage = null;
+    languagePromptDisplayed = false;
+    document.getElementById('chatHeaderText').textContent = translations["fr"].header;
+    document.getElementById('homeButton').textContent = translations["fr"].home;
+    document.getElementById("chatBody").innerHTML = "";
+    showLanguageSelection();
+  }
+
+  /* Show initial options for the chatbot */
+  function showInitialOptions() {
+    const chatBody = document.getElementById('chatBody');
+    const optionsDiv = document.createElement("div");
+    optionsDiv.id = "initialOptions";
+    optionsDiv.appendChild(createOptionButton(translations[currentLanguage].packages, showPackages));
+    optionsDiv.appendChild(createOptionButton(translations[currentLanguage].designs, showDesigns));
+    optionsDiv.appendChild(createOptionButton(translations[currentLanguage].booking, startBooking));
+    optionsDiv.appendChild(createOptionButton(translations[currentLanguage].tips, showTips));
+    optionsDiv.appendChild(createOptionButton(translations[currentLanguage].faq, askAboutWedding));
+    optionsDiv.appendChild(createOptionButton(translations[currentLanguage].game, planWeddingGame));
+    optionsDiv.appendChild(createOptionButton(translations[currentLanguage].back, goHome));
+    chatBody.appendChild(optionsDiv);
+  }
+
+  /* Typing Indicator */
+  function showTypingIndicator() {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'typing-indicator';
+    typingDiv.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+    document.getElementById('chatBody').appendChild(typingDiv);
+  }
+  function hideTypingIndicator() {
+    const typingDiv = document.querySelector('.typing-indicator');
+    if (typingDiv) typingDiv.remove();
+  }
+
+  /* Packages section */
+  function showPackages() {
+    showTypingIndicator();
+    setTimeout(() => {
+      hideTypingIndicator();
+      addMessage(translations[currentLanguage].packagesMessage);
+      const packages = {
+        ar: [
+          '🎀 الباقة الأساسية - 5000 د.ج',
+          '🎀 الباقة الفاخرة - 8000 د.ج',
+          '🎀 الباقة الملكية - 12000 د.ج'
+        ],
+        en: [
+          '🎀 Basic Package - 5000 DZD',
+          '🎀 Premium Package - 8000 DZD',
+          '🎀 Royal Package - 12000 DZD'
+        ],
+        fr: [
+          '🎀 Forfait de base - 5000 DZD',
+          '🎀 Forfait premium - 8000 DZD',
+          '🎀 Forfait royal - 12000 DZD'
+        ]
+      };
+      packages[currentLanguage].forEach(pkg => {
+        const btn = createOptionButton(pkg, () => selectPackage(pkg));
+        document.getElementById('chatBody').appendChild(btn);
+      });
+    }, 1000);
+  }
+  function selectPackage(pkg) {
+    addMessage(pkg.split(' - ')[0], true);
+    const responses = {
+      ar: [
+        `💌 ممتاز! سنقوم بإرسال تفاصيل ${pkg} لبريدك الإلكتروني.`,
+        `📧 رائع! استعد لاستلام تفاصيل ${pkg} على بريدك الإلكتروني.`,
+        `✅ تم اختيار ${pkg.split(' - ')[0]}! ستصلك التفاصيل قريباً.`
+      ],
+      en: [
+        `💌 Great! We'll send the details of ${pkg} to your email.`,
+        `📧 Awesome! Get ready to receive details of ${pkg} in your email.`,
+        `✅ You selected ${pkg.split(' - ')[0]}! Details will follow soon.`
+      ],
+      fr: [
+        `💌 Super! Nous enverrons les détails de ${pkg} à votre email.`,
+        `📧 Génial! Préparez-vous à recevoir les détails de ${pkg} par email.`,
+        `✅ Vous avez choisi ${pkg.split(' - ')[0]}! Les détails suivront bientôt.`
+      ]
+    };
+    addMessage(getRandomItem(responses[currentLanguage]));
+    addMessage(
+      currentLanguage === 'ar'
+        ? '📧 الرجاء إدخال بريدك الإلكتروني:'
+        : currentLanguage === 'en'
+        ? '📧 Please enter your email:'
+        : '📧 Veuillez saisir votre email:'
+    );
+    const input = document.createElement('input');
+    input.type = 'email';
+    input.placeholder = 'example@email.com';
+    input.className = 'email-input';
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        if (!validateEmail(input.value)) {
+          showError(translations[currentLanguage].invalidEmail);
+        } else {
+          clearError();
+          confirmEmail(input.value);
+          input.remove();
+        }
+      }
+    });
+    document.getElementById('chatBody').appendChild(input);
+  }
+  function validateEmail(email) {
+    const regex = /\S+@\S+\.\S+/;
+    return regex.test(email);
+  }
+  function showError(message) {
+    clearError();
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+    document.getElementById('chatBody').appendChild(errorDiv);
+  }
+  function clearError() {
+    document.querySelectorAll('.error-message').forEach(el => el.remove());
+  }
+  function confirmEmail(email) {
+    addMessage(email, true);
+    const responses = {
+      ar: [
+        '✅ تم الإرسال! ستستلم التفاصيل خلال دقائق.',
+        '📬 بريدك تم تأكيده وسيصلك كل جديد قريباً.'
+      ],
+      en: [
+        '✅ Sent! You will receive the details shortly.',
+        '📬 Your email has been confirmed. Stay tuned for updates.'
+      ],
+      fr: [
+        '✅ Envoyé! Vous recevrez les détails sous peu.',
+        '📬 Votre email a été confirmé. Restez à l’écoute pour plus d’informations.'
+      ]
+    };
+    addMessage(getRandomItem(responses[currentLanguage]));
+  }
+  /* Designs section */
+  function showDesigns() {
+    showTypingIndicator();
+    setTimeout(() => {
+      hideTypingIndicator();
+      addMessage(translations[currentLanguage].designMessage);
+      const designs = {
+        ar: ['🖼️ تصميم كلاسيكي', '🖼️ تصميم عصري', '🖼️ تصميم مخصص'],
+        en: ['🖼️ Classic Design', '🖼️ Modern Design', '🖼️ Custom Design'],
+        fr: ['🖼️ Design classique', '🖼️ Design moderne', '🖼️ Design personnalisé']
+      };
+      designs[currentLanguage].forEach(design => {
+        const btn = createOptionButton(design, () => selectDesign(design));
+        document.getElementById('chatBody').appendChild(btn);
+      });
+    }, 1000);
+  }
+  function selectDesign(design) {
+    addMessage(design, true);
+    const responses = {
+      ar: [
+        '✨ سنقوم بتصميم نموذج مبدئي خلال 24 ساعة!',
+        '🚀 تصميمك المبدئي في الطريق خلال يومين!'
+      ],
+      en: [
+        '✨ Your prototype will be ready within 24 hours!',
+        '🚀 Your design is on its way and will be ready in two days!'
+      ],
+      fr: [
+        '✨ Votre prototype sera prêt sous 24 heures!',
+        '🚀 Votre design est en route et sera prêt en deux jours!'
+      ]
+    };
+    addMessage(getRandomItem(responses[currentLanguage]));
+  }
+  /* Booking section */
+  function startBooking() {
+    showTypingIndicator();
+    setTimeout(() => {
+      hideTypingIndicator();
+      addMessage(translations[currentLanguage].bookingMessage);
+      const dates = {
+        ar: ['غدًا', 'بعد غد', 'الأسبوع القادم'],
+        en: ['Tomorrow', 'The day after tomorrow', 'Next week'],
+        fr: ['Demain', 'Après-demain', 'La semaine prochaine']
+      };
+      dates[currentLanguage].forEach(date => {
+        const btn = createOptionButton(date, () => confirmDate(date));
+        document.getElementById('chatBody').appendChild(btn);
+      });
+    }, 1000);
+  }
+  function confirmDate(date) {
+    addMessage(date, true);
+    const responses = {
+      ar: [
+        `🕒 تم الحجز! سنتواصل معك في ${date} الساعة 4 مساءً.`,
+        `📆 موعدك مع الاستشاري في ${date} تم تأكيده.`
+      ],
+      en: [
+        `🕒 Booked! We will contact you on ${date} at 4 PM.`,
+        `📆 Your appointment with the consultant on ${date} is confirmed.`
+      ],
+      fr: [
+        `🕒 Réservé! Nous vous contacterons ${date} à 16h.`,
+        `📆 Votre rendez-vous avec le consultant ${date} est confirmé.`
+      ]
+    };
+    addMessage(getRandomItem(responses[currentLanguage]));
+  }
+  /* Wedding Tips section */
+  function showTips() {
+    showTypingIndicator();
+    setTimeout(() => {
+      hideTypingIndicator();
+      addMessage(translations[currentLanguage].tipsMessage);
+      const tips = {
+        ar: [
+          "🎊 تأكد من تحديد ميزانية واضحة لحفل الزفاف.",
+          "🎊 قم بإنشاء قائمة الضيوف مبكرًا لتسهيل التخطيط.",
+          "🎊 اختر مكانًا يناسب عدد الضيوف والميزانية.",
+          "🎊 لا تنسى توثيق اللحظات الجميلة مع مصور محترف."
+        ],
+        en: [
+          "🎊 Make sure to set a clear budget for your wedding.",
+          "🎊 Create your guest list early to ease planning.",
+          "🎊 Choose a venue that fits your guest count and budget.",
+          "🎊 Don’t forget to capture beautiful moments with a professional photographer."
+        ],
+        fr: [
+          "🎊 Assurez-vous de définir un budget clair pour votre mariage.",
+          "🎊 Établissez votre liste d'invités tôt pour faciliter l'organisation.",
+          "🎊 Choisissez un lieu qui correspond au nombre d'invités et au budget.",
+          "🎊 N'oubliez pas de capturer les moments précieux avec un photographe professionnel."
+        ]
+      };
+      tips[currentLanguage].forEach(tip => addMessage(tip));
+    }, 1000);
+  }
+  /* FAQ section */
+  function askAboutWedding() {
+    showTypingIndicator();
+    setTimeout(() => {
+      hideTypingIndicator();
+      addMessage(translations[currentLanguage].faqMessage);
+      const questions = {
+        ar: [
+          "ما هي أفضل الباقات المتاحة؟",
+          "كيف يمكنني حجز موعد؟",
+          "ما هي خيارات تصميم الدعوات؟"
+        ],
+        en: [
+          "What are the best available packages?",
+          "How do I book an appointment?",
+          "What are the invitation design options?"
+        ],
+        fr: [
+          "Quels sont les meilleurs forfaits disponibles?",
+          "Comment puis-je prendre rendez-vous?",
+          "Quelles sont les options de conception des invitations?"
+        ]
+      };
+      questions[currentLanguage].forEach(question => {
+        const btn = createOptionButton(question, () => respondToQuestion(question));
+        document.getElementById('chatBody').appendChild(btn);
+      });
+    }, 1000);
+  }
+  function respondToQuestion(question) {
+    addMessage(question, true);
+    let response = "";
+    if (question === (currentLanguage === 'ar' ? "ما هي أفضل الباقات المتاحة؟" : currentLanguage === 'en' ? "What are the best available packages?" : "Quels sont les meilleurs forfaits disponibles?")) {
+      response = currentLanguage === 'ar'
+        ? getRandomItem(["🎁 لدينا ثلاث باقات: الأساسية، الفاخرة، والملكية. يمكنك اختيار ما يناسبك!", "🎉 خياراتنا متنوعة لتلبية احتياجاتك، اختر من الباقات الأساسية والفاخرة والملكية."])
+        : currentLanguage === 'en'
+        ? getRandomItem(["🎁 We offer three packages: Basic, Premium, and Royal. Choose the one that suits you best!", "🎉 Our options are varied to meet your needs. Select from Basic, Premium, or Royal packages."])
+        : getRandomItem(["🎁 Nous proposons trois forfaits : de base, premium et royal. Choisissez celui qui vous convient le mieux!", "🎉 Nos options sont variées pour répondre à vos besoins, choisissez parmi les forfaits de base, premium ou royal."]);
+    } else if (question === (currentLanguage === 'ar' ? "كيف يمكنني حجز موعد؟" : currentLanguage === 'en' ? "How do I book an appointment?" : "Comment puis-je prendre rendez-vous?")) {
+      response = currentLanguage === 'ar'
+        ? getRandomItem(["📅 يمكنك حجز موعد من خلال الضغط على زر 'حجز موعد' واختيار التاريخ.", "⏰ حجز الموعد سهل، فقط اضغط على 'حجز موعد' واتبع التعليمات."])
+        : currentLanguage === 'en'
+        ? getRandomItem(["📅 You can book an appointment by clicking the 'Book an Appointment' button and selecting a date.", "⏰ Booking is easy, just click 'Book an Appointment' and follow the instructions."])
+        : getRandomItem(["📅 Vous pouvez prendre rendez-vous en cliquant sur 'Prendre rendez-vous' et en sélectionnant une date.", "⏰ La réservation est simple, cliquez sur 'Prendre rendez-vous' et suivez les instructions."]);
+    } else if (question === (currentLanguage === 'ar' ? "ما هي خيارات تصميم الدعوات؟" : currentLanguage === 'en' ? "What are the invitation design options?" : "Quelles sont les options de conception des invitations?")) {
+      response = currentLanguage === 'ar'
+        ? getRandomItem(["🎨 لدينا تصاميم كلاسيكية، عصرية، ومخصصة حسب رغبتك.", "🖌️ خيارات تصميم الدعوات لدينا تشمل النمط الكلاسيكي والعصري، ويمكن تخصيصها بالكامل."])
+        : currentLanguage === 'en'
+        ? getRandomItem(["🎨 We offer Classic, Modern, and Custom invitation designs.", "🖌️ Our invitation design options include Classic and Modern styles, fully customizable."])
+        : getRandomItem(["🎨 Nous proposons des designs classiques, modernes et personnalisés.", "🖌️ Nos options de conception des invitations incluent des styles classiques et modernes, entièrement personnalisables."]);
+    } else {
+      response = currentLanguage === 'ar'
+        ? "🤔 عذرًا، لا أستطيع مساعدتك في ذلك."
+        : currentLanguage === 'en'
+        ? "🤔 Sorry, I can't assist with that."
+        : "🤔 Désolé, je ne peux pas vous aider avec cela.";
+    }
+    addMessage(response);
+  }
+  /* Wedding Game: Interactive wedding planning */
+  function planWeddingGame() {
+    weddingPlan = {};
+    addMessage(
+      currentLanguage === 'ar'
+        ? "🎮 مرحبًا بك في لعبة تنظيم حفل الزفاف التفاعلية!"
+        : currentLanguage === 'en'
+        ? "🎮 Welcome to the interactive wedding planning game!"
+        : "🎮 Bienvenue dans le jeu interactif d'organisation de mariage!"
+    );
+    addMessage(
+      currentLanguage === 'ar'
+        ? "لنبدأ أولاً، اختر المكان المثالي لإقامة الحفل:"
+        : currentLanguage === 'en'
+        ? "Let's start by choosing the perfect venue for the wedding:"
+        : "Commençons par choisir le lieu idéal pour le mariage:"
+    );
+    removeOptionButtons();
+    const venues = {
+      ar: ["قاعة فخمة", "حديقة رومانسية", "شاطئ البحر", "فندق خمس نجوم"],
+      en: ["Luxurious Hall", "Romantic Garden", "Beachside", "Five Star Hotel"],
+      fr: ["Salle luxueuse", "Jardin romantique", "Bord de mer", "Hôtel cinq étoiles"]
+    };
+    venues[currentLanguage].forEach(venue => {
+      const btn = createOptionButton(venue, () => selectVenue(venue));
+      document.getElementById('chatBody').appendChild(btn);
+    });
+  }
+  function selectVenue(venue) {
+    weddingPlan.venue = venue;
+    addMessage(`${currentLanguage === 'ar' ? "لقد اخترت:" : currentLanguage === 'en' ? "You chose:" : "Vous avez choisi:"} ${venue}`, true);
+    removeOptionButtons();
+    addMessage(
+      currentLanguage === 'ar'
+        ? "الآن اختر لون الديكور المفضل:"
+        : currentLanguage === 'en'
+        ? "Now choose your preferred decor color:"
+        : "Choisissez maintenant la couleur de décoration préférée:"
+    );
+    const decors = {
+      ar: ["وردي", "أزرق", "ذهبي", "أخضر"],
+      en: ["Pink", "Blue", "Gold", "Green"],
+      fr: ["Rose", "Bleu", "Doré", "Vert"]
+    };
+    decors[currentLanguage].forEach(decor => {
+      const btn = createOptionButton(decor, () => selectDecor(decor));
+      document.getElementById('chatBody').appendChild(btn);
+    });
+  }
+  function selectDecor(decor) {
+    weddingPlan.decor = decor;
+    addMessage(`${currentLanguage === 'ar' ? "لقد اخترت:" : currentLanguage === 'en' ? "You chose:" : "Vous avez choisi:"} ${decor}`, true);
+    removeOptionButtons();
+    addMessage(
+      currentLanguage === 'ar'
+        ? "اختر نوع الكعكة لليلة الزفاف:"
+        : currentLanguage === 'en'
+        ? "Choose the type of wedding cake:"
+        : "Choisissez le type de gâteau de mariage:"
+    );
+    const cakes = {
+      ar: ["كعكة تقليدية", "كعكة حديثة", "كعكة الفواكه", "كعكة الشوكولاتة"],
+      en: ["Traditional Cake", "Modern Cake", "Fruit Cake", "Chocolate Cake"],
+      fr: ["Gâteau traditionnel", "Gâteau moderne", "Gâteau aux fruits", "Gâteau au chocolat"]
+    };
+    cakes[currentLanguage].forEach(cake => {
+      const btn = createOptionButton(cake, () => selectCake(cake));
+      document.getElementById('chatBody').appendChild(btn);
+    });
+  }
+  function selectCake(cake) {
+    weddingPlan.cake = cake;
+    addMessage(`${currentLanguage === 'ar' ? "لقد اخترت:" : currentLanguage === 'en' ? "You chose:" : "Vous avez choisi:"} ${cake}`, true);
+    removeOptionButtons();
+    displayWeddingPlan();
+  }
+  function displayWeddingPlan() {
+    addMessage(
+      currentLanguage === 'ar'
+        ? "✨ إليك خطة زفافك المثالية:"
+        : currentLanguage === 'en'
+        ? "✨ Here is your ideal wedding plan:"
+        : "✨ Voici votre plan de mariage idéal:"
+    );
+    addMessage(`${currentLanguage === 'ar' ? "المكان:" : currentLanguage === 'en' ? "Venue:" : "Lieu:"} ${weddingPlan.venue}`);
+    addMessage(`${currentLanguage === 'ar' ? "الديكور:" : currentLanguage === 'en' ? "Decor:" : "Décor:"} ${weddingPlan.decor}`);
+    addMessage(`${currentLanguage === 'ar' ? "الكعكة:" : currentLanguage === 'en' ? "Cake:" : "Gâteau:"} ${weddingPlan.cake}`);
+    addMessage(
+      currentLanguage === 'ar'
+        ? "🎉 تهانينا! لقد قمت بتنظيم حفل زفاف أحلامك!"
+        : currentLanguage === 'en'
+        ? "🎉 Congratulations! You've planned your dream wedding!"
+        : "🎉 Félicitations! Vous avez planifié le mariage de vos rêves!"
+    );
+  }
+  document.getElementById("homeButton").addEventListener("click", goHome);
+  // When the site refreshes, display the language selection screen as the main page.
+  window.addEventListener('DOMContentLoaded', () => {
+    showLanguageSelection();
+  });
+  // Helper function to get a random item from an array.
+  function getRandomItem(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+</script>
+
+</body>
+</html>

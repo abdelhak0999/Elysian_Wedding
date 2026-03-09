@@ -1,0 +1,3213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salles & Déco - Lieux & Décorations</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset and base styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    .header-logo {
+  /* shrink it just slightly */
+  width: 130px;      /* or whatever feels right */
+  height: auto;
+
+  /* keep your border if you like */
+  /* border-radius: 50%;
+  border: 2px solid #c29a76; */
+  padding: 2px;
+
+  /* ensure drop-shadow hugs the opaque parts */
+  display: inline-block;
+
+  /* layer a small, subtle neon glow */
+  /* filter:
+    drop-shadow(0 0 1px #c29a76)
+    drop-shadow(0 0 2px #c29a76)
+    drop-shadow(0 0 4px rgba(194,154,118,0.8))
+    drop-shadow(0 0 6px rgba(194,154,118,0.6)); */
+}
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f5f2;
+      color: #333;
+      line-height: 1.6;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    body.dark-mode {
+      background-color: #2c2c2c;
+      color: white;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      transition: all 0.3s;
+      padding: 15px 0;
+    }
+
+    header.scrolled {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 10px 0;
+    }
+
+    body.dark-mode header.scrolled {
+      background-color: #333;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #c29a76;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo i {
+      margin-right: 8px;
+    }
+
+    .nav-desktop {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-desktop a, .dropdown-toggle {
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    body.dark-mode .nav-desktop a, 
+    body.dark-mode .dropdown-toggle {
+      color: #fff;
+    }
+
+    .nav-desktop a:hover, .dropdown-toggle:hover {
+      color: #c29a76;
+    }
+
+    .nav-desktop a::after, 
+    .dropdown-toggle::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #c29a76;
+      transition: width 0.3s;
+    }
+
+    .nav-desktop a:hover::after, 
+    .dropdown-toggle:hover::after,
+    .nav-desktop a.active::after {
+      width: 100%;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      min-width: 180px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      padding: 8px 0;
+      z-index: 1;
+      margin-top: 10px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    }
+
+    body.dark-mode .dropdown-content {
+      background-color: #333;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .dropdown.active .dropdown-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 8px 16px;
+      transition: background-color 0.3s;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f5f5f5;
+      color: #c29a76;
+    }
+
+    body.dark-mode .dropdown-content a:hover {
+      background-color: #444;
+    }
+
+    /* Cart icon and count */
+    .cart-wrapper {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .cart-icon, .theme-toggle, .menu-toggle {
+      font-size: 20px;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: none;
+      border: none;
+      padding: 8px;
+      border-radius: 50%;
+    }
+
+    body.dark-mode .cart-icon, 
+    body.dark-mode .theme-toggle,
+    body.dark-mode .menu-toggle {
+      color: #fff;
+    }
+
+    .cart-icon:hover, .theme-toggle:hover, .menu-toggle:hover {
+      color: #c29a76;
+      background-color: rgba(194, 154, 118, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: #c29a76;
+      color: white;
+      font-size: 12px;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      padding: 0 4px;
+      transition: all 0.3s ease;
+    }
+
+    .cart-count.pulse {
+      animation: pulse 0.5s ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .mobile-nav {
+      display: none;
+      padding: 15px 0;
+      border-top: 1px solid #eee;
+      margin-top: 15px;
+    }
+
+    body.dark-mode .mobile-nav {
+      border-top: 1px solid #444;
+    }
+
+    .mobile-nav a, .mobile-dropdown-toggle {
+      display: block;
+      padding: 10px 0;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    body.dark-mode .mobile-nav a, 
+    body.dark-mode .mobile-dropdown-toggle {
+      color: #fff;
+    }
+
+    .mobile-nav a:hover, .mobile-dropdown-toggle:hover {
+      color: #c29a76;
+    }
+
+    .mobile-dropdown-content {
+      display: none;
+      padding-left: 20px;
+    }
+
+    .mobile-dropdown-content a {
+      padding: 8px 0;
+    }
+
+    .mobile-dropdown.active .mobile-dropdown-content {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hero section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to right, #f8f5f2, #f0e9e4);
+      overflow: hidden;
+      margin-top: 0;
+    }
+
+    body.dark-mode .hero {
+      background: linear-gradient(to right, #2c2c2c, #222);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://source.unsplash.com/random/1920x1080/?wedding,venue');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.2;
+    }
+
+    .hero-content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    body.dark-mode .hero h1 {
+      color: #fff;
+    }
+
+    .hero h1 span {
+      color: #c29a76;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    body.dark-mode .hero p {
+      color: #ccc;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 30px;
+      background-color: #c29a76;
+      color: white;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #a87f5e;
+      transform: translateY(-3px);
+    }
+
+    .btn-lg {
+      padding: 14px 32px;
+      font-size: 18px;
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #c29a76;
+      font-size: 30px;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+      background: none;
+      border: none;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+
+    /* Section styles */
+    .section {
+      padding: 80px 0;
+      scroll-margin-top: 80px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: #c29a76;
+    }
+
+    body.dark-mode .section-title {
+      color: #fff;
+    }
+
+    /* Card grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    body.dark-mode .card {
+      background-color: #333;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-image-container {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+    }
+
+    .decoration-image-container {
+      aspect-ratio: 1/1;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-image {
+      transform: scale(1.1);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover .card-overlay {
+      opacity: 1;
+    }
+
+    .card-overlay button {
+      background-color: white;
+      color: #333;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      font-weight: 500;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    body.dark-mode .card-overlay button {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .card:hover .card-overlay button {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .card-overlay button:hover {
+      background-color: #c29a76;
+      color: white;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    body.dark-mode .card-title {
+      color: #fff;
+    }
+
+    .venue-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .venue-detail {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: #666;
+    }
+
+    body.dark-mode .venue-detail {
+      color: #ccc;
+    }
+
+    .venue-detail i {
+      margin-right: 5px;
+      color: #c29a76;
+    }
+
+    .venue-link {
+      display: inline-block;
+      color: #c29a76;
+      font-weight: 500;
+      transition: color 0.3s;
+      border-bottom: 2px solid #c29a76;
+      padding-bottom: 2px;
+    }
+
+    .venue-link:hover {
+      color: #a87f5e;
+      border-color: #a87f5e;
+    }
+
+    .decoration-price {
+      font-size: 16px;
+      color: #c29a76;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    body.dark-mode .quantity-control {
+      border-color: #555;
+    }
+
+    .quantity-button {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f5f5f5;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    body.dark-mode .quantity-button {
+      background-color: #444;
+      color: #fff;
+    }
+
+    .quantity-button:hover {
+      background-color: #e5e5e5;
+    }
+
+    body.dark-mode .quantity-button:hover {
+      background-color: #555;
+    }
+
+    .quantity-input {
+      width: 50px;
+      height: 36px;
+      text-align: center;
+      border: none;
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      background-color: white;
+      color: #333;
+    }
+
+    body.dark-mode .quantity-input {
+      background-color: #333;
+      color: #fff;
+      border-left: 1px solid #555;
+      border-right: 1px solid #555;
+    }
+
+    .add-to-cart-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #c29a76;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: #a87f5e;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .add-to-cart-btn:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Cart section */
+    .cart {
+      padding: 80px 0;
+      background-color: #f9f5f1;
+      scroll-margin-top: 80px;
+    }
+
+    body.dark-mode .cart {
+      background-color: #222;
+    }
+
+    .cart-description {
+      text-align: center;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    body.dark-mode .cart-description {
+      color: #ccc;
+    }
+
+    .cart-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    @media (min-width: 992px) {
+      .cart-container {
+        flex-direction: row;
+      }
+    }
+
+    .cart-items {
+      flex-grow: 1;
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .cart-items {
+      background-color: #333;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .cart-empty p {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    body.dark-mode .cart-empty p {
+      color: #ccc;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 20px;
+    }
+
+    body.dark-mode .cart-item {
+      border-bottom: 1px solid #444;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .cart-item-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .cart-item-image {
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .cart-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .cart-item-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .cart-item-details {
+      flex-grow: 1;
+    }
+
+    .cart-item-title {
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    body.dark-mode .cart-item-title {
+      color: #fff;
+    }
+
+    .cart-item-price {
+      color: #c29a76;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .cart-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .remove-button {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    body.dark-mode .remove-button {
+      border-color: #555;
+      color: #ccc;
+    }
+
+    .remove-button:hover {
+      color: #c29a76;
+      border-color: #c29a76;
+      transform: rotate(90deg);
+    }
+
+    .cart-summary {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      height: fit-content;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .cart-summary {
+      background-color: #333;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (min-width: 992px) {
+      .cart-summary {
+        width: 350px;
+      }
+    }
+
+    .cart-summary h3 {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    body.dark-mode .cart-summary h3 {
+      color: #fff;
+      border-bottom: 1px solid #444;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .summary-row.total {
+      font-weight: 700;
+      font-size: 18px;
+      padding-top: 15px;
+      margin-top: 15px;
+      border-top: 1px solid #eee;
+    }
+
+    body.dark-mode .summary-row.total {
+      border-top: 1px solid #444;
+    }
+
+    .summary-label {
+      color: #666;
+    }
+
+    body.dark-mode .summary-label {
+      color: #ccc;
+    }
+
+    .checkout-button {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .checkout-button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    /* About section */
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-content p {
+      margin-bottom: 20px;
+      color: #666;
+    }
+
+    body.dark-mode .about-content p {
+      color: #ccc;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: white;
+      border-top: 1px solid #eee;
+      padding: 60px 0 30px;
+    }
+
+    body.dark-mode .footer {
+      background-color: #333;
+      border-top: 1px solid #444;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .footer h3 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #c29a76;
+      margin-bottom: 20px;
+    }
+
+    .footer p {
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    body.dark-mode .footer p {
+      color: #ccc;
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: #666;
+    }
+
+    body.dark-mode .footer-contact {
+      color: #ccc;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: #666;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+    }
+
+    body.dark-mode .footer-links a {
+      color: #ccc;
+    }
+
+    .footer-links a:hover {
+      color: #c29a76;
+    }
+
+    .footer-links a i {
+      margin-right: 8px;
+      font-size: 10px;
+      color: #c29a76;
+    }
+
+    .footer-copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+    }
+
+    body.dark-mode .footer-copyright {
+      border-top: 1px solid #444;
+      color: #888;
+    }
+
+    /* Toast notifications */
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toast {
+      background-color: white;
+      color: #333;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      max-width: 350px;
+      animation: slideIn 0.3s ease-out;
+      border-left: 4px solid #c29a76;
+    }
+
+    body.dark-mode .toast {
+      background-color: #333;
+      color: #fff;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    }
+
+    .toast-title {
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-title::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: #c29a76;
+      border-radius: 50%;
+    }
+
+    .toast-description {
+      font-size: 14px;
+      color: #666;
+    }
+
+    body.dark-mode .toast-description {
+      color: #ccc;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+    }
+
+    .toast.removing {
+      animation: slideOut 0.3s ease-out forwards;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      background-color: white;
+      border-radius: 10px;
+      max-width: 1000px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      transform: scale(0.95);
+      transition: transform 0.3s;
+    }
+
+    body.dark-mode .modal {
+      background-color: #333;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-backdrop.open .modal {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      background-color: white;
+      z-index: 5;
+    }
+
+    body.dark-mode .modal-header {
+      background-color: #333;
+      border-bottom: 1px solid #444;
+    }
+
+    .modal-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #c29a76;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      transition: color 0.2s, transform 0.2s;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 20px;
+    }
+
+    body.dark-mode .modal-close {
+      color: #ccc;
+    }
+
+    .modal-close:hover {
+      color: #c29a76;
+      transform: rotate(90deg);
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      max-height: calc(90vh - 70px);
+    }
+
+    /* Enhanced modal styles for venue details */
+    .venue-gallery {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
+
+    .venue-gallery img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 8px;
+      scroll-snap-align: center;
+    }
+
+    .venue-description {
+      margin: 20px 0;
+      line-height: 1.8;
+      color: #666;
+    }
+
+    body.dark-mode .venue-description {
+      color: #ccc;
+    }
+
+    .venue-features {
+      margin: 20px 0;
+    }
+
+    .venue-features h4 {
+      color: #c29a76;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+    }
+
+    body.dark-mode .feature-list li {
+      border-bottom: 1px solid #444;
+    }
+
+    .feature-list li i {
+      color: #c29a76;
+      margin-right: 10px;
+    }
+
+    .venue-prestations {
+      margin-top: 30px;
+    }
+
+    .venue-prestations h4 {
+      color: #c29a76;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .prestation-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .prestation-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    body.dark-mode .prestation-item {
+      border-bottom: 1px solid #444;
+    }
+
+    .prestation-price {
+      font-weight: bold;
+      color: #c29a76;
+      min-width: 120px;
+      text-align: right;
+    }
+
+    .prestation-button {
+      background-color: #c29a76;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-size: 14px;
+    }
+
+    .prestation-button:hover {
+      background-color: #a87f5e;
+    }
+
+    .venue-calendar {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f9f5f1;
+      border-radius: 8px;
+    }
+
+    body.dark-mode .venue-calendar {
+      background-color: #222;
+    }
+
+    .calendar-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .calendar-controls select {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: white;
+    }
+
+    body.dark-mode .calendar-controls select {
+      background-color: #333;
+      color: white;
+      border-color: #555;
+    }
+
+    .calendar-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .calendar-table th, .calendar-table td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    body.dark-mode .calendar-table th, 
+    body.dark-mode .calendar-table td {
+      border-color: #555;
+    }
+
+    .calendar-table .available {
+      background-color: #e7f5e7;
+      cursor: pointer;
+    }
+
+    .calendar-table .reserved {
+      background-color: #f5e7e7;
+      color: #999;
+    }
+
+    body.dark-mode .calendar-table .available {
+      background-color: #2a3a2a;
+    }
+
+    body.dark-mode .calendar-table .reserved {
+      background-color: #3a2a2a;
+      color: #777;
+    }
+
+    /* Image navigation in modal */
+    .image-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.7);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 5;
+      transition: background-color 0.3s;
+    }
+
+    body.dark-mode .image-nav {
+      background-color: rgba(51, 51, 51, 0.7);
+      color: white;
+    }
+
+    .image-nav:hover {
+      background-color: #c29a76;
+      color: white;
+    }
+
+    .image-nav.prev {
+      left: 10px;
+    }
+
+    .image-nav.next {
+      right: 10px;
+    }
+
+    .image-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.5);
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .image-dot.active {
+      background-color: #c29a76;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 991px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .nav-desktop {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .mobile-nav.active {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Planification de Mariage" class="header-logo">
+      </a>
+
+      <nav class="nav-desktop">
+        <a href="dashboard.php" id="nav-home" class="active">Accueil</a>
+        <a href="#venues" id="nav-venues">Nos Salles</a>
+        <a href="#decorations" id="nav-decorations">Décorations</a>
+        <div class="dropdown" id="collections-dropdown">
+          <span class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></span>
+          <div class="dropdown-content" id="dropdown-content">
+            <a href="#venues">Salles de Mariage</a>
+            <a href="#venues">Salles de Réception</a>
+            <a href="#venues">Salles de Conférence</a>
+            <a href="#decorations">Décorations</a>
+          </div>
+        </div>
+        <a href="#about">À propos</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="cart-wrapper">
+          <button id="cart-button" class="cart-icon">
+          <i class="fas fa-shopping-cart"></i>
+          </button>
+          <span id="cart-count" class="cart-count" style="display: none;">0</span>
+            </div>
+
+        <button id="theme-toggle" class="theme-toggle">
+          <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
+
+        <button id="menu-toggle" class="menu-toggle">
+          <i id="menu-icon" class="fas fa-bars"></i>
+        </button>
+            </div>
+              </div>
+
+    <div class="container mobile-nav" id="mobile-nav">
+      <a href="#hero" id="mobile-nav-home">Accueil</a>
+      <a href="#venues" id="mobile-nav-venues">Nos Salles</a>
+      <a href="#decorations" id="mobile-nav-decorations">Décorations</a>
+      <div class="mobile-dropdown" id="mobile-collections-dropdown">
+        <span class="mobile-dropdown-toggle">Services <i class="fas fa-chevron-down"></i></span>
+        <div class="mobile-dropdown-content" id="mobile-dropdown-content">
+          <a href="#venues">Salles de Mariage</a>
+          <a href="#venues">Salles de Réception</a>
+          <a href="#venues">Salles de Conférence</a>
+          <a href="#decorations">Décorations</a>
+        </div>
+      </div>
+      <a href="#about">À propos</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <section id="hero" class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>Découvrez des <span>Lieux Exceptionnels</span> pour vos Événements</h1>
+      <p>Des salles somptueuses pour vos mariages, réceptions et événements professionnels</p>
+      <button id="view-venues" class="btn btn-lg">Explorer nos Salles</button>
+    </div>
+
+    <button id="scroll-down" class="scroll-down">
+      <i class="fas fa-chevron-down"></i>
+    </button>
+  </section>
+
+  <section id="venues" class="section">
+    <div class="container">
+      <h2 class="section-title">NOS SALLES</h2>
+      <div class="grid" id="venues-grid">
+        <!-- Venue 1 -->
+        <div class="card">
+          <div class="card-image-container">
+            <img src="salles/salle1.png" alt="Palace Events" class="card-image">
+            <div class="card-overlay">
+              <button data-venue-id="1">Voir plus</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Palace Events</h3>
+            <div class="venue-details">
+              <span class="venue-detail"><i class="fas fa-map-marker-alt"></i> Bordj El Kiffan</span>
+              <span class="venue-detail"><i class="fas fa-users"></i> 150 personnes</span>
+              <span class="venue-detail"><i class="fas fa-tag"></i> 40 millions DA</span>
+            </div>
+            <a href="#" class="venue-link" data-venue-id="1">Voir plus</a>
+          </div>
+        </div>
+
+        <!-- Venue 2 -->
+        <div class="card">
+          <div class="card-image-container">
+            <img src="salles/salle2.png" alt="Château d'Hardricourt" class="card-image">
+            <div class="card-overlay">
+              <button data-venue-id="2">Voir plus</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Château d'Hardricourt</h3>
+            <div class="venue-details">
+              <span class="venue-detail"><i class="fas fa-map-marker-alt"></i> Bab Ezzaour</span>
+              <span class="venue-detail"><i class="fas fa-users"></i> 300 personnes</span>
+              <span class="venue-detail"><i class="fas fa-tag"></i> 110 millions DA</span>
+            </div>
+            <a href="#" class="venue-link" data-venue-id="2">Voir plus</a>
+          </div>
+        </div>
+
+        <!-- Venue 3 -->
+        <div class="card">
+          <div class="card-image-container">
+            <img src="salles/salle3.png" alt="Moulin Vert" class="card-image">
+            <div class="card-overlay">
+              <button data-venue-id="3">Voir plus</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Moulin Vert</h3>
+            <div class="venue-details">
+              <span class="venue-detail"><i class="fas fa-map-marker-alt"></i> Hydra</span>
+              <span class="venue-detail"><i class="fas fa-users"></i> 300 personnes</span>
+              <span class="venue-detail"><i class="fas fa-tag"></i> Prix sur demande</span>
+            </div>
+            <a href="#" class="venue-link" data-venue-id="3">Voir plus</a>
+          </div>
+        </div>
+
+        <!-- Venue 4 -->
+        <div class="card">
+          <div class="card-image-container">
+            <img src="salles/salle4.png" alt="Hotel Lutetia" class="card-image">
+            <div class="card-overlay">
+              <button data-venue-id="4">Voir plus</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Hotel Lutetia</h3>
+            <div class="venue-details">
+              <span class="venue-detail"><i class="fas fa-map-marker-alt"></i> El Mouradia</span>
+              <span class="venue-detail"><i class="fas fa-users"></i> 100 personnes</span>
+              <span class="venue-detail"><i class="fas fa-tag"></i> Prix sur demande</span>
+            </div>
+            <a href="#" class="venue-link" data-venue-id="4">Voir plus</a>
+          </div>
+        </div>
+
+        <!-- Venue 5 -->
+        <div class="card">
+          <div class="card-image-container">
+            <img src="salles/salle5.png" alt="Château Poudenas" class="card-image">
+            <div class="card-overlay">
+              <button data-venue-id="5">Voir plus</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Château Poudenas</h3>
+            <div class="venue-details">
+              <span class="venue-detail"><i class="fas fa-map-marker-alt"></i> Cheraga</span>
+              <span class="venue-detail"><i class="fas fa-users"></i> 500 personnes</span>
+              <span class="venue-detail"><i class="fas fa-tag"></i> Prix sur demande</span>
+            </div>
+            <a href="#" class="venue-link" data-venue-id="5">Voir plus</a>
+          </div>
+        </div>
+
+        <!-- Venue 6 -->
+        <div class="card">
+          <div class="card-image-container">
+            <img src="salles/salle7.png" alt="Colshaw Hall" class="card-image">
+            <div class="card-overlay">
+              <button data-venue-id="6">Voir plus</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Colshaw Hall</h3>
+            <div class="venue-details">
+              <span class="venue-detail"><i class="fas fa-map-marker-alt"></i> Dely Brahim</span>
+              <span class="venue-detail"><i class="fas fa-users"></i> 350 personnes</span>
+              <span class="venue-detail"><i class="fas fa-tag"></i> Prix sur demande</span>
+            </div>
+            <a href="#" class="venue-link" data-venue-id="6">Voir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="decorations" class="section">
+    <div class="container">
+      <h2 class="section-title">NOS DÉCORATIONS</h2>
+      <div class="grid" id="decorations-grid">
+        <!-- Decoration 1 -->
+        <div class="card">
+          <div class="card-image-container decoration-image-container">
+            <img src="salles/vase1.png" alt="Centre de table Vases" class="card-image">
+            <div class="card-overlay">
+              <button data-decoration-id="1">Voir plus</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Centre de table Vases</h3>
+            <p class="decoration-price">1 800 DA</p>
+            <div class="quantity-controls">
+              <div class="quantity-control">
+                <button class="quantity-button minus-btn" data-id="1">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <input type="number" class="quantity-input" value="1" min="1" max="99" id="quantity1">
+                <button class="quantity-button plus-btn" data-id="1">
+                  <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            </div>
+            <button class="add-to-cart-btn" data-id="1" data-name="Centre de table Vases" data-price="1800" data-image="salles/vase1.png">
+              <i class="fas fa-shopping-cart"></i> Ajouter au panier
+            </button>
+          </div>
+        </div>
+
+        <!-- Decoration 2 -->
+        <div class="card">
+          <div class="card-image-container decoration-image-container">
+            <img src="salles/centre1.png" alt="Tableau d'accueil" class="card-image">
+            <div class="card-overlay">
+              <button data-decoration-id="2">Voir plus</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Tableau d'accueil</h3>
+            <p class="decoration-price">35 000 DA</p>
+            <div class="quantity-controls">
+              <div class="quantity-control">
+                <button class="quantity-button minus-btn" data-id="2">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <input type="number" class="quantity-input" value="1" min="1" max="99" id="quantity2">
+                <button class="quantity-button plus-btn" data-id="2">
+                  <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            </div>
+            <button class="add-to-cart-btn" data-id="2" data-name="Tableau d'accueil" data-price="35000" data-image="salles/centre1.png">
+              <i class="fas fa-shopping-cart"></i> Ajouter au panier
+            </button>
+          </div>
+        </div>
+
+        <!-- Decoration 3 -->
+        <div class="card">
+          <div class="card-image-container decoration-image-container">
+            <img src="salles/cadre1.png" alt="Cadre pour photos" class="card-image">
+            <div class="card-overlay">
+              <button data-decoration-id="3">Voir plus</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Cadre pour photos</h3>
+            <p class="decoration-price">3 000 DA</p>
+            <div class="quantity-controls">
+              <div class="quantity-control">
+                <button class="quantity-button minus-btn" data-id="3">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <input type="number" class="quantity-input" value="1" min="1" max="99" id="quantity3">
+                <button class="quantity-button plus-btn" data-id="3">
+                  <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            </div>
+            <button class="add-to-cart-btn" data-id="3" data-name="Cadre pour photos" data-price="3000" data-image="salles/cadre1.png">
+              <i class="fas fa-shopping-cart"></i> Ajouter au panier
+            </button>
+          </div>
+        </div>
+
+        <!-- Decoration 4 -->
+        <div class="card">
+          <div class="card-image-container decoration-image-container">
+            <img src="salles/tapis1.png" alt="Tapis Rouge" class="card-image">
+            <div class="card-overlay">
+              <button data-decoration-id="4">Voir plus</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Tapis Rouge</h3>
+            <p class="decoration-price">10 000 DA</p>
+            <div class="quantity-controls">
+              <div class="quantity-control">
+                <button class="quantity-button minus-btn" data-id="4">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <input type="number" class="quantity-input" value="1" min="1" max="99" id="quantity4">
+                <button class="quantity-button plus-btn" data-id="4">
+                  <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            </div>
+            <button class="add-to-cart-btn" data-id="4" data-name="Tapis Rouge" data-price="10000" data-image="salles/tapis1.png">
+              <i class="fas fa-shopping-cart"></i> Ajouter au panier
+            </button>
+          </div>
+        </div>
+
+        <!-- Decoration 5 -->
+        <div class="card">
+          <div class="card-image-container decoration-image-container">
+            <img src="salles/tapisb1.png" alt="Tapis Blanc" class="card-image">
+            <div class="card-overlay">
+              <button data-decoration-id="5">Voir plus</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Tapis Blanc</h3>
+            <p class="decoration-price">20 000 DA</p>
+            <div class="quantity-controls">
+              <div class="quantity-control">
+                <button class="quantity-button minus-btn" data-id="5">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <input type="number" class="quantity-input" value="1" min="1" max="99" id="quantity5">
+                <button class="quantity-button plus-btn" data-id="5">
+                  <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            </div>
+            <button class="add-to-cart-btn" data-id="5" data-name="Tapis Blanc" data-price="20000" data-image="salles/tapisb1.png">
+              <i class="fas fa-shopping-cart"></i> Ajouter au panier
+            </button>
+          </div>
+        </div>
+
+        <!-- Decoration 6 -->
+        <div class="card">
+          <div class="card-image-container decoration-image-container">
+            <img src="fleurs/beautiful flower arrangements.jpg" alt="Bouquet de fleurs" class="card-image">
+            <div class="card-overlay">
+              <button data-decoration-id="6">Voir plus</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Bouquet de fleurs</h3>
+            <p class="decoration-price">5 500 DA</p>
+            <div class="quantity-controls">
+              <div class="quantity-control">
+                <button class="quantity-button minus-btn" data-id="6">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <input type="number" class="quantity-input" value="1" min="1" max="99" id="quantity6">
+                <button class="quantity-button plus-btn" data-id="6">
+                  <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            </div>
+            <button class="add-to-cart-btn" data-id="6" data-name="Bouquet de fleurs" data-price="5500" data-image="fleurs/beautiful flower arrangements.jpg">
+              <i class="fas fa-shopping-cart"></i> Ajouter au panier
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="panier" class="cart section">
+    <div class="container">
+      <h2 class="section-title">VOTRE PANIER</h2>
+      <p class="cart-description">Consultez les articles que vous avez sélectionnés</p>
+
+      <div class="cart-container">
+        <div id="cart-items" class="cart-items">
+          <div class="cart-empty">
+            <p>Votre panier est vide</p>
+            <button id="discover-products" class="btn">Découvrir nos produits</button>
+          </div>
+        </div>
+
+        <div class="cart-summary">
+          <h3>Récapitulatif</h3>
+
+          <div class="summary-row">
+            <span class="summary-label">Sous-total</span>
+            <span id="subtotal">0 DA</span>
+          </div>
+
+          <div class="summary-row total">
+            <span>Total</span>
+            <span id="total">0 DA</span>
+          </div>
+
+          <button id="checkout" class="btn checkout-button" disabled>
+            <i class="fas fa-credit-card"></i>
+            Passer la commande
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>À propos</h3>
+          <p>Nous vous aidons à trouver les meilleures salles et décorations pour vos événements spéciaux. Chaque lieu est soigneusement sélectionné pour vous offrir une expérience inoubliable.</p>
+        </div>
+
+        <div>
+          <h3>Contact</h3>
+          <div class="footer-contact">
+            <p><i class="fas fa-phone"></i> 06 12 34 56 78</p>
+            <p><i class="fas fa-envelope"></i> contact@salleselegantes.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Avenue des Salles, Alger</p>
+          </div>
+        </div>
+
+        <div>
+          <h3>Liens utiles</h3>
+          <div class="footer-links">
+            <a href="#"><i class="fas fa-chevron-right"></i> Conditions générales</a>
+            <a href="#"><i class="fas fa-chevron-right"></i> Politique de confidentialité</a>
+            <a href="#"><i class="fas fa-chevron-right"></i> FAQ</a>
+            <a href="#"><i class="fas fa-chevron-right"></i> Nos partenaires</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-copyright">
+        <p>&copy; <span id="current-year"></span> Salles Élégantes. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="venue-modal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title"></h3>
+        <button id="modal-close" class="modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- Content will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Add this before the closing body tag -->
+  <div id="quote-modal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Demander un devis</h3>
+        <button id="quote-modal-close" class="modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="quote-modal-body">
+        <!-- Content will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Enhanced venue data with detailed information
+    const venuesData = [
+      {
+        id: 1,
+        title: "Palace Events",
+        location: "Bordj El Kiffan",
+        capacity: "150 personnes",
+        price: "40 millions DA",
+        description: "Couronné par le succès de l'organisation des séminaires et conférences auprès de PALACE-APPART HOTEL, élu meilleur hôtel sur la wilaya d'Alger en 2012 par la direction du tourisme. Dans un but d'extension et un souci de développement le PALACE EVENTS a été réalisé comme établissement dédié à l'organisation de vos événements professionnels et particuliers. Situé au sein du quartier Ali Sadek, entre Bordj El Kiffan et Rouiba, à 20 km du cœur de la capitale le Palace Events bénéficie de la proximité de l'aéroport (04 km), de l'Hôtel PALACE APPART et d'autre grands hôtels et des centres commerciaux, tout en vous proposant des espaces d'accueil attractants et pratiques.",
+        features: [
+          "Espace intérieur climatisé",
+          "Jardin pour cérémonies extérieures",
+          "Parking privé (100 places)",
+          "Cuisine équipée pour traiteurs",
+          "Système son et lumière intégré"
+        ],
+        prestations: [
+          { name: "Location (chapiteau) après-midi", price: 300000 },
+          { name: "Déjeuner / Dîner (courses à la charge du client)", price: 2200 },
+          { name: "Location soirée (avec prestation)", price: 500000 },
+          { name: "Déjeuner / Dîner (tout à la charge de la salle)", price: 3700 },
+          { name: "Location grande salle après-midi (250 convives)", price: 320000 }
+        ],
+        images: [
+          "salles/salle1.png",
+          "salles/salle1 (1).png",
+          "salles/salle1 (2).png",
+          "salles/salle1 (3).png"
+        ],
+        reviews: [
+          { name: "Lydia", text: "mashallah koulsh jaz bien" },
+          { name: "Hiba", text: "la gerante m9l9a chwiya mais sinon hayla" },
+          { name: "Racha", text: "parfait" }
+        ]
+      },
+      {
+        id: 2,
+        title: "Château d'Hardricourt",
+        location: "Bab Ezzaour",
+        capacity: "300 personnes",
+        price: "110 millions DA",
+        description: "Cette propriété prestigieuse vous reçoit et vous promet une célébration haut de gamme qui marquera vos convives pour toujours. Afin de recevoir vos proches, l'Orangerie sera le lieu idéal pour un banquet prestigieux. Le lieu vous offre également la possibilité de recevoir vos convives à l'extérieur le temps de votre vin d'honneur ou de votre cocktail dans ces jardins à la française pour un moment inédit. Le Château d'Hardricourt vous propose un tarif unique qui comprend la privatisation du domaine, la location de l'orangerie du château avec les équipements de sonorisation et d'éclairage, le personnel pour l'accueil et la sécurité de vos invités et le nettoyage.",
+        features: [
+          "Bâtiment historique classé",
+          "Parc de 5 hectares",
+          "Suite nuptiale incluse",
+          "Hébergement possible (15 chambres)",
+          "Équipe de coordination sur place"
+        ],
+        prestations: [
+          { name: "Location salle après-midi (300 personnes)", price: 850000 },
+          { name: "Location soirée complète", price: 1200000 },
+          { name: "Déjeuner/Dîner (courses à la charge du client)", price: 7500 },
+          { name: "Déjeuner/Dîner (tout inclus par la salle)", price: 9800 },
+          { name: "Forfait Mariage Royal (décoration, dîner, service VIP)", price: 5500000 }
+        ],
+        images: [
+          "salles/salle2.png",
+          "salles/salle2 (1).png",
+          "salles/salle2 (2).png",
+          "salles/salle2 (3).png"
+        ],
+        reviews: [
+          { name: "zaki", text: "yhbll" },
+          { name: "saliha", text: "experience inoubliable" },
+          { name: "abdou", text: "service au top" }
+        ]
+      },
+      {
+        id: 3,
+        title: "Moulin Vert",
+        location: "Hydra",
+        capacity: "300 personnes",
+        price: "Prix sur demande",
+        description: "Située dans un cadre idyllique en pleine nature, la salle Moulin Vert vous offre une expérience unique pour vos événements les plus prestigieux. Avec ses grandes baies vitrées laissant entrer la lumière naturelle et sa décoration élégante, elle est parfaite pour les mariages, réceptions et dîners de gala. 🌿 Ambiance : Luxueuse et romantique, entourée de verdure ✨ Capacité : Jusqu'à 300 convives 💰 Tarif de privatisation : 120 millions DA 📍 Localisation : Hydra, un quartier chic et paisible",
+        features: [
+          "Bâtiment historique rénové",
+          "Terrasse surplombant la rivière",
+          "Espace modulable",
+          "Éclairage d'ambiance personnalisable",
+          "Accès PMR"
+        ],
+        prestations: [
+          { name: "Location salle après-midi (300 personnes)", price: 1200000 },
+          { name: "Location soirée complète avec prestation", price: 1800000 },
+          { name: "Déjeuner/Dîner (courses à la charge du client)", price: 10000 },
+          { name: "Déjeuner/Dîner (tout inclus par la salle)", price: 15000 },
+          { name: "Forfait Mariage Prestige", price: 6500000 },
+          { name: "Forfait Corporate", price: 3200000 }
+        ],
+        images: [
+          "salles/salle3.png",
+          "salles/salle3 (1).png",
+          "salles/salle3 (2).png",
+          "salles/salle3 (3).png"
+        ],
+        reviews: [
+          { name: "massi", text: "jai adore" },
+          { name: "mohammed", text: "excellent" },
+          { name: "moha", text: "wooww" }
+        ]
+      },
+      {
+        id: 4,
+        title: "Hotel Lutetia",
+        location: "El Mouradia",
+        capacity: "100 personnes",
+        price: "Prix sur demande",
+        description: "Niché au cœur d'El Mouradia, l'Hôtel Lutetia est une adresse prestigieuse qui incarne l'élégance et le raffinement. Avec une capacité d'accueil de 100 personnes, cette salle somptueuse est idéale pour des événements exclusifs tels que des mariages intimistes, des dîners de gala, des réceptions d'entreprise ou encore des fiançailles somptueuses. Dès l'entrée, vous serez séduit par son ambiance chic et sophistiquée, avec un décor mêlant subtilement le classique et le moderne. De somptueux lustres en cristal illuminent la salle, mettant en valeur les tables élégamment dressées, agrémentées de compositions florales raffinées et de chandeliers dorés.",
+        features: [
+          "Salons privés élégants",
+          "Service 5 étoiles",
+          "Restauration gastronomique sur place",
+          "Chambres disponibles pour les invités",
+          "Voiturier et conciergerie"
+        ],
+        prestations: [
+          { name: "Location salle après-midi (300 personnes)", price: 650000 },
+          { name: "Location soirée complète", price: 850000 },
+          { name: "Déjeuner/Dîner (courses à la charge du client)", price: 9500 },
+          { name: "Déjeuner/Dîner (tout inclus par la salle)", price: 8800 },
+          { name: "Forfait Mariage Royal (décoration, dîner, service VIP)", price: 3500000 }
+        ],
+        images: [
+          "salles/salle4.png",
+          "salles/salle4 (1).png",
+          "salles/salle4 (2).png",
+          "salles/salle4 (3).png"
+        ],
+        reviews: []
+      },
+      {
+        id: 5,
+        title: "Château Poudenas",
+        location: "Cheraga",
+        capacity: "500 personnes",
+        price: "Prix sur demande",
+        description: "Le Château Poudenas, situé à Cheraga, est un joyau architectural offrant un cadre prestigieux et exclusif pour des événements d'exception. Son immense cour pavée, sublimée par des jeux de lumière élégants et une décoration raffinée, en fait le lieu idéal pour des mariages princiers, des galas somptueux et des réceptions grandioses. Avec une capacité de 500 personnes, ce domaine unique allie luxe et authenticité. Ses espaces extérieurs offrent une atmosphère féérique, tandis que ses salons historiques et ses chambres somptueuses garantissent une expérience inoubliable.",
+        features: [
+          "Domaine privatisé",
+          "Plusieurs espaces de réception",
+          "Possibilité de feu d'artifice",
+          "Héliport privé",
+          "Équipe événementielle dédiée"
+        ],
+        prestations: [
+          { name: "Location salle après-midi (300 personnes)", price: 1200000 },
+          { name: "Location soirée complète avec prestation", price: 1800000 },
+          { name: "Déjeuner/Dîner (courses à la charge du client)", price: 10000 },
+          { name: "Déjeuner/Dîner (tout inclus par la salle)", price: 15000 },
+          { name: "Forfait Mariage Prestige", price: 6500000 },
+          { name: "Forfait Corporate", price: 3200000 }
+        ],
+        images: [
+          "salles/salle5.png",
+          "salles/salle5 (1).png",
+          "salles/salle5 (2).png",
+          "salles/salle5 (3).png"
+        ],
+        reviews: [
+          { name: "massi", text: "jai adore" },
+          { name: "mohammed", text: "excellent" },
+          { name: "moha", text: "wooww" }
+        ]
+      },
+      {
+        id: 6,
+        title: "Colshaw Hall",
+        location: "Dely Brahim",
+        capacity: "350 personnes",
+        price: "Prix sur demande",
+        description: "Nichée au cœur de Dely Brahim, Colshaw Hall est une salle de réception somptueuse qui allie raffinement et modernité. Avec une capacité de 350 personnes, cet espace luxueux offre un cadre féérique pour célébrer vos événements les plus précieux : mariages, galas, réceptions privées et soirées d'entreprise. Les lustres majestueux, les jeux de lumière enchanteurs et la décoration florale exquise créent une atmosphère envoûtante, parfaite pour une célébration inoubliable. Grâce à ses baies vitrées offrant une vue imprenable sur un jardin magnifiquement aménagé, Colshaw Hall est l'endroit idéal pour conjuguer romantisme et prestige.",
+        features: [
+          "Architecture contemporaine",
+          "Grande verrière lumineuse",
+          "Jardins paysagers",
+          "Équipement audiovisuel dernier cri",
+          "Espace lounge extérieur"
+        ],
+        prestations: [
+          { name: "Location salle après-midi (300 personnes)", price: 1200000 },
+          { name: "Location soirée complète avec prestation", price: 1800000 },
+          { name: "Déjeuner/Dîner (courses à la charge du client)", price: 10000 },
+          { name: "Déjeuner/Dîner (tout inclus par la salle)", price: 15000 },
+          { name: "Forfait Mariage Prestige", price: 6500000 },
+          { name: "Forfait Corporate", price: 3200000 }
+        ],
+        images: [
+          "salles/salle7.png",
+          "salles/salle7 (1).png",
+          "salles/salle6.png",
+          "salles/salle6 (1).png"
+        ],
+        reviews: [
+          { name: "massi", text: "jai adore" },
+          { name: "mohammed", text: "excellent" },
+          { name: "moha", text: "wooww" }
+        ]
+      }
+    ];
+
+    // Decoration Data
+    const decorationsData = [
+      {
+        id: 1,
+        title: "Centre de table Vases",
+        price: 1800,
+        description: "Élégants vases en verre avec arrangements floraux, parfaits pour décorer vos tables de réception. Disponibles en plusieurs tailles et styles.",
+        images: [
+          "salles/vase1.png",
+          "salles/vase1.png",
+          "salles/vase1.png"
+        ]
+      },
+      {
+        id: 2,
+        title: "Tableau d'accueil",
+        price: 35000,
+        description: "Tableau d'accueil personnalisé avec le nom des mariés ou le thème de votre événement. Structure élégante avec support et décoration florale.",
+        images: [
+          "salles/centre1.png",
+          "salles/centre1.png",
+          "salles/centre1.png"
+        ]
+      },
+      {
+        id: 3,
+        title: "Cadre pour photos",
+        price: 3000,
+        description: "Cadre décoratif grand format pour photos souvenirs. Idéal pour créer un espace photo amusant pendant votre événement.",
+        images: [
+          "salles/cadre1.png",
+          "salles/cadre1.png",
+          "salles/cadre1.png"
+        ]
+      },
+      {
+        id: 4,
+        title: "Tapis Rouge",
+        price: 10000,
+        description: "Tapis rouge de qualité supérieure pour créer une entrée prestigieuse. Disponible en plusieurs longueurs pour s'adapter à votre lieu.",
+        images: [
+          "salles/tapis1.png",
+          "salles/tapis2.png",
+          "salles/tapis1.png"
+        ]
+      },
+      {
+        id: 5,
+        title: "Tapis Blanc",
+        price: 20000,
+        description: "Tapis blanc élégant, parfait pour les cérémonies de mariage. Traité anti-taches et disponible en plusieurs largeurs.",
+        images: [
+          "salles/tapisb1.png",
+          "salles/tapisb2.png",
+          "salles/tapisb1.png"
+        ]
+      },
+      {
+        id: 6,
+        title: "Bouquet de fleurs",
+        price: 5500,
+        description: "Compositions florales élégantes pour décorer votre événement. Fleurs fraîches et arrangements personnalisables selon vos couleurs.",
+        images: [
+          "fleurs/beautiful flower arrangements.jpg",
+          "fleurs/38+ White Wedding Bouquets That Exude Timeless Charm.jpg",
+          "fleurs/Elegant Ideas For Simple White Bridal Bouquet - Bride2Be_blog.jpg",
+          "fleurs/Detalhes do grande dia da Noiva @thamirescandido_s….jpg"
+        ]
+      }
+    ];
+
+    // State
+    let cart = [];
+    let currentVenue = null;
+    let currentDecoration = null;
+    let currentImageIndex = 0;
+    let isDarkMode = false;
+
+    // DOM Elements
+    const header = document.getElementById('header');
+    const collectionsDropdown = document.getElementById('collections-dropdown');
+    const dropdownContent = document.getElementById('dropdown-content');
+    const mobileCollectionsDropdown = document.getElementById('mobile-collections-dropdown');
+    const mobileDropdownContent = document.getElementById('mobile-dropdown-content');
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuIcon = document.getElementById('menu-icon');
+    const mobileNav = document.getElementById('mobile-nav');
+    const cartItems = document.getElementById('cart-items');
+    const subtotalElement = document.getElementById('subtotal');
+    const totalElement = document.getElementById('total');
+    const checkoutButton = document.getElementById('checkout');
+    const cartCountElement = document.getElementById('cart-count');
+    const venueModal = document.getElementById('venue-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalClose = document.getElementById('modal-close');
+    const modalBody = document.getElementById('modal-body');
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const currentYearElement = document.getElementById('current-year');
+    const toastContainer = document.getElementById('toast-container');
+
+    // Navigation
+    const navHome = document.getElementById('nav-home');
+    const navVenues = document.getElementById('nav-venues');
+    const navDecorations = document.getElementById('nav-decorations');
+    const mobileNavHome = document.getElementById('mobile-nav-home');
+    const mobileNavVenues = document.getElementById('mobile-nav-venues');
+    const mobileNavDecorations = document.getElementById('mobile-nav-decorations');
+    const viewVenues = document.getElementById('view-venues');
+    const scrollDown = document.getElementById('scroll-down');
+    const discoverProducts = document.getElementById('discover-products');
+    const cartButton = document.getElementById('cart-button');
+
+    // Initialize
+    function init() {
+      // Set current year
+      currentYearElement.textContent = new Date().getFullYear();
+
+      // Add event listeners
+      addEventListeners();
+
+      // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        toggleTheme();
+      }
+
+      // Add event listeners to venue cards
+      document.querySelectorAll('[data-venue-id]').forEach(element => {
+        element.addEventListener('click', (e) => {
+          e.preventDefault();
+          const venueId = parseInt(element.getAttribute('data-venue-id'));
+          openVenueModal(venueId);
+        });
+      });
+
+      // Add event listeners to decoration cards
+      document.querySelectorAll('[data-decoration-id]').forEach(element => {
+        element.addEventListener('click', (e) => {
+          e.preventDefault();
+          const decorationId = parseInt(element.getAttribute('data-decoration-id'));
+          openDecorationModal(decorationId);
+        });
+      });
+
+      // Add event listeners to quantity controls
+      document.querySelectorAll('.minus-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const id = this.getAttribute('data-id');
+          const input = document.getElementById(`quantity${id}`);
+          let value = parseInt(input.value);
+          if (value > 1) {
+            input.value = value - 1;
+          }
+        });
+      });
+
+      document.querySelectorAll('.plus-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const id = this.getAttribute('data-id');
+          const input = document.getElementById(`quantity${id}`);
+          let value = parseInt(input.value);
+          if (value < 99) {
+            input.value = value + 1;
+          }
+        });
+      });
+
+      // Add event listeners to add to cart buttons
+      document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const id = this.getAttribute('data-id');
+          const name = this.getAttribute('data-name');
+          const price = parseInt(this.getAttribute('data-price'));
+          const image = this.getAttribute('data-image');
+          const quantity = parseInt(document.getElementById(`quantity${id}`).value);
+          
+          addToCart({
+            id: id,
+            title: name,
+            price: price,
+            image: image,
+            quantity: quantity,
+            type: 'decoration'
+          });
+          
+          showToast('Produit ajouté', `${name} a été ajouté à votre panier.`);
+        });
+      });
+
+      // Load saved venues data
+      loadVenuesData();
+
+      // Add event listeners for review forms
+      document.addEventListener('submit', function(e) {
+        if (e.target && e.target.classList.contains('review-form')) {
+          e.preventDefault();
+          const venueId = parseInt(e.target.id.split('-')[2]);
+          const name = document.getElementById(`review-name-${venueId}`).value;
+          const text = document.getElementById(`review-text-${venueId}`).value;
+          
+          addReview(venueId, name, text);
+          
+          // Clear form
+          e.target.reset();
+        }
+      });
+
+      // Add event listener for Escape key to close quote modal
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          const quoteModal = document.getElementById('quote-modal');
+          if (quoteModal.classList.contains('open')) {
+            closeQuoteModal();
+          }
+        }
+      });
+    }
+
+    // Add event listeners
+    function addEventListeners() {
+      // Header scroll effect
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+          header.classList.add('scrolled');
+      } else {
+          header.classList.remove('scrolled');
+      }
+    });
+
+      // Dropdown toggle
+    collectionsDropdown.addEventListener('click', (e) => {
+      e.stopPropagation();
+      collectionsDropdown.classList.toggle('active');
+    });
+
+    // Mobile dropdown toggle
+    mobileCollectionsDropdown.addEventListener('click', () => {
+      mobileCollectionsDropdown.classList.toggle('active');
+      const icon = mobileCollectionsDropdown.querySelector('i');
+      if (mobileCollectionsDropdown.classList.contains('active')) {
+          icon.className = 'fas fa-chevron-up';
+      } else {
+          icon.className = 'fas fa-chevron-down';
+        }
+      });
+
+      // Mobile menu toggle
+      menuToggle.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+        if (mobileNav.classList.contains('active')) {
+          menuIcon.className = 'fas fa-times';
+        } else {
+          menuIcon.className = 'fas fa-bars';
+        }
+      });
+
+      // Navigation
+      navHome.addEventListener('click', () => scrollToSection('hero'));
+      navVenues.addEventListener('click', () => scrollToSection('venues'));
+      navDecorations.addEventListener('click', () => scrollToSection('decorations'));
+      mobileNavHome.addEventListener('click', () => scrollToSection('hero'));
+      mobileNavVenues.addEventListener('click', () => scrollToSection('venues'));
+      mobileNavDecorations.addEventListener('click', () => scrollToSection('decorations'));
+      viewVenues.addEventListener('click', () => scrollToSection('venues'));
+      scrollDown.addEventListener('click', () => scrollToSection('venues'));
+      discoverProducts.addEventListener('click', () => scrollToSection('venues'));
+
+      // Cart button
+      cartButton.addEventListener('click', () => {
+        if (cart.length > 0) {
+          scrollToSection('panier');
+        } else {
+          showToast('Panier vide', 'Votre panier est actuellement vide.');
+        }
+      });
+
+      // Modal close
+      modalClose.addEventListener('click', closeModal);
+
+      // Modal click outside to close
+      venueModal.addEventListener('click', (e) => {
+        if (e.target === venueModal) {
+          closeModal();
+        }
+      });
+
+      // Checkout
+      checkoutButton.addEventListener('click', checkout);
+
+      // Theme toggle
+      themeToggle.addEventListener('click', toggleTheme);
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', () => {
+      collectionsDropdown.classList.remove('active');
+      });
+
+      // Escape key to close modals
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && venueModal.classList.contains('open')) {
+          closeModal();
+        }
+      });
+    }
+
+    // Scroll to section
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const offsetTop = section.offsetTop - 80;
+          window.scrollTo({
+          top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+
+      // Close mobile menu if open
+      mobileNav.classList.remove('active');
+      menuIcon.className = 'fas fa-bars';
+
+      // Update active nav
+      updateActiveNav(sectionId);
+    }
+
+    // Update active nav
+    function updateActiveNav(sectionId) {
+      [navHome, navVenues, navDecorations].forEach(nav => nav.classList.remove('active'));
+      [mobileNavHome, mobileNavVenues, mobileNavDecorations].forEach(nav => nav.classList.remove('active'));
+
+      if (sectionId === 'hero') {
+        navHome.classList.add('active');
+        mobileNavHome.classList.add('active');
+      } else if (sectionId === 'venues') {
+        navVenues.classList.add('active');
+        mobileNavVenues.classList.add('active');
+      } else if (sectionId === 'decorations') {
+        navDecorations.classList.add('active');
+        mobileNavDecorations.classList.add('active');
+      }
+    }
+
+    // Open venue modal with enhanced details
+    function openVenueModal(venueId) {
+      const venue = venuesData.find(v => v.id === venueId);
+      if (!venue) return;
+
+      currentVenue = venue;
+      currentImageIndex = 0;
+
+      // Populate modal content
+      modalTitle.textContent = venue.title;
+      
+      let modalContent = `
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <!-- Enhanced image gallery -->
+          <div class="venue-gallery">
+            ${venue.images.map(img => `<img src="${img}" alt="${venue.title}">`).join('')}
+          </div>
+          
+          <div style="display: flex; flex-direction: column; gap: 15px; padding: 0 10px;">
+            <!-- Venue details -->
+            <div>
+              <h3 style="font-size: 24px; margin-bottom: 10px; color: #333;">${venue.title}</h3>
+              <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 15px;">
+                <span style="display: flex; align-items: center; gap: 5px;"><i class="fas fa-map-marker-alt" style="color: #c29a76;"></i> ${venue.location}</span>
+                <span style="display: flex; align-items: center; gap: 5px;"><i class="fas fa-users" style="color: #c29a76;"></i> ${venue.capacity}</span>
+                <span style="display: flex; align-items: center; gap: 5px;"><i class="fas fa-tag" style="color: #c29a76;"></i> ${venue.price}</span>
+              </div>
+              <p class="venue-description">${venue.description}</p>
+            </div>
+            
+            <!-- Venue features -->
+            <div class="venue-features">
+              <h4>Caractéristiques</h4>
+              <ul class="feature-list">
+                ${venue.features.map(feature => `
+                  <li><i class="fas fa-check"></i> ${feature}</li>
+                `).join('')}
+              </ul>
+            </div>
+            
+            <!-- Venue prestations -->
+            <div class="venue-prestations">
+              <h4>Nos Prestations</h4>
+              <ul class="prestation-list">
+                ${venue.prestations.map(prestation => `
+                  <li class="prestation-item">
+                    <span>${prestation.name}</span>
+                    <span class="prestation-price">${prestation.price.toLocaleString()} DA</span>
+                    <button class="prestation-button" onclick="addVenueServiceToCart('${prestation.name}', ${prestation.price}, '${venue.title}')">
+                      <i class="fas fa-shopping-cart"></i> Ajouter
+                    </button>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+            
+            <!-- Reviews section -->
+            ${venue.reviews.length > 0 ? `
+              <div style="margin-top: 30px;">
+                <h4 style="color: #c29a76; margin-bottom: 15px;">Avis clients</h4>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                  ${venue.reviews.map(review => `
+                    <div style="background-color: #f9f5f1; padding: 15px; border-radius: 8px; font-style: italic;">
+                      "${review.text}" - <strong>${review.name}</strong>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+            
+            <!-- Add Review Form -->
+            <div style="margin-top: 20px; background-color: #f9f5f1; padding: 20px; border-radius: 8px;">
+              <h4 style="color: #c29a76; margin-bottom: 15px;">Ajouter votre avis</h4>
+              <form id="review-form-${venue.id}" class="review-form">
+                <div style="margin-bottom: 15px;">
+                  <label for="review-name-${venue.id}" style="display: block; margin-bottom: 5px; color: #666;">Votre nom</label>
+                  <input type="text" id="review-name-${venue.id}" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                  <label for="review-text-${venue.id}" style="display: block; margin-bottom: 5px; color: #666;">Votre avis</label>
+                  <textarea id="review-text-${venue.id}" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-height: 100px;"></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Publier votre avis</button>
+              </form>
+            </div>
+            
+            <!-- Availability calendar -->
+            <div class="venue-calendar">
+              <h4 style="color: #c29a76; margin-bottom: 15px; text-align: center;">Vérifiez les disponibilités</h4>
+              <div class="calendar-controls">
+                <select id="calendar-month">
+                  <option value="0">Janvier</option>
+                  <option value="1">Février</option>
+                  <option value="2">Mars</option>
+                  <option value="3">Avril</option>
+                  <option value="4">Mai</option>
+                  <option value="5">Juin</option>
+                  <option value="6">Juillet</option>
+                  <option value="7">Août</option>
+                  <option value="8">Septembre</option>
+                  <option value="9">Octobre</option>
+                  <option value="10">Novembre</option>
+                  <option value="11">Décembre</option>
+                </select>
+                <select id="calendar-year">
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                  <option value="2027">2027</option>
+                </select>
+              </div>
+              <div id="venue-calendar-container"></div>
+            </div>
+            
+            <!-- Contact button -->
+            <div style="margin-top: 20px; text-align: center;">
+              <button class="btn" style="width: 100%;" onclick="openQuoteModal(${venue.id})">Demander un devis</button>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      modalBody.innerHTML = modalContent;
+
+      // Initialize calendar
+      initializeCalendar();
+
+      // Apply dark mode styles if needed
+      if (isDarkMode) {
+        modalBody.querySelectorAll('h3, h4').forEach(el => {
+          el.style.color = '#fff';
+        });
+      }
+
+      // Show modal
+      venueModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Initialize calendar in venue modal
+    function initializeCalendar() {
+      const calendarContainer = document.getElementById('venue-calendar-container');
+      const monthSelect = document.getElementById('calendar-month');
+      const yearSelect = document.getElementById('calendar-year');
+      
+      // Set current month and year
+      const currentDate = new Date();
+      monthSelect.value = currentDate.getMonth();
+      yearSelect.value = "2025"; // Default to 2025 as per the data
+      
+      // Generate calendar
+      generateCalendar();
+      
+      // Add event listeners
+      monthSelect.addEventListener('change', generateCalendar);
+      yearSelect.addEventListener('change', generateCalendar);
+      
+      function generateCalendar() {
+        const month = parseInt(monthSelect.value);
+        const year = parseInt(yearSelect.value);
+        
+        // Sample reserved dates (could be fetched from server)
+        const reservedDates = ["2025-04-10", "2025-04-15", "2025-05-01", "2026-06-18", "2027-12-25"];
+        
+        // Get first day of month and number of days
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        
+        // Create calendar HTML
+        let calendarHTML = `
+          <table class="calendar-table">
+            <thead>
+              <tr>
+                <th>Lun</th>
+                <th>Mar</th>
+                <th>Mer</th>
+                <th>Jeu</th>
+                <th>Ven</th>
+                <th>Sam</th>
+                <th>Dim</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+        `;
+        
+        // Adjust for Monday as first day of week
+        const adjustedFirstDay = firstDay === 0 ? 6 : firstDay - 1;
+        
+        // Add empty cells for days before first day of month
+        for (let i = 0; i < adjustedFirstDay; i++) {
+          calendarHTML += `<td></td>`;
+        }
+        
+        // Add days of month
+        for (let day = 1; day <= daysInMonth; day++) {
+          // Format date as YYYY-MM-DD
+          const date = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+          
+          // Check if date is reserved
+          const isReserved = reservedDates.includes(date);
+          const cellClass = isReserved ? 'reserved' : 'available';
+          
+          calendarHTML += `
+            <td class="${cellClass}" data-date="${date}" onclick="selectDate('${date}', ${isReserved})">
+              ${day}
+            </td>
+          `;
+          
+          // Start new row after Saturday
+          if ((day + adjustedFirstDay) % 7 === 0) {
+            calendarHTML += `</tr><tr>`;
+          }
+        }
+        
+        // Close last row and table
+        calendarHTML += `
+              </tr>
+            </tbody>
+          </table>
+        `;
+        
+        calendarContainer.innerHTML = calendarHTML;
+      }
+    }
+
+    // Select date function for calendar
+    window.selectDate = function(date, isReserved) {
+      if (isReserved) {
+        showToast('Date non disponible', 'Cette date est déjà réservée.');
+      } else {
+        showToast('Date disponible', 'Cette date est disponible pour réservation!');
+      }
+    };
+
+    // Add venue service to cart
+    window.addVenueServiceToCart = function(name, price, venueName) {
+      addToCart({
+        id: Date.now(), // Use timestamp as unique ID
+        title: `${name} - ${venueName}`,
+        price: price,
+        image: currentVenue.images[0],
+        quantity: 1,
+        type: 'service'
+      });
+      
+      showToast('Service ajouté', `${name} pour ${venueName} a été ajouté à votre panier.`);
+    };
+
+    // Open decoration modal
+    function openDecorationModal(decorationId) {
+      const decoration = decorationsData.find(d => d.id === decorationId);
+      if (!decoration) return;
+
+      currentDecoration = decoration;
+      currentImageIndex = 0;
+
+      // Populate modal content
+      modalTitle.textContent = decoration.title;
+      
+      let modalContent = `
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 1/1;">
+            <img src="${decoration.images[0]}" alt="${decoration.title}" style="width: 100%; height: 100%; object-fit: cover;">
+            
+            <div style="position: absolute; bottom: 20px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px;">
+              ${decoration.images.map((img, index) => `
+                <button class="image-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></button>
+              `).join('')}
+            </div>
+            
+            <button class="image-nav prev">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <button class="image-nav next">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          
+          <div style="display: flex; flex-direction: column; gap: 15px; padding: 0 10px;">
+            <div>
+              <h3 style="font-size: 24px; margin-bottom: 10px; color: #333;">${decoration.title}</h3>
+              <div style="font-size: 20px; font-weight: bold; color: #c29a76; margin-bottom: 15px;">${decoration.price} DA</div>
+              <p style="line-height: 1.6; color: #666; margin-bottom: 20px;">${decoration.description}</p>
+            </div>
+            
+            <div style="display: flex; gap: 15px; align-items: center; margin-top: 10px;">
+              <div class="quantity-control">
+                <button class="quantity-button modal-minus-btn">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <input type="number" class="quantity-input" id="modal-quantity" value="1" min="1" max="99">
+                <button class="quantity-button modal-plus-btn">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+              
+              <button id="modal-add-to-cart" class="btn" style="flex-grow: 1;">
+                <i class="fas fa-shopping-cart"></i> Ajouter au panier
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      modalBody.innerHTML = modalContent;
+
+      // Add event listeners to image navigation
+      modalBody.querySelector('.image-nav.prev').addEventListener('click', () => {
+        navigateDecorationImage(-1);
+      });
+      
+      modalBody.querySelector('.image-nav.next').addEventListener('click', () => {
+        navigateDecorationImage(1);
+      });
+      
+      modalBody.querySelectorAll('.image-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+          const index = parseInt(dot.dataset.index);
+          updateDecorationImage(index);
+        });
+      });
+
+      // Add event listeners to quantity controls
+      const quantityInput = modalBody.querySelector('#modal-quantity');
+      
+      modalBody.querySelector('.modal-minus-btn').addEventListener('click', () => {
+        let value = parseInt(quantityInput.value);
+        if (value > 1) {
+          quantityInput.value = value - 1;
+        }
+      });
+      
+      modalBody.querySelector('.modal-plus-btn').addEventListener('click', () => {
+        let value = parseInt(quantityInput.value);
+        if (value < 99) {
+          quantityInput.value = value + 1;
+        }
+      });
+      
+      // Add to cart
+      modalBody.querySelector('#modal-add-to-cart').addEventListener('click', () => {
+        const quantity = parseInt(quantityInput.value);
+        
+        addToCart({
+          id: decoration.id,
+          title: decoration.title,
+          price: decoration.price,
+          image: decoration.images[0],
+          quantity: quantity,
+          type: 'decoration'
+        });
+        
+        showToast('Produit ajouté', `${decoration.title} a été ajouté à votre panier.`);
+        closeModal();
+      });
+
+      // Apply dark mode styles if needed
+      if (isDarkMode) {
+        modalBody.querySelectorAll('h3, h4').forEach(el => {
+          el.style.color = '#fff';
+        });
+        modalBody.querySelectorAll('p').forEach(el => {
+          el.style.color = '#ccc';
+        });
+      }
+
+      // Show modal
+      venueModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close modal
+    function closeModal() {
+      venueModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Navigate decoration image
+    function navigateDecorationImage(direction) {
+      if (!currentDecoration) return;
+      
+      const imagesCount = currentDecoration.images.length;
+      currentImageIndex = (currentImageIndex + direction + imagesCount) % imagesCount;
+      
+      updateDecorationImage(currentImageIndex);
+    }
+
+    // Update decoration image
+    function updateDecorationImage(index) {
+      if (!currentDecoration) return;
+      
+      currentImageIndex = index;
+      
+      // Update main image
+      const imageElement = modalBody.querySelector('img');
+      imageElement.src = currentDecoration.images[currentImageIndex];
+      
+      // Update dots
+      modalBody.querySelectorAll('.image-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentImageIndex);
+      });
+    }
+
+    // Add to cart - FIXED VERSION
+    function addToCart(item) {
+      const existingItemIndex = cart.findIndex(cartItem => 
+        cartItem.id === item.id && cartItem.type === item.type
+      );
+
+      if (existingItemIndex !== -1) {
+        cart[existingItemIndex].quantity += item.quantity;
+      } else {
+        // Fix for image paths
+        // Check if the image path is a full URL or already has the correct path
+        if (!item.image.startsWith('http') && !item.image.startsWith('/') && !item.image.startsWith('salles/') && !item.image.startsWith('fleurs/')) {
+          // Add the appropriate prefix based on the item type or image content
+          if (item.image.includes('flower') || item.image.includes('fleur')) {
+            item.image = `fleurs/${item.image}`;
+          } else {
+            item.image = `salles/${item.image}`;
+          }
+        }
+        cart.push(item);
+      }
+
+      updateCartUI();
+      
+      // Add pulse animation to cart count
+      cartCountElement.classList.add('pulse');
+      setTimeout(() => {
+        cartCountElement.classList.remove('pulse');
+      }, 500);
+    }
+
+    // Remove from cart
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    // Update cart quantity
+    function updateCartQuantity(index, newQuantity) {
+      if (newQuantity < 1 || newQuantity > 99) return;
+      
+      cart[index].quantity = newQuantity;
+      updateCartUI();
+    }
+
+    // Calculate total
+    function calculateTotal() {
+      return cart.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
+    }
+
+    // Update cart UI - FIXED VERSION
+    function updateCartUI() {
+      // Update cart count
+      const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+      cartCountElement.textContent = totalItems;
+      cartCountElement.style.display = totalItems > 0 ? 'flex' : 'none';
+
+      // Update cart items
+      if (cart.length === 0) {
+        cartItems.innerHTML = `
+          <div class="cart-empty">
+            <p>Votre panier est vide</p>
+            <button id="discover-products" class="btn">Découvrir nos produits</button>
+          </div>
+        `;
+        
+        // Re-add event listener
+        document.getElementById('discover-products').addEventListener('click', () => scrollToSection('venues'));
+      } else {
+        let cartHTML = '';
+        
+        cart.forEach((item, index) => {
+          // Ensure image path is valid
+          const imageSrc = item.image || 'salles/placeholder.png';
+          
+          cartHTML += `
+            <div class="cart-item">
+              <div class="cart-item-image">
+                <img src="${imageSrc}" alt="${item.title}" onerror="this.src='salles/placeholder.png'">
+              </div>
+              
+          <div class="cart-item-details">
+                <h3 class="cart-item-title">${item.title}</h3>
+                <div class="cart-item-price">${item.price} DA</div>
+          </div>
+              
+              <div class="cart-item-actions">
+                <div class="quantity-control">
+                  <button class="quantity-button" onclick="updateCartQuantity(${index}, ${item.quantity - 1})" ${item.quantity <= 1 ? 'disabled' : ''}>
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <input type="number" class="quantity-input" value="${item.quantity}" min="1" max="99" onchange="updateCartQuantityFromInput(${index}, this.value)">
+                  <button class="quantity-button" onclick="updateCartQuantity(${index}, ${item.quantity + 1})" ${item.quantity >= 99 ? 'disabled' : ''}>
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+                
+                <button class="remove-button" onclick="removeFromCart(${index})">
+            <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+          </div>
+        `;
+        });
+        
+        cartItems.innerHTML = cartHTML;
+      }
+
+      // Update totals
+      const total = calculateTotal();
+      subtotalElement.textContent = `${total.toLocaleString()} DA`;
+      totalElement.textContent = `${total.toLocaleString()} DA`;
+
+      // Update checkout button
+      checkoutButton.disabled = cart.length === 0;
+    }
+
+    // Update cart quantity from input
+    function updateCartQuantityFromInput(index, value) {
+      const newQuantity = parseInt(value);
+      if (!isNaN(newQuantity) && newQuantity >= 1 && newQuantity <= 99) {
+        updateCartQuantity(index, newQuantity);
+      }
+    }
+
+    // Checkout
+    function checkout() {
+      if (cart.length === 0) {
+        showToast('Panier vide', 'Votre panier est actuellement vide.');
+        return;
+      }
+
+      showToast('Commande passée', 'Votre commande a été traitée avec succès!');
+      cart = [];
+      updateCartUI();
+    }
+
+    // Show toast
+    function showToast(title, description) {
+      const toastId = 'toast-' + Date.now();
+      const toast = document.createElement('div');
+      toast.id = toastId;
+      toast.className = 'toast';
+      toast.innerHTML = `
+        <div class="toast-title">${title}</div>
+        <div class="toast-description">${description}</div>
+      `;
+      
+      toastContainer.appendChild(toast);
+      
+      // Auto remove after 3 seconds
+      setTimeout(() => {
+        const toastElement = document.getElementById(toastId);
+        if (toastElement) {
+          toastElement.classList.add('removing');
+          setTimeout(() => {
+            if (toastElement.parentNode) {
+              toastElement.parentNode.removeChild(toastElement);
+            }
+          }, 300);
+        }
+      }, 3000);
+    }
+
+    // Toggle theme
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      document.body.classList.toggle('dark-mode', isDarkMode);
+      
+      themeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+      
+      // Save theme preference
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    }
+
+    // Make functions available globally
+    window.removeFromCart = removeFromCart;
+    window.updateCartQuantity = updateCartQuantity;
+    window.updateCartQuantityFromInput = updateCartQuantityFromInput;
+
+    // Reviews functionality
+    function addReview(venueId, name, text) {
+      const venue = venuesData.find(v => v.id === venueId);
+      if (!venue) return;
+
+      // Add new review
+      venue.reviews.push({ name, text });
+
+      // Save to localStorage
+      saveVenuesData();
+
+      // Update the modal content
+      openVenueModal(venueId);
+
+      // Show success message
+      showToast('Avis publié', 'Votre avis a été publié avec succès!');
+    }
+
+    // Save venues data to localStorage
+    function saveVenuesData() {
+      localStorage.setItem('venuesData', JSON.stringify(venuesData));
+    }
+
+    // Load venues data from localStorage
+    function loadVenuesData() {
+      const savedData = localStorage.getItem('venuesData');
+      if (savedData) {
+        const parsedData = JSON.parse(savedData);
+        venuesData.forEach((venue, index) => {
+          if (parsedData[index]) {
+            venue.reviews = parsedData[index].reviews;
+          }
+        });
+      }
+    }
+
+    // Quote Modal functionality
+    function openQuoteModal(venueId) {
+      const venue = venuesData.find(v => v.id === venueId);
+      if (!venue) return;
+
+      const quoteModal = document.getElementById('quote-modal');
+      const quoteModalBody = document.getElementById('quote-modal-body');
+
+      quoteModalBody.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="background-color: #f9f5f1; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <h4 style="color: #c29a76; margin-bottom: 10px;">${venue.title}</h4>
+            <p style="color: #666; margin-bottom: 5px;"><i class="fas fa-map-marker-alt"></i> ${venue.location}</p>
+            <p style="color: #666; margin-bottom: 5px;"><i class="fas fa-users"></i> ${venue.capacity}</p>
+            <p style="color: #666;"><i class="fas fa-tag"></i> ${venue.price}</p>
+          </div>
+
+          <form id="quote-form" class="quote-form">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+              <div>
+                <label for="quote-name" style="display: block; margin-bottom: 5px; color: #666;">Nom complet</label>
+                <input type="text" id="quote-name" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+              </div>
+              <div>
+                <label for="quote-email" style="display: block; margin-bottom: 5px; color: #666;">Email</label>
+                <input type="email" id="quote-email" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+              <div>
+                <label for="quote-phone" style="display: block; margin-bottom: 5px; color: #666;">Téléphone</label>
+                <input type="tel" id="quote-phone" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+              </div>
+              <div>
+                <label for="quote-date" style="display: block; margin-bottom: 5px; color: #666;">Date de l'événement</label>
+                <input type="date" id="quote-date" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+              </div>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+              <label for="quote-guests" style="display: block; margin-bottom: 5px; color: #666;">Nombre d'invités</label>
+              <input type="number" id="quote-guests" required min="1" max="${parseInt(venue.capacity)}" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+              <label for="quote-message" style="display: block; margin-bottom: 5px; color: #666;">Message (optionnel)</label>
+              <textarea id="quote-message" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-height: 100px;"></textarea>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%;">Envoyer la demande</button>
+          </form>
+        </div>
+      `;
+
+      // Add event listener for form submission
+      document.getElementById('quote-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const quoteData = {
+          venueId: venueId,
+          venueName: venue.title,
+          name: document.getElementById('quote-name').value,
+          email: document.getElementById('quote-email').value,
+          phone: document.getElementById('quote-phone').value,
+          date: document.getElementById('quote-date').value,
+          guests: document.getElementById('quote-guests').value,
+          message: document.getElementById('quote-message').value,
+          timestamp: new Date().toISOString()
+        };
+
+        // Save quote request to localStorage
+        saveQuoteRequest(quoteData);
+
+        // Show success message
+        showToast('Demande envoyée', 'Votre demande de devis a été envoyée avec succès!');
+
+        // Close modal
+        closeQuoteModal();
+
+        // Reset form
+        this.reset();
+      });
+
+      // Show modal
+      quoteModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeQuoteModal() {
+      const quoteModal = document.getElementById('quote-modal');
+      quoteModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function saveQuoteRequest(quoteData) {
+      let quotes = JSON.parse(localStorage.getItem('quoteRequests') || '[]');
+      quotes.push(quoteData);
+      localStorage.setItem('quoteRequests', JSON.stringify(quotes));
+    }
+
+    // Add event listener for quote modal close button
+    document.getElementById('quote-modal-close').addEventListener('click', closeQuoteModal);
+
+    // Add event listener for clicking outside quote modal
+    document.getElementById('quote-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeQuoteModal();
+      }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+  <script src="theme-toggle.js"></script>
+</body>
+</html>
+

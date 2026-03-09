@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Arrivée des Mariés - Moments Magiques</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+            .header-logo {
+  /* shrink it just slightly */
+  width: 130px;      /* or whatever feels right */
+  height: auto;
+
+  /* keep your border if you like */
+  /* border-radius: 50%;
+  border: 2px solid #c29a76; */
+  padding: 2px;
+
+  /* ensure drop-shadow hugs the opaque parts */
+  display: inline-block;
+
+  /* layer a small, subtle neon glow */
+  /* filter:
+    drop-shadow(0 0 1px #c29a76)
+    drop-shadow(0 0 2px #c29a76)
+    drop-shadow(0 0 4px rgba(194,154,118,0.8))
+    drop-shadow(0 0 6px rgba(194,154,118,0.6)); */
+}
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f5f2;
+            color: #333;
+            line-height: 1.6;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        body.dark-mode {
+            background-color: #2c2c2c;
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 15px 0;
+        }
+
+        header.scrolled {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+
+        body.dark-mode header.scrolled {
+            background-color: #333;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #c29a76;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 130px;
+            margin-right: 10px;
+        }
+
+        .nav-desktop {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-desktop a, .dropdown-toggle {
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        body.dark-mode .nav-desktop a, 
+        body.dark-mode .dropdown-toggle {
+            color: #fff;
+        }
+
+        .nav-desktop a:hover, .dropdown-toggle:hover {
+            color: #c29a76;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 180px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 8px 0;
+            z-index: 1;
+            margin-top: 10px;
+        }
+
+        body.dark-mode .dropdown-content {
+            background-color: #333;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 8px 16px;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f5f5f5;
+            color: #c29a76;
+        }
+
+        body.dark-mode .dropdown-content a:hover {
+            background-color: #444;
+        }
+
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+
+        .cart-icon, .menu-toggle, .theme-toggle {
+            font-size: 20px;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.3s;
+            margin-left: 15px;
+        }
+
+        body.dark-mode .cart-icon, 
+        body.dark-mode .menu-toggle,
+        body.dark-mode .theme-toggle {
+            color: #fff;
+        }
+
+        .cart-icon:hover, .menu-toggle:hover, .theme-toggle:hover {
+            color: #c29a76;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        .mobile-nav {
+            display: none;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            margin-top: 15px;
+        }
+
+        body.dark-mode .mobile-nav {
+            border-top: 1px solid #444;
+        }
+
+        .mobile-nav a, .mobile-dropdown-toggle {
+            display: block;
+            padding: 10px 0;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        body.dark-mode .mobile-nav a, 
+        body.dark-mode .mobile-dropdown-toggle {
+            color: #fff;
+        }
+
+        .mobile-nav a:hover, .mobile-dropdown-toggle:hover {
+            color: #c29a76;
+        }
+
+        .mobile-dropdown-content {
+            display: none;
+            padding-left: 20px;
+        }
+
+        .mobile-dropdown-content a {
+            padding: 8px 0;
+        }
+
+        .mobile-dropdown.active .mobile-dropdown-content {
+            display: block;
+        }
+
+        /* Hero Banner Styles */
+        .hero-banner {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to right, #f8f5f2, #f0e9e4);
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        body.dark-mode .hero-banner {
+            background: linear-gradient(to right, #2c2c2c, #222);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode .hero-title {
+            color: #fff;
+        }
+
+        .hero-title span {
+            color: #c29a76;
+        }
+
+        .hero-description {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        body.dark-mode .hero-description {
+            color: #ccc;
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #c29a76;
+            color: white;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .hero-button:hover {
+            background-color: #a87f5e;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #c29a76;
+            font-size: 30px;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* Gallery Grid Styles */
+        .gallery-grid {
+            padding: 80px 0;
+            scroll-margin-top: 80px;
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        body.dark-mode .gallery-title {
+            color: #fff;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .grid-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        body.dark-mode .grid-item {
+            background-color: #333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .grid-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .grid-image-container {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+        }
+
+        .grid-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .grid-item:hover .grid-image {
+            transform: scale(1.1);
+        }
+
+        .grid-content {
+            padding: 20px;
+        }
+
+        .grid-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        body.dark-mode .grid-title {
+            color: #fff;
+        }
+
+        .grid-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        body.dark-mode .grid-description {
+            color: #ccc;
+        }
+
+        .grid-link {
+            display: inline-block;
+            color: #c29a76;
+            font-weight: 500;
+            transition: color 0.3s;
+            border-bottom: 2px solid #c29a76;
+            padding-bottom: 2px;
+        }
+
+        .grid-link:hover {
+            color: #a87f5e;
+            border-color: #a87f5e;
+        }
+
+        /* Product Section Styles */
+        .product-section {
+            padding: 80px 0;
+            scroll-margin-top: 80px;
+        }
+
+        .product-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            .product-container {
+                flex-direction: row;
+            }
+        }
+
+        .gallery-section {
+            flex: 3;
+        }
+
+        .form-section {
+            flex: 2;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        body.dark-mode .form-section {
+            background-color: #333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Carousel Styles */
+        .carousel {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: white;
+            aspect-ratio: 4/5;
+        }
+
+        body.dark-mode .carousel {
+            background-color: #333;
+        }
+
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+        }
+
+        .carousel-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .carousel-control {
+            background-color: rgba(51, 51, 51, 0.8);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-control:hover {
+            background-color: white;
+        }
+
+        body.dark-mode .carousel-control:hover {
+            background-color: #444;
+        }
+
+        .carousel-control.prev {
+            left: 10px;
+        }
+
+        .carousel-control.next {
+            right: 10px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .carousel-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .carousel-indicator {
+            background-color: #555;
+        }
+
+        .carousel-indicator.active {
+            background-color: #c29a76;
+        }
+
+        /* Form Styles */
+        .form-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #c29a76;
+            margin-bottom: 10px;
+        }
+
+        .form-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode .form-description {
+            color: #ccc;
+        }
+
+        .custom-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        body.dark-mode .form-label {
+            color: #ccc;
+        }
+
+        .form-input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: white;
+            color: #333;
+        }
+
+        body.dark-mode .form-input {
+            background-color: #444;
+            border-color: #555;
+            color: #fff;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #c29a76;
+            box-shadow: 0 0 0 2px rgba(194, 154, 118, 0.2);
+        }
+
+        .submit-button {
+            padding: 12px;
+            background-color: #c29a76;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            background-color: #a87f5e;
+        }
+
+        /* Features Styles */
+        .features-section {
+            margin-top: 30px;
+        }
+
+        .features-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #c29a76;
+            margin-bottom: 15px;
+        }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .feature-item {
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+
+        body.dark-mode .feature-item {
+            border-bottom: 1px solid #444;
+            color: #ccc;
+        }
+
+        .feature-item strong {
+            color: #333;
+        }
+
+        body.dark-mode .feature-item strong {
+            color: #fff;
+        }
+
+        .price {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        body.dark-mode .price {
+            color: #ccc;
+        }
+
+        .price strong {
+            color: #c29a76;
+            font-size: 18px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        body.dark-mode .about-section {
+            background-color: #333;
+        }
+
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        @media (min-width: 992px) {
+            .about-container {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .about-image {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode .about-title {
+            color: #fff;
+        }
+
+        .about-text {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        body.dark-mode .about-text {
+            color: #ccc;
+        }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .about-feature-icon {
+            color: #c29a76;
+            font-size: 20px;
+            margin-top: 3px;
+        }
+
+        .about-feature-text {
+            flex: 1;
+        }
+
+        .about-feature-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        body.dark-mode .about-feature-title {
+            color: #fff;
+        }
+
+        .about-feature-description {
+            color: #666;
+            font-size: 14px;
+        }
+
+        body.dark-mode .about-feature-description {
+            color: #ccc;
+        }
+
+        /* Gallery Showcase */
+        .gallery-showcase {
+            padding: 80px 0;
+            background-color: #f8f5f2;
+        }
+
+        body.dark-mode .gallery-showcase {
+            background-color: #2c2c2c;
+        }
+
+        .showcase-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode .showcase-title {
+            color: #fff;
+        }
+
+        .showcase-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #666;
+        }
+
+        body.dark-mode .showcase-description {
+            color: #ccc;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .showcase-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .showcase-item {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .showcase-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .showcase-item:hover .showcase-image {
+            transform: scale(1.1);
+        }
+
+        .showcase-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .showcase-item:hover .showcase-overlay {
+            opacity: 1;
+        }
+
+        .showcase-icon {
+            color: white;
+            font-size: 24px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: white;
+            border-top: 1px solid #eee;
+            padding: 60px 0 30px;
+        }
+
+        body.dark-mode .footer {
+            background-color: #333;
+            border-top: 1px solid #444;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #c29a76;
+            margin-bottom: 20px;
+        }
+
+        .footer-column p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        body.dark-mode .footer-column p {
+            color: #ccc;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: #666;
+        }
+
+        body.dark-mode .footer-contact {
+            color: #ccc;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode .footer-links a {
+            color: #ccc;
+        }
+
+        .footer-links a:hover {
+            color: #c29a76;
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+        }
+
+        body.dark-mode .footer-bottom {
+            border-top: 1px solid #444;
+            color: #888;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 991px) {
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-description {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .nav-desktop {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .mobile-nav.active {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .product-section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            
+                <a href="index.html" class="logo">
+                  <img src="logo.png" alt="Planification de Mariage" class="header-logo">
+                </a>
+            
+            <nav class="nav-desktop">
+                <a href="#hero">Accueil</a>
+                <a href="#gallery">Idées</a>
+                <div class="dropdown" id="collections-dropdown">
+                    <span class="dropdown-toggle">Options <i class="fas fa-chevron-down"></i></span>
+                    <div class="dropdown-content" id="dropdown-content">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+                <a href="#about">À propos</a>
+                <a href="#showcase">Inspiration</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            
+            <div class="header-actions">
+                <span class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></span>
+                <span class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></span>
+            </div>
+        </div>
+        
+        <div class="container mobile-nav" id="mobile-nav">
+            <a href="dashboard.php">Accueil</a>
+            <a href="#gallery">Idées</a>
+            <div class="mobile-dropdown" id="mobile-collections-dropdown">
+                <span class="mobile-dropdown-toggle">Options <i class="fas fa-chevron-down"></i></span>
+                <div class="mobile-dropdown-content" id="mobile-dropdown-content">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+            <a href="#about">À propos</a>
+            <a href="#showcase">Inspiration</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">L'Arrivée des <span>Mariés</span></h1>
+            <p class="hero-description">Créez un moment magique et mémorable pour votre entrée en tant que couple nouvellement marié</p>
+            <a href="#gallery" class="hero-button">Découvrir nos idées</a>
+        </div>
+        <a href="#gallery" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-grid" id="gallery">
+        <div class="container">
+            <h2 class="gallery-title">NOS IDÉES D'ARRIVÉE</h2>
+            <div class="grid-container" id="gallery-grid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="logo website.png"  alt="L'arrivée des mariés">
+                </div>
+                <div class="about-content">
+                    <h2 class="about-title">Pourquoi l'arrivée des mariés est-elle si importante ?</h2>
+                    <p class="about-text">L'arrivée des mariés est l'un des moments les plus attendus et les plus photographiés de toute la journée de mariage. C'est l'instant où vous faites votre première apparition en tant que couple marié devant tous vos invités.</p>
+                    <p class="about-text">Ce moment symbolique marque le début officiel de votre célébration et donne le ton pour le reste de la soirée. Une entrée bien planifiée peut créer une atmosphère d'excitation et d'émotion qui restera gravée dans la mémoire de tous.</p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <div class="about-feature-text">
+                                <h3 class="about-feature-title">Un moment photographique</h3>
+                                <p class="about-feature-description">L'arrivée des mariés est l'un des moments les plus photographiés de la journée. Assurez-vous que votre photographe est prêt à capturer cet instant magique.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <div class="about-feature-text">
+                                <h3 class="about-feature-title">L'importance de la musique</h3>
+                                <p class="about-feature-description">Choisissez une chanson qui vous représente en tant que couple pour accompagner vo
+                                tre entrée et créer l'ambiance parfaite.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="about-feature-text">
+                                <h3 class="about-feature-title">Reflet de votre personnalité</h3>
+                                <p class="about-feature-description">Votre entrée doit refléter votre personnalité en tant que couple. Qu'elle soit élégante, festive ou originale, elle doit vous ressembler.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Showcase -->
+    <section class="gallery-showcase" id="showcase">
+        <div class="container">
+            <h2 class="showcase-title">Inspiration</h2>
+            <p class="showcase-description">Découvrez ces moments magiques d'arrivée de couples qui pourront vous inspirer pour votre propre entrée</p>
+            
+            <div class="showcase-grid" id="showcase-grid">
+                <div class="showcase-item">
+                  <img src="arrive/Fanfare Musicale1.jpg" alt="">
+                    <div class="showcase-overlay">
+                        <div class="showcase-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="showcase-item">
+                  <img src="arrive/Fumée Colorée2.jpg" alt="">
+                    <div class="showcase-overlay">
+                        <div class="showcase-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="showcase-item">
+                  <img src="arrive/Fumée Colorée3.jpg" alt="">
+                    <div class="showcase-overlay">
+                        <div class="showcase-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="showcase-item">
+                  <img src="arrive/Pluie de Confettis.jpg" alt="">
+                    <div class="showcase-overlay">
+                        <div class="showcase-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="showcase-item">
+                  <img src="arrive/Haie d'Honneur2.jpg" alt="">
+                    <div class="showcase-overlay">
+                        <div class="showcase-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Pluie de pétales" class="showcase-image">
+                    <div class="showcase-overlay">
+                        <div class="showcase-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Sections -->
+    <div id="products-container">
+        <!-- Populated by JavaScript -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>À propos</h3>
+                    <p>Nous sommes spécialisés dans la création de moments d'entrée spectaculaires pour les couples nouvellement mariés. Notre mission est de rendre ce moment aussi mémorable et personnalisé que possible.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone"></i> 07 89 45 12 34</p>
+                        <p><i class="fas fa-envelope"></i> contact@arrivee-des-maries.fr</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Avenue des Cérémonies, Boumerdes</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens utiles</h3>
+                    <div class="footer-links">
+                        <a href="#">Conditions générales</a>
+                        <a href="#">Politique de confidentialité</a>
+                        <a href="#">FAQ</a>
+                        <a href="#">Guide de planification</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Elysian. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Arrivée des Mariés Data
+        const arriveesData = [
+            {
+                id: 1,
+                title: "Entrée Chorégraphiée",
+                description: "Une danse spécialement préparée pour votre entrée.",
+                images: [
+                    "arrive/Entrée Chorégraphiée.jpg",
+                    "arrive/Entrée Chorégraphiée.jpg",
+                    "arrive/Entrée Chorégraphiée.jpg"
+                    
+                ],
+                longDescription: "Surprenez vos invités avec une danse préparée spécialement pour votre entrée. Une chorégraphie personnalisée sur votre chanson préférée créera un moment joyeux et mémorable qui donnera le ton pour le reste de la soirée.",
+                features: [
+                    "<strong>Durée :</strong> 3-5 minutes",
+                    "<strong>Difficulté :</strong> Adaptée à votre niveau",
+                    "<strong>Préparation :</strong> 3-5 séances avec un chorégraphe",
+                    "<strong>Musique :</strong> Personnalisable selon vos goûts",
+                    "<strong>Effets spéciaux :</strong> Possibilité d'ajouter des jeux de lumière"
+                ]
+            },
+            {
+                id: 2,
+                title: "Haie d'Honneur",
+                description: "Une entrée à travers vos proches pour un moment émouvant.",
+                images: [
+                    "arrive/Haie d'Honneur2.jpg",
+                    "arrive/Haie d'Honneur.jpg"
+                ],
+                longDescription: "Faites votre entrée à travers une haie d'honneur formée par vos invités. Que ce soit avec des sparklers, des rubans, des fleurs ou des bulles, cette option crée une atmosphère magique et un moment de partage avec vos proches.",
+                features: [
+                    "<strong>Options :</strong> Sparklers, rubans, fleurs, bulles",
+                    "<strong>Durée :</strong> 2-3 minutes",
+                    "<strong>Participants :</strong> Tous vos invités ou un groupe sélectionné",
+                    "<strong>Éclairage :</strong> Possibilité de tamiser les lumières",
+                    "<strong>Musique :</strong> Recommandée pour amplifier l'émotion"
+                ]
+            },
+            {
+                id: 3,
+                title: "Pluie de Confettis",
+                description: "Une entrée festive sous une pluie de couleurs.",
+                images: [
+                    "arrive/Pluie de Confettis2.jpg",
+                    "arrive/Pluie de Confettis.jpg"
+                ],
+                longDescription: "Entrez sous une pluie de confettis ou de pétales de fleurs pour un effet visuel spectaculaire. Cette option est particulièrement photogénique et crée une ambiance festive instantanée qui ravira vos invités et produira des photos mémorables.",
+                features: [
+                    "<strong>Types :</strong> Confettis biodégradables, pétales naturels",
+                    "<strong>Couleurs :</strong> Personnalisables selon votre thème",
+                    "<strong>Installation :</strong> Canons à confettis ou distribution aux invités",
+                    "<strong>Effet visuel :</strong> Spectaculaire, idéal pour les photos",
+                    "<strong>Nettoyage :</strong> Service inclus après l'événement"
+                ]
+            },
+            {
+                id: 4,
+                title: "Fumée Colorée",
+                description: "Une entrée dramatique avec des effets visuels saisissants.",
+                images: [
+                    "arrive/Fumée Colorée1.jpg",
+                    "arrive/Fumée Colorée3.jpg",
+                    "arrive/Fumée Colorée2.jpg"
+                ],
+                longDescription: "Utilisez des bombes de fumée colorée pour créer une entrée dramatique et visuelle. Choisissez des couleurs qui correspondent à votre thème de mariage pour un effet coordonné qui créera des images uniques et mémorables.",
+                features: [
+                    "<strong>Couleurs :</strong> Large palette disponible",
+                    "<strong>Durée :</strong> 60-90 secondes par bombe",
+                    "<strong>Utilisation :</strong> En extérieur uniquement",
+                    "<strong>Effet :</strong> Très photogénique, crée une atmosphère unique",
+                    "<strong>Sécurité :</strong> Manipulation par notre équipe professionnelle"
+                ]
+            },
+            {
+                id: 5,
+                title: "Fanfare Musicale",
+                description: "Une entrée accompagnée de musiciens pour une ambiance festive.",
+                images: [
+                    "arrive/Fanfare Musicale2.jpg",
+                    "arrive/Fanfare Musicale1.jpg"
+                ],
+                longDescription: "Faites-vous accompagner par un groupe de musiciens pour votre entrée. Que ce soit un petit orchestre, un groupe de percussions ou des chanteurs, la musique live ajoute une dimension spéciale et crée une ambiance festive immédiate.",
+                features: [
+                    "<strong>Options :</strong> DJ, traditionnel, Medahat, chanteurs",
+                    "<strong>Taille :</strong> 2 à 10 musiciens selon vos préférences",
+                    "<strong>Répertoire :</strong> Personnalisable selon vos goûts",
+                    "<strong>Durée :</strong> Performance pendant l'entrée et au-delà si souhaité",
+                    "<strong>Tenues :</strong> Adaptées à votre thème de mariage"
+                ]
+            },
+            {
+                id: 6,
+                title: "Arrivée en Voiture de Luxe",
+                description: "Faites une entrée remarquée dans un véhicule d'exception.",
+                images: [
+                    "arrive/Arrivée en Voiture de Luxe2.jpg",
+                    "arrive/Arrivée en Voiture de Luxe1.jpg"
+                ],
+                longDescription: "Arrivez en grande classe avec une voiture de luxe ou vintage. Ce mode d'arrivée élégant crée un moment cinématographique et offre également d'excellentes opportunités pour des photos mémorables.",
+                features: [
+                    "<strong>Véhicules :</strong> Voitures de luxe, vintage ou décapotables",
+                    "<strong>Chauffeur :</strong> Professionnel en tenue formelle inclus",
+                    "<strong>Décoration :</strong> Fleurs et rubans personnalisés",
+                    "<strong>Timing :</strong> Coordination précise avec votre planning",
+                    "<strong>Photos :</strong> Séance photo avec le véhicule possible"
+                ]
+            }
+        ];
+
+        // DOM Elements
+        const header = document.getElementById('header');
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const collectionsDropdown = document.getElementById('collections-dropdown');
+        const dropdownContent = document.getElementById('dropdown-content');
+        const mobileCollectionsDropdown = document.getElementById('mobile-collections-dropdown');
+        const mobileDropdownContent = document.getElementById('mobile-dropdown-content');
+        const galleryGrid = document.getElementById('gallery-grid');
+        const productsContainer = document.getElementById('products-container');
+        const currentYearElement = document.getElementById('current-year');
+        const showcaseGrid = document.getElementById('showcase-grid');
+
+        // Set current year in footer
+        currentYearElement.textContent = new Date().getFullYear();
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (mobileNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Desktop dropdown toggle
+        collectionsDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+            collectionsDropdown.classList.toggle('active');
+        });
+
+        // Mobile dropdown toggle
+        mobileCollectionsDropdown.addEventListener('click', () => {
+            mobileCollectionsDropdown.classList.toggle('active');
+            const icon = mobileCollectionsDropdown.querySelector('i');
+            if (mobileCollectionsDropdown.classList.contains('active')) {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', () => {
+            collectionsDropdown.classList.remove('active');
+        });
+
+        // Populate dropdown menus
+        arriveesData.forEach((arrivee) => {
+            // Desktop dropdown
+            const desktopLink = document.createElement('a');
+            desktopLink.href = `#product-${arrivee.id}`;
+            desktopLink.textContent = arrivee.title;
+            dropdownContent.appendChild(desktopLink);
+            
+            // Mobile dropdown
+            const mobileLink = document.createElement('a');
+            mobileLink.href = `#product-${arrivee.id}`;
+            mobileLink.textContent = arrivee.title;
+            mobileDropdownContent.appendChild(mobileLink);
+        });
+
+        // Generate gallery grid
+        arriveesData.forEach(arrivee => {
+            const gridItem = document.createElement('div');
+            gridItem.className = 'grid-item';
+            
+            gridItem.innerHTML = `
+                <div class="grid-image-container">
+                    <img src="${arrivee.images[0]}" alt="${arrivee.title}" class="grid-image" id="grid-img-${arrivee.id}">
+                </div>
+                <div class="grid-content">
+                    <h3 class="grid-title">${arrivee.title}</h3>
+                    <p class="grid-description">${arrivee.description}</p>
+                    <a href="#product-${arrivee.id}" class="grid-link">Voir plus</a>
+                </div>
+            `;
+            
+            galleryGrid.appendChild(gridItem);
+            
+            // Image hover effect
+            if (arrivee.images.length > 1) {
+                const imgElement = document.getElementById(`grid-img-${arrivee.id}`);
+                let currentIndex = 0;
+                let interval;
+                
+                imgElement.addEventListener('mouseenter', () => {
+                    interval = setInterval(() => {
+                        currentIndex = (currentIndex + 1) % arrivee.images.length;
+                        imgElement.src = arrivee.images[currentIndex];
+                    }, 2000);
+                });
+                
+                imgElement.addEventListener('mouseleave', () => {
+                    clearInterval(interval);
+                    imgElement.src = arrivee.images[0];
+                });
+            }
+        });
+
+        // Generate product sections
+        arriveesData.forEach(arrivee => {
+            const productSection = document.createElement('section');
+            productSection.className = 'product-section';
+            productSection.id = `product-${arrivee.id}`;
+            
+            const productHTML = `
+                <div class="container">
+                    <div class="product-container">
+                        <!-- Gallery Section -->
+                        <div class="gallery-section">
+                            <div class="carousel" id="carousel-${arrivee.id}">
+                                <div class="carousel-inner" id="carousel-inner-${arrivee.id}">
+                                    ${arrivee.images.map((image, index) => `
+                                        <div class="carousel-item ${index === 0 ? 'active' : ''}" data-index="${index}">
+                                            <img src="${image}" alt="${arrivee.title} - Image ${index + 1}">
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                
+                                ${arrivee.images.length > 1 ? `
+                                    <div class="carousel-control prev" data-carousel="${arrivee.id}">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </div>
+                                    <div class="carousel-control next" data-carousel="${arrivee.id}">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                    <div class="carousel-indicators" id="carousel-indicators-${arrivee.id}">
+                                        ${arrivee.images.map((_, index) => `
+                                            <div class="carousel-indicator ${index === 0 ? 'active' : ''}" data-carousel="${arrivee.id}" data-index="${index}"></div>
+                                        `).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+
+                        <!-- Form Section -->
+                        <div class="form-section">
+                            <h2 class="form-title">${arrivee.title}</h2>
+                            
+                            ${arrivee.longDescription ? `<p class="form-description">${arrivee.longDescription}</p>` : ''}
+                            
+                            <form class="custom-form" id="form-${arrivee.id}">
+                                <div class="form-group">
+                                    <label class="form-label">Date du mariage</label>
+                                    <input type="date" name="wedding_date" class="form-input" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Nombre d'invités</label>
+                                    <input type="number" name="guests" class="form-input" min="10" max="500" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Lieu de la réception</label>
+                                    <input type="text" name="location" class="form-input" placeholder="Adresse complète" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Demandes spéciales</label>
+                                    <textarea name="special_requests" class="form-input" rows="3" placeholder="Détails supplémentaires, préférences musicales, etc."></textarea>
+                                </div>
+                                
+                                <button type="submit" class="submit-button">DEMANDER UN DEVIS</button>
+                            </form>
+
+                            <!-- Features Section -->
+                            <div class="features-section">
+                                <h2 class="features-title">CARACTÉRISTIQUES</h2>
+                                
+                                ${arrivee.features ? `
+                                    <div class="features-list">
+                                        ${arrivee.features.map(feature => `
+                                            <div class="feature-item">${feature}</div>
+                                        `).join('')}
+                                    </div>
+                                ` : `
+                                    <div class="no-features">
+                                        <div class="warning-text">⚠️ PLUS DE DÉTAILS SERONT DISPONIBLES BIENTÔT ⚠️</div>
+                                        <div class="contact-text">📞 Contact : 07 89 45 12 34</div>
+                                    </div>
+                                `}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            productSection.innerHTML = productHTML;
+            productsContainer.appendChild(productSection);
+            
+            // Set up form submission
+            const form = document.getElementById(`form-${arrivee.id}`);
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert(`Demande pour "${arrivee.title}" envoyée ! Nous vous contacterons bientôt avec un devis personnalisé.`);
+            });
+        });
+
+        // Showcase gallery lightbox
+        document.querySelectorAll('.showcase-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src;
+                alert('Galerie d\'inspiration: ' + imgSrc);
+                // Dans une implémentation réelle, ceci ouvrirait une lightbox
+            });
+        });
+
+        // Carousel functionality
+        document.querySelectorAll('.carousel-control.prev').forEach(button => {
+            button.addEventListener('click', () => {
+                const carouselId = button.getAttribute('data-carousel');
+                navigateCarousel(carouselId, 'prev');
+            });
+        });
+
+        document.querySelectorAll('.carousel-control.next').forEach(button => {
+            button.addEventListener('click', () => {
+                const carouselId = button.getAttribute('data-carousel');
+                navigateCarousel(carouselId, 'next');
+            });
+        });
+
+        document.querySelectorAll('.carousel-indicator').forEach(indicator => {
+            indicator.addEventListener('click', () => {
+                const carouselId = indicator.getAttribute('data-carousel');
+                const index = parseInt(indicator.getAttribute('data-index'));
+                setActiveSlide(carouselId, index);
+            });
+        });
+
+        function navigateCarousel(carouselId, direction) {
+            const carouselInner = document.getElementById(`carousel-inner-${carouselId}`);
+            const slides = carouselInner.querySelectorAll('.carousel-item');
+            const activeSlide = carouselInner.querySelector('.carousel-item.active');
+            const activeIndex = parseInt(activeSlide.getAttribute('data-index'));
+            
+            let newIndex;
+            if (direction === 'prev') {
+                newIndex = activeIndex === 0 ? slides.length - 1 : activeIndex - 1;
+            } else {
+                newIndex = activeIndex === slides.length - 1 ? 0 : activeIndex + 1;
+            }
+            
+            setActiveSlide(carouselId, newIndex);
+        }
+
+        function setActiveSlide(carouselId, index) {
+            const carouselInner = document.getElementById(`carousel-inner-${carouselId}`);
+            const indicators = document.getElementById(`carousel-indicators-${carouselId}`);
+            
+            // Update slides
+            carouselInner.querySelectorAll('.carousel-item').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            carouselInner.querySelector(`.carousel-item[data-index="${index}"]`).classList.add('active');
+            
+            // Update indicators
+            if (indicators) {
+                indicators.querySelectorAll('.carousel-indicator').forEach(indicator => {
+                    indicator.classList.remove('active');
+                });
+                indicators.querySelector(`.carousel-indicator[data-index="${index}"]`).classList.add('active');
+            }
+        }
+
+        // Auto-rotate carousels
+        arriveesData.forEach(arrivee => {
+            if (arrivee.images.length > 1) {
+                setInterval(() => {
+                    navigateCarousel(arrivee.id, 'next');
+                }, 5000);
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Close mobile menu if open
+                    mobileNav.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="theme-toggle.js"></script>
+</body>
+</html>
